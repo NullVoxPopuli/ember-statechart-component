@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.0.0...v2.1.0) (2021-04-23)
+
+
+### Features
+
+* new default template ([e3be573](https://github.com/NullVoxPopuli/ember-statechart-component/commit/e3be5732ba404983e220526248edf0043cc818d7))
+
 # [2.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v1.0.0...v2.0.0) (2021-04-23)
 
 
