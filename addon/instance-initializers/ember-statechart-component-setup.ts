@@ -4,15 +4,9 @@ import ComponentManager from 'ember-statechart-component/-private/statechart-man
 import { StateNode } from 'xstate';
 
 // Managers are managed globally, and not per app instance
-let registered = false;
+setComponentManager((owner) => ComponentManager.create(owner), StateNode.prototype);
 
-export function initialize(): void {
-  if (registered) return;
-
-  setComponentManager((owner) => ComponentManager.create(owner), StateNode.prototype);
-
-  registered = true;
-}
+export function initialize(): void {}
 
 export default {
   initialize,
