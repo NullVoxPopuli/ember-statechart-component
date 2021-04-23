@@ -23,6 +23,7 @@ module.exports = function (defaults) {
         components: {
           '{{toggle}}': { safeToIgnore: true },
           '{{toggle-machine}}': { safeToIgnore: true },
+          '{{report}}': { safeToIgnore: true },
         },
       },
     ],

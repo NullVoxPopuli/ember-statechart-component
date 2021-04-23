@@ -126,12 +126,13 @@ module('Usage', function (hooks) {
       context: {
         numCalled: 10,
       },
-      report: (data: any) => (context = data),
     });
+
+    this.owner.register('helper:report', (data: any) => (context = data));
 
     await render(hbs`
       <ToggleMachine @context={{this.context}} as |state send|>
-        {{this.report state.context}}
+        {{report state.context}}
 
         <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
           Toggle
@@ -162,18 +163,15 @@ module('Usage', function (hooks) {
       })
     );
 
-    this.owner.register('component:toggle-machine', toggle);
-
     let previousState: State<unknown> | null = null;
 
-    this.setProperties({
-      record: (state: State<unknown>) => (previousState = state),
-    });
+    this.owner.register('component:toggle-machine', toggle);
+    this.owner.register('helper:report', (state: State<unknown>) => (previousState = state));
 
     await render(hbs`
       <ToggleMachine as |state send|>
         {{state.value}}
-        {{this.record state}}
+        {{report state}}
 
         <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
           Toggle
@@ -199,7 +197,7 @@ module('Usage', function (hooks) {
     await render(hbs`
       <ToggleMachine @state={{this.previousState}} as |state send|>
         {{state.value}}
-        {{this.record state}}
+        {{report state}}
 
         <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
           Toggle

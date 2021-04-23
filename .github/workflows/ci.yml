@@ -72,8 +72,9 @@ jobs:
           - ember-release
           - ember-beta
           - ember-canary
-          - embroider-safe
-          - embroider-optimized
+          # TODO: XState doesn't work with embroider yet
+          # - embroider-safe
+          # - embroider-optimized
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
