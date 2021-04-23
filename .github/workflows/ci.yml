@@ -32,7 +32,7 @@ jobs:
       - run: npm install
 
       - name: Test with ${{ matrix.node }}
-        run: npm exec ember test
+        run: node_modules/.bin/ember test
 
   # floating-dependencies:
   #   if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
