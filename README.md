@@ -31,10 +31,6 @@ export default createMachine({
   },
 });
 ```
-```hbs
-{{!-- app/components/toggle.hbs --}}
-{{yield this.state this.send}}
-```
 
 Usage of this "toggle" component:
 
@@ -47,6 +43,13 @@ Usage of this "toggle" component:
   </button>
 </Toggle>
 ```
+
+The default template for every `createMachine(..)` is
+```hbs
+{{yield this.state this.send}}
+```
+but that can be overriden to suit your needs by defining your own template.
+the `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
 
 ### API
 

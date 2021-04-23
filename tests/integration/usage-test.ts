@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { setComponentTemplate } from '@ember/component';
 import { clearRender, render } from '@ember/test-helpers';
 import click from '@ember/test-helpers/dom/click';
 import { hbs } from 'ember-cli-htmlbars';
@@ -15,18 +14,13 @@ module('Usage', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it works', async function (assert) {
-    let toggle = setComponentTemplate(
-      hbs`
-        {{yield this.state this.send}}
-      `,
-      createMachine({
-        initial: 'inactive',
-        states: {
-          inactive: { on: { TOGGLE: 'active' } },
-          active: { on: { TOGGLE: 'inactive' } },
-        },
-      })
-    );
+    let toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
 
     this.owner.register('component:toggle-machine', toggle);
 
@@ -49,18 +43,13 @@ module('Usage', function (hooks) {
   });
 
   test('can pass config', async function (assert) {
-    let toggle = setComponentTemplate(
-      hbs`
-        {{yield this.state this.send}}
-      `,
-      createMachine({
-        initial: 'inactive',
-        states: {
-          inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
-          active: { entry: 'increment', on: { TOGGLE: 'inactive' } },
-        },
-      })
-    );
+    let toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
+        active: { entry: 'increment', on: { TOGGLE: 'inactive' } },
+      },
+    });
 
     this.owner.register('component:toggle-machine', toggle);
 
@@ -92,31 +81,26 @@ module('Usage', function (hooks) {
   });
 
   test('can pass context', async function (assert) {
-    let toggle = setComponentTemplate(
-      hbs`
-        {{yield this.state this.send}}
-      `,
-      createMachine({
-        initial: 'inactive',
-        context: {
-          numCalled: 0,
+    let toggle = createMachine({
+      initial: 'inactive',
+      context: {
+        numCalled: 0,
+      },
+      states: {
+        inactive: {
+          entry: assign({
+            numCalled: (ctx: any) => ctx.numCalled + 1,
+          }),
+          on: { TOGGLE: 'active' },
         },
-        states: {
-          inactive: {
-            entry: assign({
-              numCalled: (ctx: any) => ctx.numCalled + 1,
-            }),
-            on: { TOGGLE: 'active' },
-          },
-          active: {
-            entry: assign({
-              numCalled: (ctx: any) => ctx.numCalled + 1,
-            }),
-            on: { TOGGLE: 'inactive' },
-          },
+        active: {
+          entry: assign({
+            numCalled: (ctx: any) => ctx.numCalled + 1,
+          }),
+          on: { TOGGLE: 'inactive' },
         },
-      })
-    );
+      },
+    });
 
     this.owner.register('component:toggle-machine', toggle);
 
@@ -150,18 +134,13 @@ module('Usage', function (hooks) {
   });
 
   test('can pass initial state', async function (assert) {
-    let toggle = setComponentTemplate(
-      hbs`
-        {{yield this.state this.send}}
-      `,
-      createMachine({
-        initial: 'inactive',
-        states: {
-          inactive: { on: { TOGGLE: 'active' } },
-          active: { on: { TOGGLE: 'inactive' } },
-        },
-      })
-    );
+    let toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
 
     let previousState: State<unknown> | null = null;
 
