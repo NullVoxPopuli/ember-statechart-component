@@ -115,7 +115,7 @@ jobs:
       - run: npm install
 
       - name: Release
-        run: npm run semantic-release
+        run: node_modules/.bin/semantic-release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
