@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v1.0.0...v2.0.0) (2021-04-23)
+
+
+### Features
+
+* initial release ([64a1aec](https://github.com/NullVoxPopuli/ember-statechart-component/commit/64a1aece7cef6bde06c9f5739ea427d88b6e7c2c))
+
+
+### BREAKING CHANGES
+
+* first release to NPM
+
 # 1.0.0 (2021-04-23)
 
 
