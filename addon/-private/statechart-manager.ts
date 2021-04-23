@@ -4,12 +4,13 @@
 import { DEBUG } from '@glimmer/env';
 import { getOwner, setOwner } from '@ember/application';
 import { capabilities } from '@ember/component';
+import { assert } from '@ember/debug';
 import { destroy, isDestroying } from '@ember/destroyable';
 import { cancel, later } from '@ember/runloop';
 
-import { interpret } from 'xstate';
+import { interpret, State } from 'xstate';
 
-import { dirtyState, reactiveInterpreter } from './proxy';
+import { reactiveInterpreter } from './proxy';
 
 import type { Interpreter, StateNode } from 'xstate';
 
@@ -58,7 +59,15 @@ export default class ComponentManager {
 
     let withReactivity = reactiveInterpreter(interpreter);
 
-    withReactivity.start();
+    if ('state' in named) {
+      assert(`@state must be of type State`, named.state instanceof State);
+
+      let resolvedState = machine.resolveState(named.state);
+
+      withReactivity.start(resolvedState);
+    } else {
+      withReactivity.start();
+    }
 
     return withReactivity;
   }
