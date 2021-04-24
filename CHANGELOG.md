@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.2.0...v2.2.1) (2021-04-24)
+
+
+### Bug Fixes
+
+* **internal:** fill out missing package.json fields ([fed4577](https://github.com/NullVoxPopuli/ember-statechart-component/commit/fed4577d59392ff93e2f15686092bee4dca24003))
+
 # [2.2.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.1.0...v2.2.0) (2021-04-24)
 
 
