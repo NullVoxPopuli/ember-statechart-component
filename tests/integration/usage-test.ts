@@ -97,6 +97,40 @@ module('Usage', function (hooks) {
     assert.equal(testState.foo, 3);
   });
 
+  test(`it can use XState's builtin matches function`, async function (assert) {
+    let toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    this.owner.register('component:toggle-machine', toggle);
+
+    await render(hbs`
+      <ToggleMachine as |state send|>
+        {{#if (state.matches 'inactive')}}
+          The inactive state
+        {{else if (state.matches 'active')}}
+          The active state
+        {{else}}
+          Unknown state
+        {{/if}}
+
+        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+          Toggle
+        </button>
+      </ToggleMachine>
+    `);
+
+    assert.dom().containsText('The inactive state');
+
+    await click('button');
+
+    assert.dom().containsText('The active state');
+  });
+
   test('multiple invocations have their own state', async function (assert) {
     let toggle = createMachine({
       initial: 'inactive',

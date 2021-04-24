@@ -42,7 +42,7 @@ Usage:
 <Toggle as |state send|>
   {{state.value}}
 
-  <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+  <button {{on 'click' (fn send 'TOGGLE')}}>
     Toggle
   </button>
 </Toggle>
@@ -96,10 +96,36 @@ Usage:
 <AuthenticatedToggle as |state send|>
   {{state.value}}
 
-  <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+  <button {{on 'click' (fn send 'TOGGLE')}}>
     Toggle
   </button>
 </AuthenticatedToggle>
+```
+
+### Matching States
+
+XState provides its own [`matches`](https://xstate.js.org/api/classes/state.html#matches)
+method which is available on the `state` object.
+We can utilize this provided there exists a `HelperManager` for
+handling vanilla functions, such as what
+[ember-could-get-used-to-this](https://github.com/pzuraq/ember-could-get-used-to-this)
+provides.
+
+
+```hbs
+<Toggle as |state send|>
+  {{#if (state.matches 'inactive')}}
+    The inactive state
+  {{else if (state.matches 'active')}}
+    The active state
+  {{else}}
+    Unknown state
+  {{/if}}
+
+  <button {{on 'click' (fn send 'TOGGLE')}}>
+    Toggle
+  </button>
+</Toggle>
 ```
 
 ### API
