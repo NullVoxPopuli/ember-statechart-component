@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.1.0...v2.2.0) (2021-04-24)
+
+
+### Features
+
+* support accessing services ([446ac64](https://github.com/NullVoxPopuli/ember-statechart-component/commit/446ac648f8a2d209d16b29603e8c73ee30e3f163))
+
 # [2.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.0.0...v2.1.0) (2021-04-23)
 
 
