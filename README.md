@@ -32,7 +32,7 @@ export default createMachine({
 });
 ```
 
-Usage of this "toggle" component:
+Usage:
 
 ```hbs
 <Toggle as |state send|>
@@ -50,6 +50,53 @@ The default template for every `createMachine(..)` is
 ```
 but that can be overriden to suit your needs by defining your own template.
 the `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
+
+### Accessing Services
+
+```js
+// app/components/authenticated-toggle.js
+import { getService } from 'ember-statechart-component';
+import { createMachine } from 'xstate';
+
+export default createMachine({
+  initial: 'inactive',
+  states: {
+    inactive: {
+      on: {
+        TOGGLE: [
+          {
+            target: 'active',
+            cond: 'isAuthenticated',
+          },
+          { actions: ['notify'] },
+        ],
+      },
+    },
+    active: { on: { TOGGLE: 'inactive' } },
+  },
+}, {
+  actions: {
+    notify: (ctx) => {
+      getService(ctx, 'toasts').notify('You must be logged in');
+    },
+  },
+  guards: {
+    isAuthenticated: (ctx) => getService(ctx, 'session').isAuthenticated,
+  },
+});
+```
+
+Usage:
+
+```hbs
+<AuthenticatedToggle as |state send|>
+  {{state.value}}
+
+  <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+    Toggle
+  </button>
+</AuthenticatedToggle>
+```
 
 ### API
 
