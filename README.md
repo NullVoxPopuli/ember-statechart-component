@@ -144,6 +144,11 @@ The machine will use this state as the initial state. Any changes to
 this argument are ignored.
 
 
+### What happens if any of the passed args change?
+
+An event will be sent to the machine for you, `ARGS_UPDATE`, along
+with all named arguments used to invoke the component.
+
 
 Compatibility
 ------------------------------------------------------------------------------
