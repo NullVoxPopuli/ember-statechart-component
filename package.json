@@ -1,13 +1,15 @@
 {
   "name": "ember-statechart-component",
   "version": "2.2.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Use XState Machines *as* Components",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "statechart",
+    "xstate"
   ],
-  "repository": "",
+  "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
   "license": "MIT",
-  "author": "",
+  "author": "NullVoxPopuli",
   "directories": {
     "doc": "doc",
     "test": "tests"
