@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import Service from '@ember/service';
 import { clearRender, render } from '@ember/test-helpers';
 import click from '@ember/test-helpers/dom/click';
 import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
+import { getService } from 'ember-statechart-component';
 import { assign, createMachine } from 'xstate';
 
 import type { State } from 'xstate';
+
+declare module '@ember/service' {
+  interface Registry {
+    'test-state': any; // determined in tests
+  }
+}
 
 module('Usage', function (hooks) {
   setupRenderingTest(hooks);
@@ -40,6 +48,95 @@ module('Usage', function (hooks) {
 
     assert.dom().doesNotContainText('inactive');
     assert.dom().containsText('active');
+  });
+
+  test('can use services', async function (assert) {
+    let toggle = createMachine(
+      {
+        initial: 'inactive',
+        states: {
+          inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
+          active: { entry: 'increment', on: { TOGGLE: 'inactive' } },
+        },
+      },
+      {
+        actions: {
+          increment: (ctx) => {
+            getService(ctx, 'test-state').foo++;
+          },
+        },
+      }
+    );
+
+    this.owner.register('component:toggle-machine', toggle);
+    this.owner.register(
+      'service:test-state',
+      class TestState extends Service {
+        foo = 0;
+      }
+    );
+
+    await render(hbs`
+      <ToggleMachine as |state send|>
+        {{state.value}}
+
+        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+          Toggle
+        </button>
+      </ToggleMachine>
+    `);
+
+    let testState = this.owner.lookup('service:test-state');
+
+    assert.equal(testState.foo, 1);
+
+    await click('button');
+    assert.equal(testState.foo, 2);
+
+    await click('button');
+    assert.equal(testState.foo, 3);
+  });
+
+  test('multiple invocations have their own state', async function (assert) {
+    let toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    this.owner.register('component:toggle-machine', toggle);
+
+    await render(hbs`
+      <div id="one">
+        <ToggleMachine as |state send|>
+          {{state.value}}
+
+          <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+            Toggle
+          </button>
+        </ToggleMachine>
+      </div>
+      <div id="two">
+        <ToggleMachine as |state send|>
+          {{state.value}}
+
+          <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+            Toggle
+          </button>
+        </ToggleMachine>
+      </div>
+    `);
+
+    assert.dom('#one').containsText('inactive');
+    assert.dom('#two').containsText('inactive');
+
+    await click('#one button');
+
+    assert.dom('#one').doesNotContainText('inactive');
+    assert.dom('#one').containsText('active');
+    assert.dom('#two').containsText('inactive');
   });
 
   test('can pass config', async function (assert) {
