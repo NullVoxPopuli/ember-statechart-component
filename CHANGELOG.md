@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.2.1...v2.2.2) (2021-04-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tracked-built-ins to ^1.1.1 ([9057cd7](https://github.com/NullVoxPopuli/ember-statechart-component/commit/9057cd76b5d416d5a124d7b436c05b1852f666fa))
+
 ## [2.2.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.2.0...v2.2.1) (2021-04-24)
 
 
