@@ -1,6 +1,10 @@
 ember-statechart-component
 ==============================================================================
 
+[![CI](https://github.com/NullVoxPopuli/ember-statechart-component/actions/workflows/ci.yml/badge.svg)](https://github.com/NullVoxPopuli/ember-statechart-component/actions/workflows/ci.yml)
+[![npm version](https://badge.fury.io/js/ember-statechart-component.svg)](https://www.npmjs.com/package/ember-statechart-component)
+
+
 Use [XState](https://xstate.js.org/) Machines *as* components.
 
 Installation
