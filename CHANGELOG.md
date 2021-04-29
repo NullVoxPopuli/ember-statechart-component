@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.2.3...v2.3.0) (2021-04-29)
+
+
+### Bug Fixes
+
+* **deps:** move ember-auto-import to dependencies ([fac6ac0](https://github.com/NullVoxPopuli/ember-statechart-component/commit/fac6ac0550cc26a4024d655815308ed0d425d3d3))
+
+
+### Features
+
+* support embroider ([6044337](https://github.com/NullVoxPopuli/ember-statechart-component/commit/6044337f79f0d6f06d89c126c1114f6fd60e9c65))
+
 ## [2.2.3](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.2.2...v2.2.3) (2021-04-28)
 
 

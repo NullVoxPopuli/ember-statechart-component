@@ -1,6 +1,6 @@
 {
   "name": "ember-statechart-component",
-  "version": "2.2.3",
+  "version": "2.3.0",
   "description": "Use XState Machines *as* Components",
   "keywords": [
     "ember-addon",
