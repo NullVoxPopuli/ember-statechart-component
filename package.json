@@ -102,10 +102,10 @@
     "qunit-dom": "^1.6.0",
     "semantic-release": "^17.4.2",
     "typescript": "^4.2.4",
-    "xstate": "^4.18.0"
+    "xstate": "^4.19.0"
   },
   "peerDependencies": {
-    "xstate": "^4.18.0"
+    "xstate": "^4.19.0"
   },
   "release": {
     "branches": [
