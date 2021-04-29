@@ -19,6 +19,8 @@ export interface Args {
   positional: unknown[];
 }
 
+export const INTERPRETER_REF = Symbol('INTERPRETER');
+
 export default class ComponentManager {
   capabilities = capabilities('3.13', {
     destructor: true,
@@ -63,6 +65,8 @@ export default class ComponentManager {
     });
 
     let withReactivity = reactiveInterpreter(interpreter);
+
+    (withReactivity.state.context as any)[INTERPRETER_REF] = withReactivity;
 
     if ('state' in named) {
       assert(`@state must be of type State`, named.state instanceof State);
