@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.0...v2.3.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **runloop:** prevent infinite invalidation bugs ([fae96bd](https://github.com/NullVoxPopuli/ember-statechart-component/commit/fae96bd64b35044c1b2fbb9f09e9273e8cdf5ce1))
+
 # [2.3.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.2.3...v2.3.0) (2021-04-29)
 
 
