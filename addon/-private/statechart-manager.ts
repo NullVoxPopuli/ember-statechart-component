@@ -10,7 +10,7 @@ import { cancel, later } from '@ember/runloop';
 
 import { interpret, State } from 'xstate';
 
-import { reactiveInterpreter } from './proxy';
+import { reactiveInterpreter, UPDATE_EVENT_NAME } from './proxy';
 
 import type { Interpreter, StateNode } from 'xstate';
 
@@ -62,23 +62,27 @@ export default class ComponentManager {
       },
     });
 
-    let withReactivity = reactiveInterpreter(interpreter);
-
     if ('state' in named) {
       assert(`@state must be of type State`, named.state instanceof State);
 
       let resolvedState = machine.resolveState(named.state);
 
+      let withReactivity = reactiveInterpreter(interpreter);
+
       withReactivity.start(resolvedState);
-    } else {
-      withReactivity.start();
+
+      return withReactivity;
     }
+
+    let withReactivity = reactiveInterpreter(interpreter);
+
+    withReactivity.start();
 
     return withReactivity;
   }
 
   updateComponent(interpreter: Interpreter<any>, args: Args) {
-    interpreter.send('ARGS_UPDATE', args.named);
+    interpreter.send(UPDATE_EVENT_NAME, args.named);
   }
 
   destroyComponent(interpreter: Interpreter<any>) {
