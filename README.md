@@ -155,6 +155,7 @@ Compatibility
 
 * Ember.js v3.25 or above
 * Node.js v12 or above
+* Chrome 49 / Edge 12 / Firefox 42 / Safari 10
 
 
 Contributing
