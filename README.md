@@ -155,6 +155,7 @@ Compatibility
 
 * Ember.js v3.25 or above
 * Node.js v12 or above
+* A browser that supports [Proxy](https://caniuse.com/proxy)
 
 
 Contributing
