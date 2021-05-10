@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.2...v2.3.3) (2021-05-10)
+
+
+### Bug Fixes
+
+* **readme:** add browser requirements ([252f1a0](https://github.com/NullVoxPopuli/ember-statechart-component/commit/252f1a0503700675c8f217bb4069fd60c6ba3009)), closes [PR#33](https://github.com/PR/issues/33)
+
 ## [2.3.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.1...v2.3.2) (2021-05-06)
 
 
