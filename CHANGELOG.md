@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.3...v2.3.4) (2021-05-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-cli-babel to ^7.26.6 ([9edf718](https://github.com/NullVoxPopuli/ember-statechart-component/commit/9edf718724e6b914e7eaebfb007b2cf197949b51))
+
 ## [2.3.3](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.2...v2.3.3) (2021-05-10)
 
 
