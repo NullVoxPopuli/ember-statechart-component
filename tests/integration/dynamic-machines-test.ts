@@ -107,6 +107,7 @@ module('Dynamic Machines', function (hooks) {
     await click('#spawn');
     assert.equal(active, 0);
     assert.equal(inactive, 1);
+    await this.pauseTest();
 
     assert.dom().containsText('spawnNested');
 

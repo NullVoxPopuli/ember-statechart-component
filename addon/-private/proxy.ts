@@ -13,6 +13,12 @@ const CACHE = new TrackedWeakMap<Interpreter<unknown>, Record<string, unknown>>(
 export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
   CACHE.set(interpreter, tracked({}));
 
+  interpreter.subscribe(console.log);
+  /**
+   * TODO: when event.type === 'SPAWN',
+   *  call reactiveInterpreter on state.children[event.id]
+   *  TODO: figure out a way to handle when id isn't passed
+   */
   interpreter.onTransition(async (_state: State<unknown>, event: EventObject) => {
     // init always runs, we don't need to dirty
     if (event.type === 'xstate.init') return;
