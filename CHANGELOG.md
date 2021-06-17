@@ -1,3 +1,10 @@
+## [2.3.6](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.5...v2.3.6) (2021-06-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-cli-typescript to ^4.2.1 ([279635e](https://github.com/NullVoxPopuli/ember-statechart-component/commit/279635efb4f736fce3d18903231e61d812402c39))
+
 ## [2.3.5](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.4...v2.3.5) (2021-06-15)
 
 
