@@ -1,3 +1,10 @@
+## [2.3.7](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.6...v2.3.7) (2021-08-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-auto-import to ^1.12.0 ([84b04e8](https://github.com/NullVoxPopuli/ember-statechart-component/commit/84b04e8885c4a7ccc270c34cbcc184e2596ed2b2))
+
 ## [2.3.6](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.5...v2.3.6) (2021-06-17)
 
 
