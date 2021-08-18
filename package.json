@@ -36,7 +36,7 @@
     "ember-cli-typescript": "^4.2.1",
     "qunit-console-grouper": "^0.3.0",
     "tracked-built-ins": "^1.1.1",
-    "tracked-maps-and-sets": "^2.2.1"
+    "tracked-maps-and-sets": "^3.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
