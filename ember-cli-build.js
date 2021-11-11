@@ -4,7 +4,16 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
-    // Add options here
+    // 'ember-cli-babel': {
+    //   compileModules: false,
+    // },
+    babel: {
+      loose: true,
+      plugins: [
+        // ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
+        ['@babel/plugin-proposal-private-methods', { loose: true }],
+      ],
+    },
   });
 
   /*
