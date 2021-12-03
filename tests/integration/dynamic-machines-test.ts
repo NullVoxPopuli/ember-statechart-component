@@ -82,7 +82,7 @@ module('Dynamic Machines', function (hooks) {
 
     await render(hbs`
         <TestMachine as |state send|>
-          {{state.toStrings}}
+          {{state.value}}
 
           <button id='spawn' {{on 'click' (fn this.startNested send)}}>Spawn Nested Machine</button>
 
