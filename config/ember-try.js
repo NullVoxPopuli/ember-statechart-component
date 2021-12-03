@@ -18,7 +18,6 @@ module.exports = async function () {
         name: 'ember-3.28',
         npm: {
           devDependencies: {
-            '@babel/helper-create-class-features-plugin': '7.14.6',
             'ember-source': '~3.28.0',
           },
         },
@@ -27,7 +26,6 @@ module.exports = async function () {
         name: 'ember-release',
         npm: {
           devDependencies: {
-            '@babel/helper-create-class-features-plugin': '7.14.6',
             'ember-source': await getChannelURL('release'),
           },
         },
@@ -36,7 +34,6 @@ module.exports = async function () {
         name: 'ember-beta',
         npm: {
           devDependencies: {
-            '@babel/helper-create-class-features-plugin': '7.14.6',
             'ember-source': await getChannelURL('beta'),
           },
         },
@@ -45,7 +42,6 @@ module.exports = async function () {
         name: 'ember-canary',
         npm: {
           devDependencies: {
-            '@babel/helper-create-class-features-plugin': '7.14.6',
             'ember-source': await getChannelURL('canary'),
           },
         },
@@ -53,14 +49,14 @@ module.exports = async function () {
       embroiderSafe({
         npm: {
           devDependencies: {
-            '@babel/helper-create-class-features-plugin': '7.14.6',
+            '@babel/plugin-proposal-private-methods': '^7.0.0',
           },
         },
       }),
       embroiderOptimized({
         npm: {
           devDependencies: {
-            '@babel/helper-create-class-features-plugin': '7.14.6',
+            '@babel/plugin-proposal-private-methods': '^7.0.0',
           },
         },
       }),
