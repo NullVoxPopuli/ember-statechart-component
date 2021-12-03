@@ -126,11 +126,11 @@
   },
   "volta": {
     "node": "14.17.5",
-    "yarn": "1.22.17",
+    "yarn": "1.22.11",
     "npm": "8.2.0"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "14.* || >= 16.*"
   },
   "ember": {
     "edition": "octane"
@@ -139,3 +139,5 @@
     "configPath": "tests/dummy/config"
   }
 }
+
+
