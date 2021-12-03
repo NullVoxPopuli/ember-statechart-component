@@ -70,6 +70,7 @@ jobs:
         ember-try-scenario:
           - ember-3.25
           - ember-3.26
+          - ember-3.28
           - ember-release
           - ember-beta
           - ember-canary
