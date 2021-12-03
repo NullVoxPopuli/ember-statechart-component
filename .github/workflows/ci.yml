@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - run: npm install
+      - run: yarn install
 
       - name: Test with ${{ matrix.node }}
         run: node_modules/.bin/ember test
@@ -81,7 +81,7 @@ jobs:
         with:
           node-version: 12.x
       - name: install dependencies
-        run: npm install
+        run: yarn install
       - name: test
         run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
 
@@ -112,7 +112,7 @@ jobs:
         with:
           persist-credentials: false
       - uses: volta-cli/action@v1
-      - run: npm install
+      - run: yarn install
 
       - name: Release
         run: node_modules/.bin/semantic-release
