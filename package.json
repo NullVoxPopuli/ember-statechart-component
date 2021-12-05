@@ -29,9 +29,6 @@
     "prepack": "ember ts:precompile",
     "postpack": "ember ts:clean"
   },
-  "resolutions": {
-    "@babel/helper-create-class-features-plugin": "7.14.6"
-  },
   "dependencies": {
     "ember-auto-import": "^2.2.4",
     "ember-cli-babel": "^7.26.6",
