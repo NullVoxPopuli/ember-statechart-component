@@ -9,7 +9,11 @@
   "masterIssue": true,
   // bump for apps
   // update-lockfile for addons/libraries
+<<<<<<< HEAD
   "rangeStrategy": "update-lockfile",
+=======
+  "rangeStrategy": "bump",
+>>>>>>> c821c1b (v2.0.0...v2.1.4)
   // From the docs:
   // https://docs.renovatebot.com/configuration-options/#packagerules
   // Important to know: Renovate will evaluate all packageRules and not stop once it gets a first match.
@@ -95,6 +99,12 @@
     {
       // changing peerDependencies *at all* is a breaking change
       "matchDepTypes": ["peerDependencies"],
+      "enabled": false
+    },
+    {
+      // changing engines forces other people to need to upgrade their minimum node
+      // therefor engine changes are breaking changes
+      "depTypeList": ["engines"],
       "enabled": false
     }
   ]
