@@ -1,17 +1,17 @@
 import { assert } from '@ember/debug';
 import { isDestroyed, isDestroying } from '@ember/destroyable';
-import { get as consumeTag, notifyPropertyChange as dirtyKey } from '@ember/object';
 
-import { tracked, TrackedWeakMap } from 'tracked-built-ins';
+import { createStorage, getValue, setValue } from 'ember-tracked-storage-polyfill';
 
+import type { TrackedStorage } from 'ember-tracked-storage-polyfill';
 import type { EventObject, Interpreter, State } from 'xstate';
 
 export const UPDATE_EVENT_NAME = 'ARGS_UPDATE';
 
-const CACHE = new TrackedWeakMap<Interpreter<unknown>, Record<string, unknown>>();
+const CACHE = new WeakMap<Interpreter<unknown>, TrackedStorage<null>>();
 
 export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
-  CACHE.set(interpreter, tracked({}));
+  ensureStorage(interpreter);
 
   interpreter.onTransition(async (_state: State<unknown>, event: EventObject) => {
     // init always runs, we don't need to dirty
@@ -39,11 +39,9 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
   return new Proxy(interpreter, {
     get(target, key, receiver) {
       if (key === '_state') {
-        let tracking = CACHE.get(target);
+        let storage = ensureStorage(target);
 
-        assert(`Tracking context lost!`, tracking);
-
-        consumeTag(tracking, key);
+        getValue(storage);
       }
 
       return Reflect.get(target, key, receiver);
@@ -51,10 +49,21 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
   });
 }
 
+function ensureStorage(interpreter: Interpreter<unknown>) {
+  let storage = CACHE.get(interpreter);
+
+  if (!storage) {
+    storage = createStorage(null, () => false);
+    CACHE.set(interpreter, storage);
+  }
+
+  return storage;
+}
+
 function dirtyState(interpreter: Interpreter<unknown>) {
-  let tracking = CACHE.get(interpreter);
+  let storage = CACHE.get(interpreter);
 
-  assert(`Tracking context lost!`, tracking);
+  assert(`Tracking context lost!`, storage);
 
-  dirtyKey(tracking, '_state');
+  setValue(storage, null);
 }
