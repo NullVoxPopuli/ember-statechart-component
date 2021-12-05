@@ -1,3 +1,24 @@
+# [3.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.7...v3.0.0) (2021-12-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tracked-maps-and-sets to v3 ([40618e9](https://github.com/NullVoxPopuli/ember-statechart-component/commit/40618e92be004c2a595ceaacac3c51ab3c10151c))
+
+
+### chore
+
+* drop support for node 12 ([b1b3c4c](https://github.com/NullVoxPopuli/ember-statechart-component/commit/b1b3c4c64e0b745c43c2dfe9f745757d71c7f2f3))
+* **ci:** update test matrix ([91de3bb](https://github.com/NullVoxPopuli/ember-statechart-component/commit/91de3bb2e80c8338998d4b6a7f7ddef2e650b68c))
+* **deps:** pin @babel/helper-create-class-features-plugin ([1a8111b](https://github.com/NullVoxPopuli/ember-statechart-component/commit/1a8111b364cdd6d162982784c6c754187735f9f3)), closes [/github.com/babel/ember-cli-babel/issues/419#issuecomment-985735309](https://github.com//github.com/babel/ember-cli-babel/issues/419/issues/issuecomment-985735309)
+
+
+### BREAKING CHANGES
+
+* node 12 is no longer supported
+* **ci:** drop support for ember 3.26
+* **deps:** this package now requires ember-auto-import@v2
+
 ## [2.3.7](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.6...v2.3.7) (2021-08-13)
 
 
