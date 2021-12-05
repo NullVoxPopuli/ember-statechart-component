@@ -33,6 +33,25 @@ jobs:
         run: yarn lint:hbs
 
   tooling:
+<<<<<<< HEAD
+=======
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    name: Tooling
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+
+      - run: yarn install --frozen-lockfile
+
+      - name: Semantic Release
+        run: yarn semantic-release --dry-run
+
+
+
+  docs:
+>>>>>>> c821c1b (v2.0.0...v2.1.4)
     if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     name: Tooling
     runs-on: ubuntu-latest
