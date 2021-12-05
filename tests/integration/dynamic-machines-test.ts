@@ -82,7 +82,7 @@ module('Dynamic Machines', function (hooks) {
 
     await render(hbs`
         <TestMachine as |state send|>
-          {{state.toStrings}}
+          {{state.value}}
 
           <button id='spawn' {{on 'click' (fn this.startNested send)}}>Spawn Nested Machine</button>
 
@@ -101,12 +101,12 @@ module('Dynamic Machines', function (hooks) {
       `);
 
     assert.dom().containsText('idle');
-    assert.equal(active, 0);
-    assert.equal(inactive, 0);
+    assert.strictEqual(active, 0);
+    assert.strictEqual(inactive, 0);
 
     await click('#spawn');
-    assert.equal(active, 0);
-    assert.equal(inactive, 1);
+    assert.strictEqual(active, 0);
+    assert.strictEqual(inactive, 1);
 
     assert.dom().containsText('spawnNested');
 
@@ -116,12 +116,12 @@ module('Dynamic Machines', function (hooks) {
      */
     await click('#toggle');
 
-    assert.equal(active, 1);
-    assert.equal(inactive, 1);
+    assert.strictEqual(active, 1);
+    assert.strictEqual(inactive, 1);
 
     await click('#toggle');
 
-    assert.equal(active, 1);
-    assert.equal(inactive, 2);
+    assert.strictEqual(active, 1);
+    assert.strictEqual(inactive, 2);
   });
 });

@@ -21,15 +21,15 @@ jobs:
     strategy:
       matrix:
         node:
-          - "12"
           - "14"
+          - "16"
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
         with:
           node-version: ${{ matrix.node }}
 
-      - run: npm install
+      - run: yarn install
 
       - name: Test with ${{ matrix.node }}
         run: node_modules/.bin/ember test
@@ -68,19 +68,19 @@ jobs:
       matrix:
         ember-try-scenario:
           - ember-3.25
-          - ember-3.26
+          - ember-3.28
           - ember-release
           - ember-beta
-          # - ember-canary
+          - ember-canary
           - embroider-safe
           - embroider-optimized
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
       - name: install dependencies
-        run: npm install
+        run: yarn install
       - name: test
         run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
 
@@ -111,7 +111,7 @@ jobs:
         with:
           persist-credentials: false
       - uses: volta-cli/action@v1
-      - run: npm install
+      - run: yarn install
 
       - name: Release
         run: node_modules/.bin/semantic-release

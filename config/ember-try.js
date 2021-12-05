@@ -15,10 +15,10 @@ module.exports = async function () {
         },
       },
       {
-        name: 'ember-3.26',
+        name: 'ember-3.28',
         npm: {
           devDependencies: {
-            'ember-source': '~3.26.0',
+            'ember-source': '~3.28.0',
           },
         },
       },
@@ -46,8 +46,20 @@ module.exports = async function () {
           },
         },
       },
-      embroiderSafe(),
-      embroiderOptimized(),
+      embroiderSafe({
+        npm: {
+          devDependencies: {
+            '@babel/plugin-proposal-private-methods': '^7.0.0',
+          },
+        },
+      }),
+      embroiderOptimized({
+        npm: {
+          devDependencies: {
+            '@babel/plugin-proposal-private-methods': '^7.0.0',
+          },
+        },
+      }),
     ],
   };
 };

@@ -88,13 +88,13 @@ module('Usage', function (hooks) {
 
     let testState = this.owner.lookup('service:test-state');
 
-    assert.equal(testState.foo, 1);
+    assert.strictEqual(testState.foo, 1);
 
     await click('button');
-    assert.equal(testState.foo, 2);
+    assert.strictEqual(testState.foo, 2);
 
     await click('button');
-    assert.equal(testState.foo, 3);
+    assert.strictEqual(testState.foo, 3);
   });
 
   test(`it can use XState's builtin matches function`, async function (assert) {
@@ -202,13 +202,13 @@ module('Usage', function (hooks) {
       </ToggleMachine>
     `);
 
-    assert.equal(numCalled, 1);
+    assert.strictEqual(numCalled, 1);
 
     await click('button');
-    assert.equal(numCalled, 2);
+    assert.strictEqual(numCalled, 2);
 
     await click('button');
-    assert.equal(numCalled, 3);
+    assert.strictEqual(numCalled, 3);
   });
 
   test('can pass context', async function (assert) {
@@ -255,13 +255,13 @@ module('Usage', function (hooks) {
       </ToggleMachine>
     `);
 
-    assert.equal(context.numCalled, 11);
+    assert.strictEqual(context.numCalled, 11);
 
     await click('button');
-    assert.equal(context.numCalled, 12);
+    assert.strictEqual(context.numCalled, 12);
 
     await click('button');
-    assert.equal(context.numCalled, 13);
+    assert.strictEqual(context.numCalled, 13);
   });
 
   test('can pass initial state', async function (assert) {
