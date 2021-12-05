@@ -5487,7 +5487,7 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
-ember-addon-automated-ci@^2.0.0:
+ember-addon-automated-ci@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/ember-addon-automated-ci/-/ember-addon-automated-ci-2.1.4.tgz#0809e001aedd52c67f816693cd30401154aa01fa"
   integrity sha512-MxhBlw2nGDmGYE2267RKXrjjKLmdrzG5J5MtLwil+l3jpfvWgi+uh9m+Je/rQgwo3mYjFgMGApsl4VaGZVdbiw==
