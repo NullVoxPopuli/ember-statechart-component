@@ -71,7 +71,7 @@
     "@types/rsvp": "^4.0.4",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-addon-automated-ci": "^2.0.0",
+    "ember-addon-automated-ci": "^2.1.4",
     "ember-cli": "^3.12.1",
     "ember-cli-dependency-checker": "^2.1.0",
     "ember-cli-inject-live-reload": "^2.1.0",
