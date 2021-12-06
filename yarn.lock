@@ -5662,6 +5662,27 @@ ember-cli-htmlbars@^6.0.0:
     strip-bom "^4.0.0"
     walk-sync "^2.2.0"
 
+ember-cli-htmlbars@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-6.0.1.tgz#5487831d477e61682bc867fd138808269e5d2152"
+  integrity sha512-IDsl9uty+MXtMfp/BUTEc/Q36EmlHYj8ZdPekcoRa8hmdsigHnK4iokfaB7dJFktlf6luruei+imv7JrJrBQPQ==
+  dependencies:
+    "@ember/edition-utils" "^1.2.0"
+    babel-plugin-ember-template-compilation "^1.0.0"
+    babel-plugin-htmlbars-inline-precompile "^5.3.0"
+    broccoli-debug "^0.6.5"
+    broccoli-persistent-filter "^3.1.2"
+    broccoli-plugin "^4.0.3"
+    ember-cli-version-checker "^5.1.2"
+    fs-tree-diff "^2.0.1"
+    hash-for-dep "^1.5.1"
+    heimdalljs-logger "^0.1.10"
+    json-stable-stringify "^1.0.1"
+    semver "^7.3.4"
+    silent-error "^1.1.1"
+    strip-bom "^4.0.0"
+    walk-sync "^2.2.0"
+
 ember-cli-inject-live-reload@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-inject-live-reload/-/ember-cli-inject-live-reload-2.1.0.tgz#ef63c733c133024d5726405a3c247fa12e88a385"
@@ -5960,15 +5981,15 @@ ember-export-application-global@^2.0.1:
   integrity sha512-B7wiurPgsxsSGzJuPFkpBWnaeuCu2PGpG2BjyrfA1VcL7//o+5RSnZqiCEY326y7qmxb2GoCgo0ft03KBU0rRw==
 
 ember-functions-as-helper-polyfill@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/ember-functions-as-helper-polyfill/-/ember-functions-as-helper-polyfill-1.0.3.tgz#f44ad8d06642429c68d419007139c858fa11613a"
-  integrity sha512-sFl1EDVk0X2x42cfkci3urZsle1TUYPBa0WUApROJjrR8/YJt5WGj1F8CLqburStZ8TVnVx4e3dVWzfcV3voPw==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ember-functions-as-helper-polyfill/-/ember-functions-as-helper-polyfill-1.0.4.tgz#722564705e72020b6cbf70594d09cdbd258b002c"
+  integrity sha512-CHFGpN1buvduwyIUPF14xCgcth0vgWsBw1cbr25LRLe7Ihk76T/VOmugQMOg5IC89slD1zyInwUV4/L5ZHV49A==
   dependencies:
     "@embroider/macros" "^0.47.2"
     "@glimmer/tracking" "^1.0.4"
     ember-auto-import "^2.2.4"
     ember-cli-babel "^7.26.6"
-    ember-cli-htmlbars "^6.0.0"
+    ember-cli-htmlbars "^6.0.1"
     ember-cli-typescript "^4.2.1"
 
 ember-load-initializers@^2.1.2:
