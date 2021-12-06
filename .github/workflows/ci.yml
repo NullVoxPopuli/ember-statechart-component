@@ -67,12 +67,8 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
-<<<<<<< HEAD
           - ember-3.25
           - ember-3.28
-=======
-          - ember-lts-3.24
->>>>>>> c821c1b (v2.0.0...v2.1.4)
           - ember-release
           - ember-beta
           - ember-canary
