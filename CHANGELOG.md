@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.0.0...v3.0.1) (2021-12-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-cli-htmlbars to v6.0.1 ([c872839](https://github.com/NullVoxPopuli/ember-statechart-component/commit/c872839cc2e9add8c493369cb6f1b55b001964e2))
+
 # [3.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v2.3.7...v3.0.0) (2021-12-05)
 
 
