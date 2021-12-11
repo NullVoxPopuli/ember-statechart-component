@@ -3,11 +3,10 @@
 # compiled output
 /dist/
 /tmp/
-declarations/
-.eslintcache
 
 # dependencies
-node_modules/
+/bower_components/
+/node_modules/
 
 # misc
 /.env*
