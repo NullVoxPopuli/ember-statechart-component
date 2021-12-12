@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.0.1...v3.1.0) (2021-12-12)
+
+
+### Features
+
+* **internal:** convert to the Addon@v2 format ([54fca76](https://github.com/NullVoxPopuli/ember-statechart-component/commit/54fca76627453423782096cf5d685abe1dfde0aa))
+
 ## [3.0.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.0.0...v3.0.1) (2021-12-06)
 
 
