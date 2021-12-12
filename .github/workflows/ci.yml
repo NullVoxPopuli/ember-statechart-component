@@ -85,12 +85,14 @@ jobs:
           node-version: 14.x
       - name: install dependencies
         run: yarn install
-      - name: test
+      - name: build
         run: |
           cd ${{ env.LIBRARY_DIR }}
           yarn build
           yarn link
-          cd ../testing/ember-app
+      - name: test
+        run: |
+          cd ${{ env.TEST_DIR }}
           yarn link ember-statechart-component
           yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
 

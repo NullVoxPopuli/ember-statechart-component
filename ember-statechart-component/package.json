@@ -44,9 +44,7 @@
   "dependencies": {
     "@embroider/addon-shim": "^0.50.0",
     "babel-plugin-ember-template-compilation": "^1.0.1",
-    "ember-tracked-storage-polyfill": "^1.0.0"
-  },
-  "peerDependencies": {
+    "ember-tracked-storage-polyfill": "^1.0.0",
     "xstate": "^4.23.1"
   },
   "devDependencies": {
@@ -82,8 +80,7 @@
     "npm-run-all": "4.1.5",
     "rollup": "2.64.0",
     "semantic-release": "^18.0.0",
-    "typescript": "^4.4.2",
-    "xstate": "^4.26.0"
+    "typescript": "^4.4.2"
   },
   "engines": {
     "node": ">=12.2.0 < 13 || >= 14"
@@ -99,7 +96,7 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {
-      "./instance-initializers/ember-statechart-component.js": "./dist/registration.js"
+      "./instance-initializers/setup-ember-statechart-component.js": "./dist/_app_/instance-initializers/setup-ember-statechart-component.js"
     }
   },
   "typesVersions": {

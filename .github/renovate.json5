@@ -93,6 +93,11 @@
       ]
     },
     {
+      "packageNames": ["xstate"]
+      "depTypeList": ["dependencies"],
+      "enabled": false,
+    },
+    {
       // changing peerDependencies *at all* is a breaking change
       "matchDepTypes": ["peerDependencies"],
       "enabled": false

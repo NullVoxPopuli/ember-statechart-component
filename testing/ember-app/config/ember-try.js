@@ -49,20 +49,8 @@ module.exports = async function () {
           },
         },
       },
-      embroiderSafe({
-        npm: {
-          devDependencies: {
-            '@babel/plugin-proposal-private-methods': '^7.0.0',
-          },
-        },
-      }),
-      embroiderOptimized({
-        npm: {
-          devDependencies: {
-            '@babel/plugin-proposal-private-methods': '^7.0.0',
-          },
-        },
-      }),
+      embroiderSafe(),
+      embroiderOptimized(),
     ],
   };
 };
