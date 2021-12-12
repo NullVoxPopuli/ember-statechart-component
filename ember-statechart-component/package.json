@@ -1,0 +1,130 @@
+{
+  "name": "ember-statechart-component",
+  "version": "3.0.1",
+  "keywords": [
+    "ember-addon"
+  ],
+  "description": "Use XState Machines *as* Components",
+  "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
+  "license": "MIT",
+  "type": "module",
+  "author": "NullVoxPopuli",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*",
+    "./addon-main.js": "./addon-main.cjs"
+  },
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "files": [
+    "addon-main.cjs",
+    "dist",
+    "declarations",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm:watch:*\"",
+    "build": "concurrently \"npm:build:*\"",
+    "build:js": "rollup -c",
+    "build:types": "tsc --build --pretty",
+    "build:docs": "cp ../README.md ./README.md",
+    "watch:js": "rollup -c --watch --no-watch.clearScreen",
+    "watch:types": "tsc --build --watch --pretty --preserveWatchOutput",
+    "lint": "concurrently \"npm:lint:js\"",
+    "lint:fix": "concurrently \"npm:lint:js:fix\"",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "test": "echo 'Addon does not have tests, run tests in test-app'",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "@embroider/addon-shim": "^0.48.1",
+    "babel-plugin-ember-template-compilation": "^1.0.1",
+    "ember-tracked-storage-polyfill": "^1.0.0"
+  },
+  "peerDependencies": {
+    "xstate": "^4.23.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.16.0",
+    "@babel/plugin-proposal-class-properties": "7.16.0",
+    "@babel/plugin-syntax-decorators": "7.16.0",
+    "@babel/preset-typescript": "7.16.0",
+    "@embroider/addon-dev": "0.48.1",
+    "@glimmer/compiler": "^0.83.1",
+    "@nullvoxpopuli/eslint-configs": "^2.1.10",
+    "@rollup/plugin-babel": "5.3.0",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@types/ember__application": "^3.16.3",
+    "@types/ember__component": "^3.16.6",
+    "@types/ember__debug": "^3.16.5",
+    "@types/ember__destroyable": "^3.22.0",
+    "@types/ember__runloop": "^3.16.3",
+    "babel-eslint": "10.1.0",
+    "concurrently": "^6.4.0",
+    "ember-cli-htmlbars": "^6.0.0",
+    "ember-template-lint": "3.14.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-decorator-position": "^4.0.0",
+    "eslint-plugin-ember": "^10.5.3",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "npm-run-all": "4.1.5",
+    "rollup": "2.61.1",
+    "semantic-release": "^18.0.0",
+    "typescript": "^4.4.2",
+    "xstate": "^4.26.0"
+  },
+  "engines": {
+    "node": ">=12.2.0 < 13 || >= 14"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "ember-addon": {
+    "version": 2,
+    "type": "addon",
+    "main": "addon-main.cjs",
+    "app-js": {
+      "./instance-initializers/ember-statechart-component.js": "./dist/registration.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "declarations/*",
+        "declarations/*/index"
+      ]
+    }
+  },
+  "release": {
+    "branches": [
+      "main",
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
+  "volta": {
+    "extends": "../package.json"
+  }
+}

@@ -11,6 +11,9 @@ on:
 
 env:
   CI: true
+  CACHE_PATH: '**/node_modules'
+  LIBRARY_DIR: './ember-statechart-component'
+  TEST_DIR: './testing/ember-app'
 
 jobs:
   tests:
@@ -33,6 +36,7 @@ jobs:
 
       - name: Test with ${{ matrix.node }}
         run: node_modules/.bin/ember test
+        working-directory: ${{ env.TEST_DIR }}
 
   # floating-dependencies:
   #   if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
@@ -82,7 +86,8 @@ jobs:
       - name: install dependencies
         run: yarn install
       - name: test
-        run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
+        run: yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
+        working-directory: ${{ env.TEST_DIR }}
 
   # ember-cli-update:
   #   if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository  && ( ! contains(toJSON(github.event.commits.*.message), '[skip ci]') )
@@ -115,6 +120,7 @@ jobs:
 
       - name: Release
         run: node_modules/.bin/semantic-release
+        working-directory: ${{ env.LIBRARY_DIR }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
