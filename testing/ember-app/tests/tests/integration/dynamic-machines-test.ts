@@ -14,73 +14,74 @@ type Send = Interpreter<unknown>['send'];
 module('Dynamic Machines', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('Can have a dynamically created machine and is reactive', async function (assert) {
-    function createNested(context: Record<string, unknown>, config: any = {}) {
-      return createMachine({
-        id: 'nested',
-        initial: 'inactive',
+  module('xstate#spawn', function () {
+    test('Can have a dynamically created machine and is reactive', async function (assert) {
+      function createNested(context: Record<string, unknown>, config: any = {}) {
+        return createMachine({
+          id: 'nested',
+          initial: 'inactive',
 
-        context: {
-          inactive: 0,
-          active: 0,
-          ...context,
-        },
+          context: {
+            inactive: 0,
+            active: 0,
+            ...context,
+          },
+
+          states: {
+            inactive: {
+              entry: ['incrementInactive'],
+              on: { TOGGLE: 'active' },
+            },
+            active: {
+              entry: ['incrementActive'],
+              on: { TOGGLE: 'inactive' },
+            },
+          },
+        }).withConfig(config);
+      }
+
+      const parentMachine = createMachine({
+        id: 'parent',
+        initial: 'idle',
 
         states: {
-          inactive: {
-            entry: ['incrementInactive'],
-            on: { TOGGLE: 'active' },
-          },
-          active: {
-            entry: ['incrementActive'],
-            on: { TOGGLE: 'inactive' },
-          },
-        },
-      }).withConfig(config);
-    }
-
-    const parentMachine = createMachine({
-      id: 'parent',
-      initial: 'idle',
-
-      states: {
-        idle: {
-          on: {
-            SPAWN: 'spawnNested',
-          },
-        },
-        spawnNested: {
-          entry: assign({
-            someRef: (_context, { nested, id }: any) => {
-              return spawn(nested, id);
+          idle: {
+            on: {
+              SPAWN: 'spawnNested',
             },
-          }),
-        },
-      },
-    });
-
-    this.owner.register('component:test-machine', parentMachine);
-
-    let active = 0;
-    let inactive = 0;
-
-    this.setProperties({
-      startNested: (send: Send) =>
-        send('SPAWN', {
-          id: 'named-spawned-machine',
-          nested: createNested(
-            { active: 3 },
-            {
-              actions: {
-                incrementActive: () => active++,
-                incrementInactive: () => inactive++,
+          },
+          spawnNested: {
+            entry: assign({
+              someRef: (_context, { nested, id }: any) => {
+                return spawn(nested, id);
               },
-            }
-          ),
-        }),
-    });
+            }),
+          },
+        },
+      });
 
-    await render(hbs`
+      this.owner.register('component:test-machine', parentMachine);
+
+      let active = 0;
+      let inactive = 0;
+
+      this.setProperties({
+        startNested: (send: Send) =>
+          send('SPAWN', {
+            id: 'named-spawned-machine',
+            nested: createNested(
+              { active: 3 },
+              {
+                actions: {
+                  incrementActive: () => active++,
+                  incrementInactive: () => inactive++,
+                },
+              }
+            ),
+          }),
+      });
+
+      await render(hbs`
         <TestMachine as |state send|>
           {{state.value}}
 
@@ -100,28 +101,160 @@ module('Dynamic Machines', function (hooks) {
         </TestMachine>
       `);
 
-    assert.dom().containsText('idle');
-    assert.strictEqual(active, 0);
-    assert.strictEqual(inactive, 0);
+      assert.dom().containsText('idle');
+      assert.strictEqual(active, 0);
+      assert.strictEqual(inactive, 0);
 
-    await click('#spawn');
-    assert.strictEqual(active, 0);
-    assert.strictEqual(inactive, 1);
+      await click('#spawn');
+      assert.strictEqual(active, 0);
+      assert.strictEqual(inactive, 1);
 
-    assert.dom().containsText('spawnNested');
+      assert.dom().containsText('spawnNested');
 
-    /**
-     * There is not a way to easily access spawned machines
-     * internal state, so we've wired up some actions / callbacks
-     */
-    await click('#toggle');
+      /**
+       * There is not a way to easily access spawned machines
+       * internal state, so we've wired up some actions / callbacks
+       *
+       * (the way to access the nested state is state.children[machine-id].state)
+       */
+      await click('#toggle');
 
-    assert.strictEqual(active, 1);
-    assert.strictEqual(inactive, 1);
+      assert.strictEqual(active, 1);
+      assert.strictEqual(inactive, 1);
 
-    await click('#toggle');
+      await click('#toggle');
 
-    assert.strictEqual(active, 1);
-    assert.strictEqual(inactive, 2);
+      assert.strictEqual(active, 1);
+      assert.strictEqual(inactive, 2);
+    });
+  });
+
+  module('xstate#invoke', function () {
+    test('it works with invoked machines', async function (assert) {
+      // Invoked child machine
+      const minuteMachine = createMachine({
+        initial: 'active',
+        states: {
+          active: {
+            on: {
+              DECLARE_DONE: 'finished',
+            },
+          },
+          finished: { type: 'final' },
+        },
+      });
+
+      const parentMachine = createMachine({
+        id: 'parent',
+        initial: 'pending',
+        states: {
+          pending: {
+            invoke: {
+              id: 'timer',
+              src: minuteMachine,
+              onDone: 'timesUp',
+            },
+          },
+          timesUp: {
+            type: 'final',
+          },
+        },
+      });
+
+      this.setProperties({
+        parentMachine,
+      });
+
+      await render(hbs`
+        <this.parentMachine as |state send|>
+          <div id="parent">{{state.value}}</div>
+          <div id="child">{{state.children.timer.state.value}}</div>
+
+          <button {{on 'click' (fn state.children.timer.send 'DECLARE_DONE')}}>
+            Declare invoked machine as Done
+          </button>
+          {{log state}}
+        </this.parentMachine>
+      `);
+
+      assert.dom('#parent').containsText('pending');
+      assert.dom('#child').containsText('active');
+
+      await click('button');
+
+      assert.dom('#parent').containsText('timesUp');
+      assert.dom('#child').hasNoText('the machine destroyed itself (on purpose)');
+    });
+
+    test('it works with the child machine updating its own context', async function (assert) {
+      const childMachine = createMachine(
+        {
+          id: 'child-machine',
+          initial: 'idleChild',
+          states: {
+            idleChild: {
+              on: {
+                UPDATE_CONTEXT: { actions: ['updateContext'] },
+              },
+            },
+          },
+        },
+        {
+          actions: {
+            updateContext: assign({ prop1: 'new value' }),
+          },
+        }
+      );
+
+      const parentMachine = createMachine({
+        id: 'parent-state-machine',
+        initial: 'idle',
+        states: {
+          idle: {
+            on: { INVOKE_CHILD: 'withChildMachine' },
+          },
+          withChildMachine: {
+            invoke: {
+              id: 'child-machine',
+              src: childMachine,
+              data: {
+                prop1: 'original value',
+              },
+            },
+            on: {
+              RESET: 'idle',
+            },
+          },
+        },
+      });
+
+      this.setProperties({ parentMachine });
+
+      await render(hbs`
+        <this.parentMachine as |state send|>
+
+          {{#if (state.matches 'idle')}}
+            <button id="invoke-child" {{on 'click' (fn send 'INVOKE_CHILD')}}>Invoke Child</button>
+          {{else}}
+            <button id='reset' {{on 'click' (fn send 'RESET')}}>Reset</button>
+
+
+            <button id="update-context" {{on 'click' (fn state.children.child-machine.send 'UPDATE_CONTEXT')}}>
+              Update Context
+            </button>
+
+            <out>{{state.children.child-machine.machine.context.prop1}}</out>
+          {{/if}}
+        </this.parentMachine>
+      `);
+
+      await click('#invoke-child');
+
+      assert.dom('out').containsText('original value');
+
+      await click('#update-context');
+
+      assert.dom('out').containsText('new value');
+    });
   });
 });

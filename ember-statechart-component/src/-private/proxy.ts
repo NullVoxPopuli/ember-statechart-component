@@ -14,6 +14,7 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
   ensureStorage(interpreter);
 
   interpreter.onTransition(async (_state: State<unknown>, event: EventObject) => {
+    console.log(event.type);
     // init always runs, we don't need to dirty
     if (event.type === 'xstate.init') return;
     // a dirty event already triggered a transition
