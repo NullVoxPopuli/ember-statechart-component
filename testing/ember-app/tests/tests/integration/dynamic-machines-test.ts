@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { click, render } from '@ember/test-helpers';
+import { clearRender, click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
@@ -193,6 +193,8 @@ module('Dynamic Machines', function (hooks) {
           initial: 'idleChild',
           states: {
             idleChild: {
+              entry: () => assert.step('entry: child.idleChild'),
+              exit: () => assert.step('exit: child.idleChild'),
               on: {
                 UPDATE_CONTEXT: { actions: ['updateContext'] },
               },
@@ -211,9 +213,13 @@ module('Dynamic Machines', function (hooks) {
         initial: 'idle',
         states: {
           idle: {
+            entry: () => assert.step('entry: parent.idle'),
+            exit: () => assert.step('exit: parent.idle'),
             on: { INVOKE_CHILD: 'withChildMachine' },
           },
           withChildMachine: {
+            entry: () => assert.step('entry: parent.withChildMachine'),
+            exit: () => assert.step('exit: parent.withChildMachine'),
             invoke: {
               id: 'child-machine',
               src: childMachine,
@@ -243,7 +249,7 @@ module('Dynamic Machines', function (hooks) {
               Update Context
             </button>
 
-            <out>{{state.children.child-machine.machine.context.prop1}}</out>
+            <out>{{state.children.child-machine.state.context.prop1}}</out>
           {{/if}}
         </this.parentMachine>
       `);
@@ -255,6 +261,17 @@ module('Dynamic Machines', function (hooks) {
       await click('#update-context');
 
       assert.dom('out').containsText('new value');
+
+      assert.verifySteps([
+        'entry: parent.idle',
+        'exit: parent.idle',
+        'entry: child.idleChild',
+        'entry: parent.withChildMachine',
+      ]);
+
+      await clearRender();
+
+      assert.verifySteps(['exit: parent.withChildMachine', 'exit: child.idleChild']);
     });
   });
 });

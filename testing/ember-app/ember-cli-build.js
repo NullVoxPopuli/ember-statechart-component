@@ -3,7 +3,14 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {});
+  let app = new EmberApp(defaults, {
+    autoImport: {
+      watchDependencies: ['ember-statechart-component'],
+      webpack: {
+        devtool: 'inline-source-map',
+      },
+    },
+  });
 
   const { maybeEmbroider } = require('@embroider/test-setup');
 
@@ -19,5 +26,10 @@ module.exports = function (defaults) {
         },
       },
     ],
+    packagerOptions: {
+      webpackConfig: {
+        devtool: 'inline-source-map',
+      },
+    },
   });
 };

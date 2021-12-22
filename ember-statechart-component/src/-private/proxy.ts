@@ -2,19 +2,28 @@ import { assert } from '@ember/debug';
 import { isDestroyed, isDestroying } from '@ember/destroyable';
 
 import { createStorage, getValue, setValue } from 'ember-tracked-storage-polyfill';
+import { Interpreter } from 'xstate';
+
+import { createMapWithInterceptedSet } from './utils';
 
 import type { TrackedStorage } from 'ember-tracked-storage-polyfill';
-import type { EventObject, Interpreter, State } from 'xstate';
+import type { EventObject, State } from 'xstate';
 
 export const UPDATE_EVENT_NAME = 'ARGS_UPDATE';
 
 const CACHE = new WeakMap<Interpreter<unknown>, TrackedStorage<null>>();
 
 export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
+  /**
+   * atm, only interpreters can be reactive
+   */
+  if (!(interpreter instanceof Interpreter)) {
+    return interpreter;
+  }
+
   ensureStorage(interpreter);
 
   interpreter.onTransition(async (_state: State<unknown>, event: EventObject) => {
-    console.log(event.type);
     // init always runs, we don't need to dirty
     if (event.type === 'xstate.init') return;
     // a dirty event already triggered a transition
@@ -37,12 +46,31 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
     dirtyState(interpreter);
   });
 
+  let children = new Map();
+  let fakeChildrenMap = createMapWithInterceptedSet(children, {
+    set(key: string, value: Interpreter<unknown>) {
+      children.set(key, reactiveInterpreter(value));
+    },
+  });
+
+  // children is a public API accessor
+  interpreter.children = fakeChildrenMap;
+
+  /**
+   * For spawn/invoked things, references are stored on
+   *  - the interpreter.children as a map (id => interpreter / actor ref)
+   *  - the state.children as an object (id => interpreter / actor ref)
+   */
   return new Proxy(interpreter, {
     get(target, key, receiver) {
-      if (key === '_state') {
-        let storage = ensureStorage(target);
+      switch (key) {
+        case '_state': {
+          let storage = ensureStorage(target);
 
-        getValue(storage);
+          getValue(storage);
+
+          return Reflect.get(target, key, receiver);
+        }
       }
 
       return Reflect.get(target, key, receiver);
