@@ -86,7 +86,13 @@ jobs:
       - name: install dependencies
         run: yarn install
       - name: test
-        run: yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
+        run: |
+          cd ember-statechart-component
+          yarn build
+          yarn link
+          cd ../testing/ember-app
+          # ember-try does the other side of the link
+          yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
         working-directory: ${{ env.TEST_DIR }}
 
   # ember-cli-update:
