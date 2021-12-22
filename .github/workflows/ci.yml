@@ -92,7 +92,7 @@ jobs:
           yarn link
           cd ../testing/ember-app
           # ember-try does the other side of the link
-          yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
+          yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup --- (yarn link ember-statechart-component && ember test)
 
   # ember-cli-update:
   #   if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository  && ( ! contains(toJSON(github.event.commits.*.message), '[skip ci]') )
