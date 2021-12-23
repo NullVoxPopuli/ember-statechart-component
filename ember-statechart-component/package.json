@@ -50,10 +50,10 @@
     "xstate": "^4.23.1"
   },
   "devDependencies": {
-    "@babel/core": "7.16.0",
-    "@babel/plugin-proposal-class-properties": "7.16.0",
-    "@babel/plugin-syntax-decorators": "7.16.0",
-    "@babel/preset-typescript": "7.16.0",
+    "@babel/core": "7.16.5",
+    "@babel/plugin-proposal-class-properties": "7.16.5",
+    "@babel/plugin-syntax-decorators": "7.16.5",
+    "@babel/preset-typescript": "7.16.5",
     "@embroider/addon-dev": "0.48.1",
     "@glimmer/compiler": "^0.83.1",
     "@nullvoxpopuli/eslint-configs": "^2.1.10",
