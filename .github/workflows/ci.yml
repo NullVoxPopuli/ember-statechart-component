@@ -90,7 +90,7 @@ jobs:
           cd ${{ env.LIBRARY_DIR }}
           yarn build
           yarn link
-          cd ../${{ TEST_DIR }}
+          cd ../testing/ember-app
           yarn link ember-statechart-component
           yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
 
