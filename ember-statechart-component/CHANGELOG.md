@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.1.0...v3.2.0) (2021-12-23)
+
+
+### Features
+
+* **manager:** official support spawn and invoke ([a34d193](https://github.com/NullVoxPopuli/ember-statechart-component/commit/a34d193baf20ffb0963770219e8e4792d9c6c604))
+
 # [3.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.0.1...v3.1.0) (2021-12-12)
 
 
