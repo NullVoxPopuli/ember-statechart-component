@@ -76,8 +76,8 @@ jobs:
           - ember-release
           - ember-beta
           - ember-canary
-          - embroider-safe
-          - embroider-optimized
+          # - embroider-safe
+          # - embroider-optimized
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
@@ -86,8 +86,13 @@ jobs:
       - name: install dependencies
         run: yarn install
       - name: test
-        run: yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
-        working-directory: ${{ env.TEST_DIR }}
+        run: |
+          cd ${{ env.LIBRARY_DIR }}
+          yarn build
+          yarn link
+          cd ../${{ TEST_DIR }}
+          yarn link ember-statechart-component
+          yarn ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
 
   # ember-cli-update:
   #   if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository  && ( ! contains(toJSON(github.event.commits.*.message), '[skip ci]') )
