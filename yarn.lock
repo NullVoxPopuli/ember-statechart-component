@@ -8608,9 +8608,9 @@ functional-red-black-tree@^1.0.1:
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
 fuse.js@^6.4.6:
-  version "6.5.2"
-  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.5.2.tgz#3c775c456b888bc8b3a0ca10aeadef507a2790d0"
-  integrity sha512-FTJXjzNg/HqEceelMCmQgDSuZ2HPpxlgV8YZc6ptuC51DiEHhc7H1E17XnH52WUPs8wdMAbG+PQwAMFnsI9ysA==
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.5.3.tgz#7446c0acbc4ab0ab36fa602e97499bdb69452b93"
+  integrity sha512-sA5etGE7yD/pOqivZRBvUBd/NaL2sjAu6QuSaFoe1H2BrJSkH/T/UXAJ8CdXdw7DvY3Hs8CXKYkDWX7RiP5KOg==
 
 gauge@^3.0.0:
   version "3.0.1"
