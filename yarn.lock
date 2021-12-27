@@ -5524,7 +5524,7 @@ ci-info@^2.0.0:
   resolved "https://registry.npmjs.org/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
-ci-info@^3.2.0, ci-info@^3.3.0:
+ci-info@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/ci-info/-/ci-info-3.3.0.tgz#b4ed1fb6818dea4803a55c623041f9165d2066b2"
   integrity sha512-riT/3vI5YpVH6/qomlDnJow6TBee2PBKSEpx3O32EGPYbWGIRsIlGRms3Sm74wYE1JMo8RnO04Hb12+v1J5ICw==
@@ -6216,7 +6216,7 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-date-fns@^2.16.1, date-fns@^2.26.0, date-fns@^2.27.0:
+date-fns@^2.16.1, date-fns@^2.27.0:
   version "2.27.0"
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.27.0.tgz#e1ff3c3ddbbab8a2eaadbb6106be2929a5a2d92b"
   integrity sha512-sj+J0Mo2p2X1e306MHq282WS4/A8Pz/95GIFcsPNMPMZVI3EUrAdSv90al1k+p74WGLCruMXk23bfEDZa71X9Q==
@@ -7239,7 +7239,7 @@ ember-source@~3.28.0:
     semver "^7.3.4"
     silent-error "^1.1.1"
 
-ember-template-lint@3.15.0, ember-template-lint@^3.12.0:
+ember-template-lint@3.15.0, ember-template-lint@^3.12.0, ember-template-lint@^3.6.0:
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-3.15.0.tgz#ba2f9454e8a134d276451dd2c3819130177d69a3"
   integrity sha512-FhCZek0e7selesdQ2Ezh0vR0AD/k2/83R9uuSMgC1z1NnVM1BgQrELOfxb4TzlGE106NKuJaRpQkMlVTvOv5ZA==
@@ -7248,25 +7248,6 @@ ember-template-lint@3.15.0, ember-template-lint@^3.12.0:
     chalk "^4.1.2"
     ci-info "^3.3.0"
     date-fns "^2.27.0"
-    ember-template-recast "^5.0.3"
-    find-up "^5.0.0"
-    fuse.js "^6.4.6"
-    get-stdin "^8.0.0"
-    globby "^11.0.4"
-    is-glob "^4.0.3"
-    micromatch "^4.0.4"
-    requireindex "^1.2.0"
-    resolve "^1.20.0"
-    v8-compile-cache "^2.3.0"
-    yargs "^16.2.0"
-
-ember-template-lint@^3.6.0:
-  version: "3.15.0"
-  dependencies:
-    "@ember-template-lint/todo-utils" "^10.0.0"
-    chalk "^4.1.2"
-    ci-info "^3.2.0"
-    date-fns "^2.26.0"
     ember-template-recast "^5.0.3"
     find-up "^5.0.0"
     fuse.js "^6.4.6"
@@ -7657,16 +7638,10 @@ eslint-plugin-prettier@^3.4.0, eslint-plugin-prettier@^3.4.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-qunit@7.2.0:
+eslint-plugin-qunit@7.2.0, eslint-plugin-qunit@^7.1.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-qunit/-/eslint-plugin-qunit-7.2.0.tgz#ad00e0007dc0bbd1d59309cc6388238b6a8784a3"
   integrity sha512-ebT6aOpmMj4vchG0hVw9Ukbutk/lgywrc8gc9w9hH2/4WjKqwMlyM7iVwqB7OAXv6gtQMJZuziT0wNjjymAuWA==
-  dependencies:
-    eslint-utils "^3.0.0"
-    requireindex "^1.2.0"
-
-eslint-plugin-qunit@^7.1.0:
-  version: "7.2.0"
   dependencies:
     eslint-utils "^3.0.0"
     requireindex "^1.2.0"
