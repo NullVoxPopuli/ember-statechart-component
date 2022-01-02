@@ -18,6 +18,21 @@ npm install ember-statechart-component
 yarn add ember-statechart-component
 ```
 
+To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/states.html#state-matches-parentstatevalue)
+method in our templates,
+we will first need a [HelperManager](https://github.com/emberjs/rfcs/pull/625) for
+handling vanilla functions.
+[ember-functions-as-helper-polyfill](https://github.com/NullVoxPopuli/ember-functions-as-helper-polyfill)
+provides one:
+
+```bash
+ember install ember-functions-as-helper-polyfill
+# or
+npm install ember-functions-as-helper-polyfill
+# or
+yarn add ember-functions-as-helper-polyfill
+```
+
 Usage
 ------------------------------------------------------------------------------
 
@@ -103,14 +118,6 @@ Usage:
 ```
 
 ### Matching States
-
-XState provides its own [`matches`](https://xstate.js.org/api/classes/state.html#matches)
-method which is available on the `state` object.
-We can utilize this provided there exists a `HelperManager` for
-handling vanilla functions, such as what
-[ember-could-get-used-to-this](https://github.com/pzuraq/ember-could-get-used-to-this)
-provides.
-
 
 ```hbs
 <Toggle as |state send|>
