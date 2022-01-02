@@ -22,7 +22,7 @@ yarn add ember-statechart-component
 
 To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/states.html#state-matches-parentstatevalue)
 method in our templates,
-we will first need a `HelperManager` for
+we will first need a [HelperManager](https://github.com/emberjs/rfcs/pull/625) for
 handling vanilla functions.
 [ember-functions-as-helper-polyfill](https://github.com/NullVoxPopuli/ember-functions-as-helper-polyfill)
 provides one:
