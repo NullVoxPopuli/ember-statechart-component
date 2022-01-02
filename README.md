@@ -132,7 +132,8 @@ provides.
 
 #### `@config`
 
-This argument allows you to pass a `MachineConfig` for actions, services, guards, etc
+This argument allows you to pass a `MachineConfig` for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#invoking-services), [guards](https://xstate.js.org/docs/guides/guards.html#guards-condition-functions), etc.
+
 
 #### `@context`
 
