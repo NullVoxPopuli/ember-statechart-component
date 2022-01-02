@@ -136,7 +136,54 @@ This argument allows you to pass a `MachineConfig` for actions, services, guards
 
 #### `@context`
 
-Sets the initial context
+Sets the initial context. The current value of the context can then be accessed via `state.context`.
+
+```js
+// app/components/toggle.js
+import { createMachine, assign } from 'xstate';
+
+export default createMachine({
+  initial: 'inactive',
+  states: {
+    inactive: { 
+      on: { 
+        TOGGLE: {
+          target: 'active',
+          actions: ['increaseCounter']
+        }
+      }
+    },
+    active: { 
+      on: { 
+        TOGGLE: {
+          target: 'inactive',
+          actions: ['increaseCounter']
+        }
+      }
+    },
+  },
+}, {
+  actions: {
+    increaseCounter: assign({
+      counter: (context) => context.counter + 1
+    })
+  }
+});
+```
+
+Usage:
+
+```hbs
+<Toggle @context=(hash counter=0) as |state send|>
+  <button {{on 'click' (fn send 'TOGGLE')}}>
+    Toggle
+  </button>
+
+  <p>
+    Toggled: {{state.context.counter}} times.
+  </p>
+</Toggle>
+```
 
 #### `@state`
 
