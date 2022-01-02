@@ -24,15 +24,15 @@ To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/sta
 method in our templates,
 we will first need a `HelperManager` for
 handling vanilla functions.
-[ember-could-get-used-to-this](https://github.com/pzuraq/ember-could-get-used-to-this)
+[ember-functions-as-helper-polyfill](https://github.com/NullVoxPopuli/ember-functions-as-helper-polyfill)
 provides one:
 
 ```bash
-ember install ember-could-get-used-to-this
+ember install ember-functions-as-helper-polyfill
 # or
-npm install ember-could-get-used-to-this
+npm install ember-functions-as-helper-polyfill
 # or
-yarn add ember-could-get-used-to-this
+yarn add ember-functions-as-helper-polyfill
 ```
 
 Usage
