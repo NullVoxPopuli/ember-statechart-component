@@ -132,7 +132,43 @@ provides.
 
 #### `@config`
 
-This argument allows you to pass a `MachineConfig` for actions, services, guards, etc
+This argument allows you to pass a `MachineConfig` for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#invoking-services), [guards](https://xstate.js.org/docs/guides/guards.html#guards-condition-functions), etc.
+
+```js
+// app/components/toggle.js
+import { createMachine, assign } from 'xstate';
+
+export default createMachine({
+  initial: 'inactive',
+  states: {
+    inactive: { on: { TOGGLE: 'active' } },
+    active: { 
+      on: { 
+        TOGGLE: {
+          target: 'inactive',
+          actions: ['toggleIsOn']
+        }
+      }
+    },
+  },
+});
+```
+
+Usage:
+
+```hbs
+<Toggle 
+  @config={{hash 
+    actions=(hash 
+      toggleIsOn=@onRoomIlluminated
+    )
+  }} 
+as |state send|>
+  <button {{on 'click' (fn send 'TOGGLE')}}>
+    Toggle
+  </button>
+</Toggle>
+```
 
 #### `@context`
 
