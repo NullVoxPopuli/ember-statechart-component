@@ -18,8 +18,6 @@ npm install ember-statechart-component
 yarn add ember-statechart-component
 ```
 
-### Optional
-
 To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/states.html#state-matches-parentstatevalue)
 method in our templates,
 we will first need a [HelperManager](https://github.com/emberjs/rfcs/pull/625) for
