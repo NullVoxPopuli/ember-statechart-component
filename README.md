@@ -18,6 +18,23 @@ npm install ember-statechart-component
 yarn add ember-statechart-component
 ```
 
+### Optional
+
+To be able to use XState [`state.matches`](https://xstate.js.org/api/classes/state.html#matches)
+method in our templates,
+we will first need a `HelperManager` for
+handling vanilla functions.
+[ember-could-get-used-to-this](https://github.com/pzuraq/ember-could-get-used-to-this)
+provides one:
+
+```bash
+ember install ember-could-get-used-to-this
+# or
+npm install ember-could-get-used-to-this
+# or
+yarn add ember-could-get-used-to-this
+```
+
 Usage
 ------------------------------------------------------------------------------
 
@@ -103,14 +120,6 @@ Usage:
 ```
 
 ### Matching States
-
-XState provides its own [`matches`](https://xstate.js.org/api/classes/state.html#matches)
-method which is available on the `state` object.
-We can utilize this provided there exists a `HelperManager` for
-handling vanilla functions, such as what
-[ember-could-get-used-to-this](https://github.com/pzuraq/ember-could-get-used-to-this)
-provides.
-
 
 ```hbs
 <Toggle as |state send|>
