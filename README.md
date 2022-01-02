@@ -53,7 +53,7 @@ The default template for every `createMachine(..)` is
 {{yield this.state this.send}}
 ```
 but that can be overriden to suit your needs by defining your own template.
-the `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
+The `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
 
 ### Accessing Services
 
