@@ -141,6 +141,10 @@ Usage:
 
 This argument allows you to pass a `MachineConfig` for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#invoking-services), [guards](https://xstate.js.org/docs/guides/guards.html#guards-condition-functions), etc.
 
+Usage:
+
+<details><summary>Toggle machine that needs a config</summary>
+  
 ```js
 // app/components/toggle.js
 import { createMachine, assign } from 'xstate';
@@ -161,7 +165,7 @@ export default createMachine({
 });
 ```
 
-Usage:
+</details>
 
 ```hbs
 <Toggle 
@@ -180,6 +184,10 @@ as |state send|>
 #### `@context`
 
 Sets the initial context. The current value of the context can then be accessed via `state.context`.
+
+Usage:
+
+<details><summary>Toggle machine that interacts with context</summary>
 
 ```js
 // app/components/toggle.js
@@ -214,7 +222,7 @@ export default createMachine({
 });
 ```
 
-Usage:
+</details>
 
 ```hbs
 <Toggle @context=(hash counter=0) as |state send|>
