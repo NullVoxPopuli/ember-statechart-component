@@ -238,9 +238,10 @@ export default createMachine({
 
 #### `@state`
 
-The machine will use this state as the initial state. Any changes to
-this argument are ignored.
-
+The machine will use `@state` as the initial state.
+Any changes to this argument 
+are not automatically propagated to the machine. 
+An `ARGS_UPDATE` event (see details below) is sent instead.
 
 ### What happens if any of the passed args change?
 
