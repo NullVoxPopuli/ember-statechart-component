@@ -2757,9 +2757,7 @@
     read-package-json-fast "^2.0.1"
 
 "@nullvoxpopuli/eslint-configs@^2.1.10":
-  version "2.1.13"
-  resolved "https://registry.yarnpkg.com/@nullvoxpopuli/eslint-configs/-/eslint-configs-2.1.13.tgz#f7164944d13078624d1e826fe3f1fd34f5b22311"
-  integrity sha512-swXmkUDA3vVlZSimWbELMqPXFLfiEdsygx07Ju/viT8ukUCpwAXCvdrD+pfHpT5OyM1QBP3YlDxvkQD4k2R2IQ==
+  version: "2.1.15"
   dependencies:
     "@typescript-eslint/eslint-plugin" "5.8.0"
     "@typescript-eslint/parser" "5.8.0"
