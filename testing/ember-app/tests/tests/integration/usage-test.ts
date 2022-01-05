@@ -274,14 +274,12 @@ module('Usage', function (hooks) {
       },
     });
 
-    this.owner.register('component:toggle-machine', toggle);
-
-    this.setProperties({ context: { bar: 'bar' } });
+    this.setProperties({ toggle, context: { bar: 'bar' } });
 
     await render(hbs`
-      <ToggleMachine @context={{this.context}} as |state send|>
+      <this.toggle @context={{this.context}} as |state send|>
         {{state.context.foo}}, {{state.context.bar}}
-      </ToggleMachine>
+      </this.toggle>
     `);
 
     assert.dom().containsText('foo, bar');
