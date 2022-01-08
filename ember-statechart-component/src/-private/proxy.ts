@@ -69,7 +69,7 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
 
           getValue(storage);
 
-          return Reflect.get(target, key, receiver);
+          return wrapObject(Reflect.get(target, key, receiver));
         }
       }
 
@@ -95,4 +95,34 @@ function dirtyState(interpreter: Interpreter<unknown>) {
   assert(`Tracking context lost!`, storage);
 
   setValue(storage, null);
+}
+
+/**
+ * Lazy deep reactivity that specifically only looks for
+ * interpreters stored on the context
+ */
+function wrapObject(unwrapped: object): object {
+  return new Proxy(unwrapped, {
+    get(target, key, receiver) {
+      let value = Reflect.get(target, key, receiver);
+
+      if (typeof key !== 'string') {
+        return value;
+      }
+
+      if (value instanceof Interpreter) {
+        return reactiveInterpreter(value);
+      }
+
+      if (Array.isArray(value)) {
+        return wrapObject(value);
+      }
+
+      if (value && typeof value === 'object' && value.prototype === undefined) {
+        return wrapObject(value);
+      }
+
+      return value;
+    },
+  });
 }
