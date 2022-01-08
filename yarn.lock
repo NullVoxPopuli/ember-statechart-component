@@ -2162,15 +2162,6 @@
     walk-sync "^3.0.0"
     yargs "^17.0.1"
 
-"@embroider/addon-shim@^0.46.2":
-  version "0.46.2"
-  resolved "https://registry.npmjs.org/@embroider/addon-shim/-/addon-shim-0.46.2.tgz#180992d7f6627942cbccc9ba0a5f90fc3ae03ce4"
-  integrity sha512-yGgvUqhGkl9UGBiwGP8c7RcdsAqKafaUk/A5mZmpVYwjjDnBJEcpIcDvgQBSgeCX/zY9dFI5CVffHkDkdaJ6ZA==
-  dependencies:
-    "@embroider/shared-internals" "^0.46.2"
-    ember-auto-import "^2.2.0"
-    semver "^7.3.5"
-
 "@embroider/addon-shim@^0.50.0":
   version "0.50.0"
   resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-0.50.0.tgz#2fbfdb8d111981cab566b84144c381233a451644"
@@ -2271,19 +2262,6 @@
     resolve-package-path "^1.2.2"
     semver "^7.3.2"
     typescript-memoize "^1.0.0-alpha.3"
-
-"@embroider/shared-internals@^0.46.2":
-  version "0.46.2"
-  resolved "https://registry.npmjs.org/@embroider/shared-internals/-/shared-internals-0.46.2.tgz#3e3fb8629102206732c629578eb6b6134f59b98c"
-  integrity sha512-wNGy/R4h3SC316HqX64tMlm8XKxOS2yeL8Y4J9OFwjWRSK5p7ESc4gcQm3T/dijFT+F2iWA0pEjHjR4Hax56Bw==
-  dependencies:
-    babel-import-util "^0.2.0"
-    ember-rfc176-data "^0.3.17"
-    fs-extra "^9.1.0"
-    lodash "^4.17.21"
-    resolve-package-path "^4.0.1"
-    semver "^7.3.5"
-    typescript-memoize "^1.0.1"
 
 "@embroider/shared-internals@^0.50.0":
   version "0.50.0"
@@ -6856,7 +6834,7 @@ ember-auto-import@^1.11.3:
     walk-sync "^0.3.3"
     webpack "^4.43.0"
 
-ember-auto-import@^2.2.0, ember-auto-import@^2.2.4:
+ember-auto-import@^2.2.4:
   version "2.2.4"
   resolved "https://registry.npmjs.org/ember-auto-import/-/ember-auto-import-2.2.4.tgz#68c08cb0b7533293024c97387fc449b00561185a"
   integrity sha512-iXHH+bSMP/uWvJmIhjt+PZz4ymqOLccIxZUouVcUFLKA5EAWE7gamlA684m0pIbSE/V9zKpOul4OfIgKXFprBg==
@@ -7560,9 +7538,11 @@ ember-try@^2.0.0:
     walk-sync "^2.2.0"
 
 ember-welcome-page@^6.0.0:
-  version: "6.1.0"
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ember-welcome-page/-/ember-welcome-page-6.1.0.tgz#0c1c2c611a197772d3a2801ad9f5b897608bd876"
+  integrity sha512-r0gFsXLbqh9xwFAFaq9IVz7IhQ9WgIwE7WszUhGoRCRZu+MwxZ+Ovrr2xlXErntqjvFXgqLdhr6iP5zvVoDTLQ==
   dependencies:
-    "@embroider/addon-shim" "^0.46.2"
+    "@embroider/addon-shim" "^0.50.0"
 
 emoji-regex@^8.0.0:
   version "8.0.0"
