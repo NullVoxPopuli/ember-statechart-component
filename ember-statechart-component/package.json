@@ -44,7 +44,6 @@
   "dependencies": {
     "@embroider/addon-shim": "^0.50.0",
     "babel-plugin-ember-template-compilation": "^1.0.1",
-    "ember-deep-tracked": "^1.3.7",
     "ember-tracked-storage-polyfill": "^1.0.0"
   },
   "peerDependencies": {
