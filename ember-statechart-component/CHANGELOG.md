@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.2.1...v3.2.2) (2022-01-08)
+
+
+### Bug Fixes
+
+* **spawn:** for spawn machines stored on nested context data, support reactivity ([3a1ca73](https://github.com/NullVoxPopuli/ember-statechart-component/commit/3a1ca739fa29e91cdd6d4e139eac428a7249f84e))
+
 ## [3.2.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.2.0...v3.2.1) (2021-12-30)
 
 
