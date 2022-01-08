@@ -1,3 +1,10 @@
+## [3.2.3](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.2.2...v3.2.3) (2022-01-08)
+
+
+### Bug Fixes
+
+* **revert:** spawn fix accidentally introduced infinite loop ([78e2582](https://github.com/NullVoxPopuli/ember-statechart-component/commit/78e2582ac0b10d67ce95abcd49c44616526af069))
+
 ## [3.2.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.2.1...v3.2.2) (2022-01-08)
 
 
