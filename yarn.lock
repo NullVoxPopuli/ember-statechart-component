@@ -7560,9 +7560,7 @@ ember-try@^2.0.0:
     walk-sync "^2.2.0"
 
 ember-welcome-page@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/ember-welcome-page/-/ember-welcome-page-6.0.0.tgz#71ec7e4f609fa9f56dc3e2c16494c7e516cf562c"
-  integrity sha512-DK+gdE5262K2+JvFp8xo3WQySFYb6HJtk/gvV/vhGnmdZnqUZfgoccNylznTSGyq2SUdoSLvvYE7QmiNNsTqZw==
+  version: "6.1.0"
   dependencies:
     "@embroider/addon-shim" "^0.46.2"
 
