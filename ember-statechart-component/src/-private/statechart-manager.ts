@@ -40,7 +40,7 @@ export default class ComponentManager {
       machine = machine.withConfig(named.config as any);
     }
 
-    let context = Object.assign({}, machine.context);
+    let context = { ...machine.context };
 
     if ('context' in named) {
       Object.assign(context, named.context);
