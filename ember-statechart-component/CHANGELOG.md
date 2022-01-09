@@ -1,3 +1,16 @@
+# [4.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.2.3...v4.0.0) (2022-01-09)
+
+
+### Features
+
+* merge context by default ([74d921c](https://github.com/NullVoxPopuli/ember-statechart-component/commit/74d921c2845febd09dbf5832aa646cedb9a3f94c))
+* merge passing context by default ([643a8c6](https://github.com/NullVoxPopuli/ember-statechart-component/commit/643a8c677359de0f8a94d50547f0417e7ee1e53a)), closes [#204](https://github.com/NullVoxPopuli/ember-statechart-component/issues/204)
+
+
+### BREAKING CHANGES
+
+* context is now merged instead of replaced
+
 ## [3.2.3](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v3.2.2...v3.2.3) (2022-01-08)
 
 
