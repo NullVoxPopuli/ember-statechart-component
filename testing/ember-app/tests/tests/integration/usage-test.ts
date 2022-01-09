@@ -264,6 +264,27 @@ module('Usage', function (hooks) {
     assert.strictEqual(context.numCalled, 13);
   });
 
+  test('merging passed context by default', async function (assert) {
+    let toggle = createMachine({
+      initial: 'inactive',
+      context: { foo: 'foo' },
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    this.setProperties({ toggle, context: { bar: 'bar' } });
+
+    await render(hbs`
+      <this.toggle @context={{this.context}} as |state send|>
+        {{state.context.foo}}, {{state.context.bar}}
+      </this.toggle>
+    `);
+
+    assert.dom().containsText('foo, bar');
+  });
+
   test('can pass initial state', async function (assert) {
     let toggle = createMachine({
       initial: 'inactive',
