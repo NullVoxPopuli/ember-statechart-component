@@ -5,12 +5,16 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { assign, createMachine, spawn } from 'xstate';
+import { assign, createMachine, send, spawn } from 'xstate';
 
 import type { Interpreter } from 'xstate';
 
 type Send = Interpreter<unknown>['send'];
 
+/**
+ * All of these tests are based off real-world usages in one way or another
+ * (even if simplified)
+ */
 module('Dynamic Machines', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -126,6 +130,77 @@ module('Dynamic Machines', function (hooks) {
 
       assert.strictEqual(active, 1);
       assert.strictEqual(inactive, 2);
+    });
+
+    test('a dynamically spawned machined, can have delayed events', async function (assert) {
+      const postMachine = createMachine({
+        initial: 'loading',
+        states: {
+          loading: {
+            entry: [send('LOADED', { delay: 100 })],
+            on: {
+              LOADED: 'loaded',
+            },
+          },
+          loaded: {},
+        },
+      });
+
+      const DetailLoadingState = createMachine({
+        initial: 'active',
+        context: {
+          posts: {},
+        },
+        states: {
+          active: {
+            on: {
+              LOAD_DETAILS: [
+                {
+                  actions: [
+                    assign({
+                      posts: (context: Record<string, any>, { postId }: any) => {
+                        let posts = context.posts || {};
+
+                        if (!postId) return posts;
+
+                        posts[postId] = spawn(postMachine);
+
+                        return posts;
+                      },
+                    }),
+                  ],
+                },
+              ],
+            },
+          },
+        },
+      });
+
+      this.setProperties({ DetailLoadingState, id: 1, loadPayload: { postId: 1 } });
+
+      render(hbs`
+        <this.DetailLoadingState as |state send|>
+          {{ (send 'LOAD_DETAILS' this.loadPayload) }}
+
+          {{#let (get state.context.posts this.id) as |machine|}}
+            <out>
+              {{#if (machine.state.matches 'loaded')}}
+                Details are loaded
+              {{else}}
+                Loading...
+              {{/if}}
+            </out>
+          {{/let}}
+        </this.DetailLoadingState>
+      `);
+
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      assert.dom('out').hasText('Loading...');
+
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      assert.dom('out').hasText('Details are loaded');
     });
   });
 
