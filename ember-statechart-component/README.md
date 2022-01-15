@@ -18,6 +18,21 @@ npm install ember-statechart-component
 yarn add ember-statechart-component
 ```
 
+To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/states.html#state-matches-parentstatevalue)
+method in our templates,
+we will first need a [HelperManager](https://github.com/emberjs/rfcs/pull/625) for
+handling vanilla functions.
+[ember-functions-as-helper-polyfill](https://github.com/NullVoxPopuli/ember-functions-as-helper-polyfill)
+provides one:
+
+```bash
+ember install ember-functions-as-helper-polyfill
+# or
+npm install ember-functions-as-helper-polyfill
+# or
+yarn add ember-functions-as-helper-polyfill
+```
+
 Usage
 ------------------------------------------------------------------------------
 
@@ -53,7 +68,7 @@ The default template for every `createMachine(..)` is
 {{yield this.state this.send}}
 ```
 but that can be overriden to suit your needs by defining your own template.
-the `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
+The `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
 
 ### Accessing Services
 
@@ -104,14 +119,6 @@ Usage:
 
 ### Matching States
 
-XState provides its own [`matches`](https://xstate.js.org/api/classes/state.html#matches)
-method which is available on the `state` object.
-We can utilize this provided there exists a `HelperManager` for
-handling vanilla functions, such as what
-[ember-could-get-used-to-this](https://github.com/pzuraq/ember-could-get-used-to-this)
-provides.
-
-
 ```hbs
 <Toggle as |state send|>
   {{#if (state.matches 'inactive')}}
@@ -132,17 +139,109 @@ provides.
 
 #### `@config`
 
-This argument allows you to pass a `MachineConfig` for actions, services, guards, etc
+This argument allows you to pass a `MachineConfig` for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#invoking-services), [guards](https://xstate.js.org/docs/guides/guards.html#guards-condition-functions), etc.
+
+Usage:
+
+<details><summary>Toggle machine that needs a config</summary>
+  
+```js
+// app/components/toggle.js
+import { createMachine, assign } from 'xstate';
+
+export default createMachine({
+  initial: 'inactive',
+  states: {
+    inactive: { on: { TOGGLE: 'active' } },
+    active: { 
+      on: { 
+        TOGGLE: {
+          target: 'inactive',
+          actions: ['toggleIsOn']
+        }
+      }
+    },
+  },
+});
+```
+
+</details>
+
+```hbs
+<Toggle 
+  @config={{hash 
+    actions=(hash 
+      toggleIsOn=@onRoomIlluminated
+    )
+  }} 
+as |state send|>
+  <button {{on 'click' (fn send 'TOGGLE')}}>
+    Toggle
+  </button>
+</Toggle>
+```
 
 #### `@context`
 
-Sets the initial context
+Sets the initial context. The current value of the context can then be accessed via `state.context`.
+
+Usage:
+
+<details><summary>Toggle machine that interacts with context</summary>
+
+```js
+// app/components/toggle.js
+import { createMachine, assign } from 'xstate';
+
+export default createMachine({
+  initial: 'inactive',
+  states: {
+    inactive: { 
+      on: { 
+        TOGGLE: {
+          target: 'active',
+          actions: ['increaseCounter']
+        }
+      }
+    },
+    active: { 
+      on: { 
+        TOGGLE: {
+          target: 'inactive',
+          actions: ['increaseCounter']
+        }
+      }
+    },
+  },
+}, {
+  actions: {
+    increaseCounter: assign({
+      counter: (context) => context.counter + 1
+    })
+  }
+});
+```
+
+</details>
+
+```hbs
+<Toggle @context=(hash counter=0) as |state send|>
+  <button {{on 'click' (fn send 'TOGGLE')}}>
+    Toggle
+  </button>
+
+  <p>
+    Toggled: {{state.context.counter}} times.
+  </p>
+</Toggle>
+```
 
 #### `@state`
 
-The machine will use this state as the initial state. Any changes to
-this argument are ignored.
-
+The machine will use `@state` as the initial state.
+Any changes to this argument 
+are not automatically propagated to the machine. 
+An `ARGS_UPDATE` event (see details below) is sent instead.
 
 ### What happens if any of the passed args change?
 
