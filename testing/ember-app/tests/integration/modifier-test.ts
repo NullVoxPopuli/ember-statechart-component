@@ -5,7 +5,6 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { modifier } from 'ember-could-get-used-to-this';
 import { createMachine } from 'xstate';
 
 declare module '@ember/service' {
@@ -19,8 +18,9 @@ module('Modifiers', function (hooks) {
 
   test('a modifier can trigger an update to a machine', async function (assert) {
     this.setProperties({
-      customModifier: modifier((_element: Element, toggle: () => void) => toggle()),
+      customModifier: (_element: Element, toggle: () => void) => toggle(),
     });
+
     let toggle = createMachine({
       initial: 'inactive',
       states: {
