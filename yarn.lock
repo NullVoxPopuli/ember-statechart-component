@@ -6504,9 +6504,7 @@ ember-fetch@^8.1.1:
     whatwg-fetch "^3.6.2"
 
 ember-functions-as-helper-polyfill@^1.0.6:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/ember-functions-as-helper-polyfill/-/ember-functions-as-helper-polyfill-1.0.13.tgz#da7770bb73e8d6eb81c334f28fa23ff24af72053"
-  integrity sha512-RhV6iJdQFSWQkrSzmu70QUCow3s68RD+MyA7oJuQk5QIQWeW+5Hb1pfP7/pXl7ZyMMHuJoyA1ekxdM0fScAmXg==
+  version: "1.0.14"
   dependencies:
     "@embroider/macros" "^0.50.2"
     "@glimmer/tracking" "^1.0.4"
