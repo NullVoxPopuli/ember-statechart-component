@@ -277,7 +277,7 @@ module('Usage', function (hooks) {
     this.setProperties({ toggle, context: { bar: 'bar' } });
 
     await render(hbs`
-      <this.toggle @context={{this.context}} as |state send|>
+      <this.toggle @context={{this.context}} as |state|>
         {{state.context.foo}}, {{state.context.bar}}
       </this.toggle>
     `);
@@ -342,5 +342,31 @@ module('Usage', function (hooks) {
     await click('button');
 
     assert.dom().containsText('inactive');
+  });
+
+  test('can pass onTransition callback', async function (assert) {
+    let toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    assert.expect(3);
+
+    this.setProperties({
+      toggle,
+      doSomething: (state: { value: string }, event: { type: string }) => {
+        assert.strictEqual(state.value, event.type === 'xstate.init' ? 'inactive' : 'active');
+      },
+    });
+
+    await render(hbs`
+      <this.toggle as |state send onTransition|>
+        {{onTransition this.doSomething}}
+        {{send "TOGGLE"}}
+      </this.toggle>
+    `);
   });
 });
