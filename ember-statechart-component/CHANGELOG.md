@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v4.0.1...v4.1.0) (2022-01-20)
+
+
+### Features
+
+* exposes onTransition helper ([0c54bab](https://github.com/NullVoxPopuli/ember-statechart-component/commit/0c54bab0e72b72cd733ed2aeb609e433010814b8))
+
 ## [4.0.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v4.0.0...v4.0.1) (2022-01-20)
 
 
