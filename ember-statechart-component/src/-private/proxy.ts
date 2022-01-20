@@ -23,6 +23,7 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
 
   ensureStorage(interpreter);
 
+  interpreter.onTransition = interpreter.onTransition.bind(interpreter);
   interpreter.onTransition(async (_state: State<unknown>, event: EventObject) => {
     // init always runs, we don't need to dirty
     if (event.type === 'xstate.init') return;
