@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v4.1.0...v4.1.1) (2022-01-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency xstate to v4.28.1 ([9bc493f](https://github.com/NullVoxPopuli/ember-statechart-component/commit/9bc493fd903f457e42c1cc5989a361b66a46081d))
+
 # [4.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v4.0.1...v4.1.0) (2022-01-20)
 
 
