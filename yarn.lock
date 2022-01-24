@@ -6020,9 +6020,7 @@ ember-auto-import@^1.11.3:
     webpack "^4.43.0"
 
 ember-auto-import@^2.2.4, ember-auto-import@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-2.3.0.tgz#ffb05e11322ea041d73cddee7c7d804ffe130913"
-  integrity sha512-38fOQ8ix3IQfFZHg99xQh/rJ1JwOhl2egauYXpCmFKdNm45rkRap3HDhkA4JtO532R7KEkaloU9Bj0oEUv520w==
+  version: "2.4.0"
   dependencies:
     "@babel/core" "^7.16.7"
     "@babel/plugin-proposal-class-properties" "^7.16.7"
@@ -6361,9 +6359,7 @@ ember-cli-version-checker@^5.1.1, ember-cli-version-checker@^5.1.2:
     silent-error "^1.1.1"
 
 ember-cli@~4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-4.1.0.tgz#65d482c25a7f0b93f400f799d92bb28af8527086"
-  integrity sha512-weWNx1bWdcLGCfUTRSN9393yzBkTBcIIhbGW/cOIvwsDjTxkT+RA2XdnpdeHtH4JnIW2JiJSAErCebN5R4wT7w==
+  version: "4.1.1"
   dependencies:
     "@babel/core" "^7.16.0"
     "@babel/plugin-transform-modules-amd" "^7.12.1"
