@@ -50,7 +50,7 @@ export default class ComponentManager {
 
     machine = machine.withContext(context);
 
-    let interpreter = interpret(machine, {
+    let interpreter = interpret(machine as any, {
       devTools: DEBUG,
       clock: {
         setTimeout(fn, ms) {

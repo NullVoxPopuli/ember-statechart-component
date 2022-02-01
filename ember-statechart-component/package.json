@@ -7,12 +7,11 @@
   "description": "Use XState Machines *as* Components",
   "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
   "license": "MIT",
-  "type": "module",
   "author": "NullVoxPopuli",
+  "types": "dist",
   "exports": {
     ".": "./dist/index.js",
-    "./*": "./dist/*",
-    "./addon-main.js": "./addon-main.cjs"
+    "./*": "./dist/*"
   },
   "directories": {
     "doc": "doc",
@@ -21,15 +20,13 @@
   "files": [
     "addon-main.cjs",
     "dist",
-    "declarations",
     "CHANGELOG.md",
     "README.md"
   ],
   "scripts": {
     "start": "concurrently \"npm:watch:*\"",
     "build": "concurrently \"npm:build:*\"",
-    "build:js": "rollup -c",
-    "build:types": "tsc --build --pretty",
+    "build:js": "rollup -c ./config/rollup.config.js",
     "build:docs": "cp ../README.md ./README.md",
     "watch:js": "rollup -c --watch --no-watch.clearScreen",
     "watch:types": "tsc --build --watch --pretty --preserveWatchOutput",
@@ -42,21 +39,20 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^1.0.0",
-    "babel-plugin-ember-template-compilation": "^1.0.1",
+    "@embroider/addon-shim": "^1.2.0",
     "ember-tracked-storage-polyfill": "^1.0.0"
   },
   "peerDependencies": {
     "xstate": "^4.23.1"
   },
   "devDependencies": {
-    "@babel/core": "7.17.0",
+    "@babel/core": "7.17.2",
     "@babel/plugin-proposal-class-properties": "7.16.7",
     "@babel/plugin-syntax-decorators": "7.17.0",
     "@babel/preset-typescript": "7.16.7",
-    "@embroider/addon-dev": "1.0.0",
-    "@glimmer/compiler": "^0.83.1",
-    "@nullvoxpopuli/eslint-configs": "^2.1.10",
+    "@embroider/addon-dev": "1.2.0",
+    "@nullvoxpopuli/eslint-configs": "^2.1.21",
+    "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@semantic-release/changelog": "^6.0.0",
@@ -68,8 +64,6 @@
     "@types/ember__runloop": "^4.0.0",
     "babel-eslint": "10.1.0",
     "concurrently": "^7.0.0",
-    "ember-cli-htmlbars": "^6.0.0",
-    "ember-template-lint": "3.16.0",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-decorator-position": "^4.0.0",
@@ -79,8 +73,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "npm-run-all": "4.1.5",
-    "rollup": "2.67.0",
+    "rollup": "2.67.2",
+    "rollup-plugin-ts": "2.0.5",
     "semantic-release": "^19.0.0",
     "typescript": "^4.4.2",
     "xstate": "^4.26.0"
@@ -97,17 +91,9 @@
   "ember-addon": {
     "version": 2,
     "type": "addon",
-    "main": "addon-main.cjs",
+    "main": "./config/addon-main.cjs",
     "app-js": {
-      "./instance-initializers/ember-statechart-component.js": "./dist/registration.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "declarations/*",
-        "declarations/*/index"
-      ]
+      "./instance-initializers/ember-statechart-component.js": "./dist/_app_/instance-initializers/ember-statechart-component.js"
     }
   },
   "release": {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { assert } from '@ember/debug';
 import { isDestroyed, isDestroying } from '@ember/destroyable';
 
@@ -13,7 +14,7 @@ export const UPDATE_EVENT_NAME = 'ARGS_UPDATE';
 
 const CACHE = new WeakMap<Interpreter<unknown>, TrackedStorage<null>>();
 
-export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
+export function reactiveInterpreter(interpreter: Interpreter<any>) {
   /**
    * atm, only interpreters can be reactive
    */
