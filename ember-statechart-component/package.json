@@ -50,9 +50,9 @@
     "xstate": "^4.23.1"
   },
   "devDependencies": {
-    "@babel/core": "7.16.12",
+    "@babel/core": "7.17.0",
     "@babel/plugin-proposal-class-properties": "7.16.7",
-    "@babel/plugin-syntax-decorators": "7.16.7",
+    "@babel/plugin-syntax-decorators": "7.17.0",
     "@babel/preset-typescript": "7.16.7",
     "@embroider/addon-dev": "1.0.0",
     "@glimmer/compiler": "^0.83.1",
