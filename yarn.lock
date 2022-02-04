@@ -6574,9 +6574,7 @@ ember-fetch@^8.1.1:
     whatwg-fetch "^3.6.2"
 
 ember-functions-as-helper-polyfill@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ember-functions-as-helper-polyfill/-/ember-functions-as-helper-polyfill-2.0.0.tgz#ee05eaa6623bfae31448dbeffbf636786eed9536"
-  integrity sha512-BAUgWg2GQQcOvwFymIYxs0MTQ7Mrx/ngsrtGKLE+sW2zoLpHDEgjW0wupSsL/ETFz7a62BNGih2kW0lzD521aA==
+  version: "2.0.1"
   dependencies:
     ember-cli-babel "^7.26.11"
     ember-cli-typescript "^4.2.1"
