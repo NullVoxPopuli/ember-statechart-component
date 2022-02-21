@@ -1,7 +1,7 @@
-{{page-title "EmberApp"}}
+<ToggleMachine as |state send|>
+  {{state.value}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+  <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+    Toggle
+  </button>
+</ToggleMachine>
