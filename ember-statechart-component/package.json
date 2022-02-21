@@ -11,7 +11,8 @@
   "types": "dist",
   "exports": {
     ".": "./dist/index.js",
-    "./*": "./dist/*"
+    "./*": "./dist/*",
+    "./addon-main.js": "./addon-main.cjs"
   },
   "directories": {
     "doc": "doc",
@@ -91,7 +92,7 @@
   "ember-addon": {
     "version": 2,
     "type": "addon",
-    "main": "./config/addon-main.cjs",
+    "main": "./addon-main.cjs",
     "app-js": {
       "./instance-initializers/ember-statechart-component.js": "./dist/_app_/instance-initializers/ember-statechart-component.js"
     }
