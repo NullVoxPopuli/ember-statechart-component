@@ -70,7 +70,7 @@ The default template for every `createMachine(..)` is
 but that can be overriden to suit your needs by defining your own template.
 The `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
 
-### Accessing Services
+### Accessing EmberJS Services
 
 ```js
 // app/components/authenticated-toggle.js
