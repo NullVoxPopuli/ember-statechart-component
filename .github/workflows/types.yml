@@ -52,3 +52,26 @@ jobs:
     # - run: yarn tsc --build
     # - run: npm run prepack
     # - run: npm exec tsc --build
+
+  types_tests:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    name: "Type Correctness"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [install_dependencies]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: volta-cli/action@v1
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.CACHE_PATH }}
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: yarn install
+    - run: |
+        cd ${{ env.TEST_DIR }}
+        yarn tsc --build
+    # - run: npm run prepack
+    # - run: yarn tsc --build
+    # - run: npm run prepack
+    # - run: npm exec tsc --build

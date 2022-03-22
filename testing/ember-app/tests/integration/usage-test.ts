@@ -86,7 +86,7 @@ module('Usage', function (hooks) {
       </ToggleMachine>
     `);
 
-    let testState = this.owner.lookup('service:test-state');
+    let testState = this.owner.lookup('service:test-state') as { foo: number };
 
     assert.strictEqual(testState.foo, 1);
 

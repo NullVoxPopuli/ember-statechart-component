@@ -7,13 +7,13 @@ import { Interpreter } from 'xstate';
 import { createMapWithInterceptedSet } from './utils';
 
 import type { TrackedStorage } from 'ember-tracked-storage-polyfill';
-import type { EventObject, State } from 'xstate';
+import type { DefaultContext, EventObject, State } from 'xstate';
 
 export const UPDATE_EVENT_NAME = 'ARGS_UPDATE';
 
-const CACHE = new WeakMap<Interpreter<unknown>, TrackedStorage<null>>();
+const CACHE = new WeakMap<Interpreter<DefaultContext>, TrackedStorage<null>>();
 
-export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
+export function reactiveInterpreter(interpreter: Interpreter<DefaultContext>) {
   /**
    * atm, only interpreters can be reactive
    */
@@ -24,7 +24,7 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
   ensureStorage(interpreter);
 
   interpreter.onTransition = interpreter.onTransition.bind(interpreter);
-  interpreter.onTransition(async (_state: State<unknown>, event: EventObject) => {
+  interpreter.onTransition(async (_state: State<DefaultContext>, event: EventObject) => {
     // init always runs, we don't need to dirty
     if (event.type === 'xstate.init') return;
     // a dirty event already triggered a transition
@@ -49,7 +49,7 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
 
   let children = new Map();
   let fakeChildrenMap = createMapWithInterceptedSet(children, {
-    set(key: string, value: Interpreter<unknown>) {
+    set(key: string, value: Interpreter<DefaultContext>) {
       children.set(key, reactiveInterpreter(value));
     },
   });
@@ -79,7 +79,7 @@ export function reactiveInterpreter(interpreter: Interpreter<unknown>) {
   });
 }
 
-function ensureStorage(interpreter: Interpreter<unknown>) {
+function ensureStorage(interpreter: Interpreter<DefaultContext>) {
   let storage = CACHE.get(interpreter);
 
   if (!storage) {
@@ -90,7 +90,7 @@ function ensureStorage(interpreter: Interpreter<unknown>) {
   return storage;
 }
 
-function dirtyState(interpreter: Interpreter<unknown>) {
+function dirtyState(interpreter: Interpreter<DefaultContext>) {
   let storage = CACHE.get(interpreter);
 
   assert(`Tracking context lost!`, storage);
