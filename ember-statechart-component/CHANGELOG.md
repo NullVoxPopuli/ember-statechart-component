@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v4.1.2...v5.0.0) (2022-03-22)
+
+
+### Bug Fixes
+
+* **types:** minor update in xstate cause breaking type change ([e786af7](https://github.com/NullVoxPopuli/ember-statechart-component/commit/e786af7cf16683cf12eeaacf1b4efbd206418b21))
+
+
+### BREAKING CHANGES
+
+* **types:** support latest xstate, ^4.30.0
+
 ## [4.1.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v4.1.1...v4.1.2) (2022-01-27)
 
 
