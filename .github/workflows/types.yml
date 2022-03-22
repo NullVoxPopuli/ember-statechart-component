@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ${{ env.CACHE_PATH }}
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
@@ -40,7 +40,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ${{ env.CACHE_PATH }}
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
@@ -63,7 +63,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ${{ env.CACHE_PATH }}
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
