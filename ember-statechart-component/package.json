@@ -55,7 +55,7 @@
     "@babel/plugin-syntax-decorators": "7.17.0",
     "@babel/preset-typescript": "7.16.7",
     "@embroider/addon-dev": "1.5.0",
-    "@glimmer/compiler": "^0.83.1",
+    "@glimmer/compiler": "^0.84.0",
     "@nullvoxpopuli/eslint-configs": "^2.1.10",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
