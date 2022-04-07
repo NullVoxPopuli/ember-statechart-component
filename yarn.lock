@@ -1400,12 +1400,12 @@
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.5"
 
-"@embroider/addon-dev@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@embroider/addon-dev/-/addon-dev-1.5.0.tgz#4872517432f4da7c275ad3c1ee36b844f8924839"
-  integrity sha512-F8zkTA7LgOTN8uK8Lzy8GMnbfk31NZ6NDLRSELAyLQpECmTqXauy0HDAcmcIKVcwBxNVDTbLENCro12cgyTnMA==
+"@embroider/addon-dev@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@embroider/addon-dev/-/addon-dev-1.6.0.tgz#2e4a85b9efe18e99ee08d740321c0b71502ef934"
+  integrity sha512-ePQuzzKngJy48mqRe8Mdik4CLPLlZonI3IV4+lVDBY5tCcpGS7SWE1NJmVgjML+nt1q+dT6/CqU/waH2ujOwRw==
   dependencies:
-    "@embroider/shared-internals" "^1.5.0"
+    "@embroider/shared-internals" "^1.6.0"
     "@rollup/pluginutils" "^4.1.1"
     fs-extra "^10.0.0"
     minimatch "^3.0.4"
@@ -1465,6 +1465,20 @@
     babel-import-util "^1.1.0"
     ember-rfc176-data "^0.3.17"
     fs-extra "^9.1.0"
+    lodash "^4.17.21"
+    resolve-package-path "^4.0.1"
+    semver "^7.3.5"
+    typescript-memoize "^1.0.1"
+
+"@embroider/shared-internals@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-1.6.0.tgz#35ade2ce1202e529107bf6d1fae4ca753f6ebe5a"
+  integrity sha512-es7+pV2S9+tgX5T4losppheXfa+xWtKD6x0gq7mxqA4DIdE14mORNeSWM8/Fu9f/t0tJnPqttddbgnDYw+SvrA==
+  dependencies:
+    babel-import-util "^1.1.0"
+    ember-rfc176-data "^0.3.17"
+    fs-extra "^9.1.0"
+    js-string-escape "^1.0.1"
     lodash "^4.17.21"
     resolve-package-path "^4.0.1"
     semver "^7.3.5"
@@ -14057,7 +14071,9 @@ webpack@^4.43.0:
     webpack-sources "^1.4.1"
 
 webpack@^5.65.0:
-  version: "5.72.0"
+  version "5.72.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.72.0.tgz#f8bc40d9c6bb489a4b7a8a685101d6022b8b6e28"
+  integrity sha512-qmSmbspI0Qo5ld49htys8GY9XhS9CGqFoHTsOVAnjBdg0Zn79y135R+k4IR4rKK6+eKaabMhJwiVB7xw0SJu5w==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^0.0.51"
