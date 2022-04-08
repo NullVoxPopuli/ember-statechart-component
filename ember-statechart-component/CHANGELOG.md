@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v5.0.0...v5.0.1) (2022-04-08)
+
+
+### Bug Fixes
+
+* **deps:** update embroider monorepo to v1.6.0 ([e73c84d](https://github.com/NullVoxPopuli/ember-statechart-component/commit/e73c84d822ec1b8a146b8cb24ec3900187a3df06))
+
 # [5.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v4.1.2...v5.0.0) (2022-03-22)
 
 
