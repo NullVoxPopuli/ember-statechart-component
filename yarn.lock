@@ -1423,9 +1423,11 @@
     semver "^7.3.5"
 
 "@embroider/addon-shim@^1.0.0":
-  version: "1.6.0"
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.6.0.tgz#d2d6d1d820605a48273a123a9adb49e163c8de1c"
+  integrity sha512-wHXsBsDsKxF6Ftnh67SBzV0OvwCBCBlgN5IVm661ByEdDacwWzYywFpVNcNJpCUttEJPMrqB5MJK7xf/xEqihg==
   dependencies:
-    "@embroider/shared-internals" "^1.5.0"
+    "@embroider/shared-internals" "^1.6.0"
     semver "^7.3.5"
 
 "@embroider/macros@^1.0.0":
@@ -1442,7 +1444,7 @@
     resolve "^1.20.0"
     semver "^7.3.2"
 
-"@embroider/shared-internals@1.5.0", "@embroider/shared-internals@^1.0.0", "@embroider/shared-internals@^1.5.0":
+"@embroider/shared-internals@1.5.0", "@embroider/shared-internals@^1.0.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-1.5.0.tgz#d3883f13571be36fcdbc59c65c785db7b6d8186e"
   integrity sha512-kdR7Fh2YdzsNofJO+DJxLfrlMbW4/NNf78aMXgE21z/tg9GO5W2mKlI1DzsO2JlO5yfZdiYfqb9C9vSLJEx14A==
@@ -1483,7 +1485,9 @@
     typescript-memoize "^1.0.1"
 
 "@embroider/test-setup@^1.0.0":
-  version: "1.6.0"
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@embroider/test-setup/-/test-setup-1.6.0.tgz#91fe3d7a8daeba32de35220d25407ad1df7a0db2"
+  integrity sha512-6U+NsfGL9ubADreLCnOWMCVFpoU4/DzHlbgfEH3NE+rcdF+2WbY8VP+MeqjjccoES0HvhIeUKvoIbiqkoWAbhQ==
   dependencies:
     lodash "^4.17.21"
     resolve "^1.20.0"
