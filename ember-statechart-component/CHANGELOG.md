@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v5.0.2...v5.0.3) (2022-04-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency babel-plugin-ember-template-compilation to v1.0.2 ([da33c35](https://github.com/NullVoxPopuli/ember-statechart-component/commit/da33c359284be3bb6ef42951fd3c6ee726b35496))
+
 ## [5.0.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v5.0.1...v5.0.2) (2022-04-08)
 
 
