@@ -1546,12 +1546,12 @@
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.5"
 
-"@embroider/addon-dev@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@embroider/addon-dev/-/addon-dev-1.7.0.tgz#2703a78a9ba16f0564968c3a4aba94ec2d3c8d93"
-  integrity sha512-QJmnPjVLHH2M43g1Zhrdsj1bqsWF95dK01Noe9go8ygK5N5/MOgMRjobIoljJ4obo5YRbUEc7Q05qKZjjwZVtA==
+"@embroider/addon-dev@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@embroider/addon-dev/-/addon-dev-1.7.1.tgz#2c05badc60dcbe599cf56a3b64d4c32698c287e7"
+  integrity sha512-SfpRB6AXa/n3/IhnGGq3OHEsmgx1SaC33clKngx2XA2rnxoiekXVB8gu0DCMGVl8bztMqprA/Uefkg4K2JpErA==
   dependencies:
-    "@embroider/shared-internals" "^1.7.0"
+    "@embroider/shared-internals" "^1.7.1"
     "@rollup/pluginutils" "^4.1.1"
     assert-never "^1.2.1"
     fs-extra "^10.0.0"
@@ -1570,11 +1570,11 @@
     semver "^7.3.5"
 
 "@embroider/addon-shim@^1.0.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.7.0.tgz#f701d6ce7c21f2275a7656e2eb1bfa195107de2a"
-  integrity sha512-h2BfaG/4iNfMyxyc5zRUt5uOUHLLB11psU7pyrb91lSEz+qNdPjvMm3BdQzU4jEDIbWPdbIdN27q5+KzrRY47Q==
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.7.1.tgz#a00471f2d02f09a820d988ccc1612e09473d2eb4"
+  integrity sha512-0xTQLZEAuGeMiZq4tF3KFlP4R/r1js7qq2QEQ89bhEDI8yKCDBScvPrpSpaT6aZj8bWByjDvXHFuSpInFl5gww==
   dependencies:
-    "@embroider/shared-internals" "^1.7.0"
+    "@embroider/shared-internals" "^1.7.1"
     semver "^7.3.5"
 
 "@embroider/macros@^1.0.0":
@@ -1617,10 +1617,10 @@
     semver "^7.3.5"
     typescript-memoize "^1.0.1"
 
-"@embroider/shared-internals@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-1.7.0.tgz#824675aef9a403b13772bc282ba23052ad08f55b"
-  integrity sha512-DLE/QH27VHbLFqLeqLaVY3N6QnRgftYxxa5poYvLpdG/o0sbYuyUxrI7nxLOtXRR9RqtdrssV+Y/w5f/TE0yTQ==
+"@embroider/shared-internals@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-1.7.1.tgz#68afe26aa84e7431b858fcc1f1e0e8a5aaa7c90b"
+  integrity sha512-qT7i3EnOogwvi6xRl7wjJmx27rLlUZG6B6HJXAKXvZOyGFVs0GnQKIJX+7zX2PZAcqlpqhmdWm9MPdrof0dj5g==
   dependencies:
     babel-import-util "^1.1.0"
     ember-rfc176-data "^0.3.17"
@@ -1632,9 +1632,9 @@
     typescript-memoize "^1.0.1"
 
 "@embroider/test-setup@^1.0.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@embroider/test-setup/-/test-setup-1.7.0.tgz#4614d62eca931f1e6611f664443cf3595be1afad"
-  integrity sha512-SrGf8igzCrQA1A7c7gtcrB8V017GfKyTKuUooMVIja7CbEc6RUCkb0hmw/9A1+sa3+KXQE69mvz+SCwQeP1X/Q==
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@embroider/test-setup/-/test-setup-1.7.1.tgz#3e4669b1313c76f0259edfbc3703c535eac40abc"
+  integrity sha512-IxZ/ETmWyzRolTGYH4LDMJEEtrS9w6ak+Sc/nxrITechO1IR6A+a15qrxbzR38b3lXRZn4XlNEsJy3+qcq9c6A==
   dependencies:
     lodash "^4.17.21"
     resolve "^1.20.0"
