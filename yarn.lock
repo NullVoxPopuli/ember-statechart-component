@@ -33,7 +33,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.17.10.tgz#711dc726a492dfc8be8220028b1b92482362baab"
   integrity sha512-GZt/TCsG70Ms19gfZO1tM4CVnXsPgEPBCpJu+Qz3L0LUDsY5nZqFZglIoPC1kIYOtNBZlrnFT+klg12vFGZXrw==
 
-"@babel/core@7.18.2":
+"@babel/core@7.18.2", "@babel/core@^7.17.9":
   version "7.18.2"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.18.2.tgz#87b2fcd7cce9becaa7f5acebdc4f09f3dd19d876"
   integrity sha512-A8pri1YJiC5UnkdrWcmfZTJTV85b4UXTAfImGmCfYmax4TR9Cw8sDS0MOk++Gp2mE/BefVJ5nwy5yzqNJbP/DQ==
@@ -6462,12 +6462,12 @@ ember-cli-version-checker@^5.1.1, ember-cli-version-checker@^5.1.2:
     semver "^7.3.4"
     silent-error "^1.1.1"
 
-ember-cli@~4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-4.3.0.tgz#ffc1e04883ee1c17f86fbc700de7f01a0093445d"
-  integrity sha512-GRbbrIZkNVRDL+1ifwOwTuDCrlh18eLzeGtF0og0Z2oCjsUBgif3IoBMYa2NfRxGc6TdniJhsoyFwzCYnaSgbQ==
+ember-cli@~4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-4.4.0.tgz#4e9211a71277c8373cc1dce313822b23249e7cad"
+  integrity sha512-0MulrhbyahIHMUDVaNJHQrlJi7xfN6G8XBTF6URfN65DfUAFBOjUKlVqVciQqE6evbltu388D+uvqhbNtIr7mA==
   dependencies:
-    "@babel/core" "^7.16.7"
+    "@babel/core" "^7.17.9"
     "@babel/plugin-transform-modules-amd" "^7.16.7"
     amd-name-resolver "^1.3.1"
     babel-plugin-module-resolver "^4.1.0"
@@ -6532,7 +6532,7 @@ ember-cli@~4.3.0:
     lodash.template "^4.5.0"
     markdown-it "^12.2.0"
     markdown-it-terminal "0.2.1"
-    minimatch "^3.0.4"
+    minimatch "^5.0.1"
     morgan "^1.10.0"
     nopt "^3.0.6"
     npm-package-arg "^8.1.5"
@@ -6544,11 +6544,11 @@ ember-cli@~4.3.0:
     remove-types "^1.0.0"
     resolve "^1.20.0"
     resolve-package-path "^3.1.0"
-    safe-stable-stringify "^2.2.0"
+    safe-stable-stringify "^2.3.1"
     sane "^5.0.1"
     semver "^7.3.5"
     silent-error "^1.1.1"
-    sort-package-json "^1.51.0"
+    sort-package-json "^1.55.0"
     symlink-or-copy "^1.3.1"
     temp "0.9.4"
     testem "^3.6.0"
@@ -12488,7 +12488,7 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-safe-stable-stringify@^2.2.0:
+safe-stable-stringify@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.3.1.tgz#ab67cbe1fe7d40603ca641c5e765cb942d04fc73"
   integrity sha512-kYBSfT+troD9cDA85VDnHZ1rpHC50O0g1e6WlGHVCz/g+JS+9WKLj+XwFYyR8UbrZN8ll9HUpDAAddY58MGisg==
@@ -12900,10 +12900,10 @@ sort-object-keys@^1.1.3:
   resolved "https://registry.yarnpkg.com/sort-object-keys/-/sort-object-keys-1.1.3.tgz#bff833fe85cab147b34742e45863453c1e190b45"
   integrity sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==
 
-sort-package-json@^1.51.0:
-  version "1.55.0"
-  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-1.55.0.tgz#150328328a9ac8b417b43d5a1fae74e5f27254e9"
-  integrity sha512-xhKvRD8WGbALjXQkVuk4/93Z/2NIO+5IzKamdMjN5kn3L+N+M9YWQssmM6GXlQr9v1F7PGWsOJEo1gvXOhM7Mg==
+sort-package-json@^1.55.0:
+  version "1.57.0"
+  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-1.57.0.tgz#e95fb44af8ede0bb6147e3f39258102d4bb23fc4"
+  integrity sha512-FYsjYn2dHTRb41wqnv+uEqCUvBpK3jZcTp9rbz2qDTmel7Pmdtf+i2rLaaPMRZeSVM60V3Se31GyWFpmKs4Q5Q==
   dependencies:
     detect-indent "^6.0.0"
     detect-newline "3.1.0"
