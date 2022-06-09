@@ -54,7 +54,7 @@
     "@babel/plugin-proposal-class-properties": "7.17.12",
     "@babel/plugin-syntax-decorators": "7.17.12",
     "@babel/preset-typescript": "7.17.12",
-    "@embroider/addon-dev": "1.7.1",
+    "@embroider/addon-dev": "1.8.0",
     "@glimmer/compiler": "^0.84.0",
     "@nullvoxpopuli/eslint-configs": "^2.1.10",
     "@rollup/plugin-babel": "5.3.1",
