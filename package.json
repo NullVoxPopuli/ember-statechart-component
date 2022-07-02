@@ -8,8 +8,8 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "build": "yarn workspace ember-statechart-component build",
-    "prepare": "yarn build"
+    "build": "pnpm --filter ember-statechart-component build",
+    "prepare": "pnpm build"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

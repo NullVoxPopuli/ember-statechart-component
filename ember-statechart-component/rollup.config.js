@@ -13,7 +13,11 @@ const addon = new Addon({
 const extensions = ['.js', '.ts'];
 
 const rollupConfig = {
-  input: [path.join('src', 'index.ts'), path.join('src', 'registration.ts')],
+  input: [
+    path.join('src', 'index.ts'),
+    path.join('src', 'registration.ts'),
+    path.join('src', 'glint.ts')
+  ],
 
   // This provides defaults that work well alongside `publicEntrypoints` below.
   // You can augment this if you need to.
