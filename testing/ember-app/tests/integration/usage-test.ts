@@ -195,7 +195,7 @@ module('Usage', function (hooks) {
     });
 
     await render(hbs`
-      <ToggleMachine @config={{this.config}} as |state send|>
+      <ToggleMachine @config={{this.config}} as |_state send|>
         <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
           Toggle
         </button>
@@ -363,7 +363,7 @@ module('Usage', function (hooks) {
     });
 
     await render(hbs`
-      <this.toggle as |state send onTransition|>
+      <this.toggle as |_state send onTransition|>
         {{onTransition this.doSomething}}
         {{send "TOGGLE"}}
       </this.toggle>

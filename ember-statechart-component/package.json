@@ -15,10 +15,11 @@
     "./addon-main.js": "./addon-main.cjs"
   },
   "typesVersions": {
-    ">=4.0.0": {
-      "*": "dist/index.d.ts",
+    "*": {
+      ".": "dist/index.d.ts",
       "registration": "dist/registration.d.ts",
-      "glint": "dist/glint.d.ts"
+      "glint": "dist/glint.d.ts",
+      "*": "dist/*"
     }
   },
   "directories": {

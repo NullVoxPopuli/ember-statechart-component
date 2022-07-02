@@ -2,11 +2,9 @@ import "@glint/environment-ember-loose";
 import "@glint/environment-ember-loose/native-integration";
 import "ember-page-title/glint";
 
-import type {
-  // ComponentLike,
-  // HelperLike,
-  // ModifierLike
-} from "@glint/template";
+import type { HelperLike } from "@glint/template";
+
+import type { MachineComponent } from 'ember-statechart-component/glint';
 
 // declare module '@fortawesome/ember-fontawesome/components/fa-icon' {
 //   export default ComponentLike;
@@ -21,10 +19,18 @@ declare module "@glint/environment-ember-loose/registry" {
     /**
      *  Components
      */
+     'ToggleMachine': MachineComponent
+     'TestMachine': MachineComponent
 
     /**
      * Helpers
      */
+     report: HelperLike<{
+       Args: {
+         Positional: [any]
+       },
+       Return: any
+     }>
 
     /**
      * Modifiers

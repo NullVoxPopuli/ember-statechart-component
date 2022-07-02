@@ -12,7 +12,7 @@ export type State<T = unknown> = Interpreter<ContextFrom<T>>['state'];
 export type Send<T = unknown> = Interpreter<ContextFrom<T>>['send'];
 export type OnTransition<T = unknown> = Interpreter<ContextFrom<T>>['onTransition'];
 
-export type MachineComponent<T extends ReturnType<typeof createMachine>> = ComponentLike<{
+export type MachineComponent<T extends ReturnType<typeof createMachine> = any> = ComponentLike<{
   Args: {
     config?: MachineConfig<ContextFrom<T>, StateSchema<T>, EventFrom<T>>;
     context?: State<T>['context'];

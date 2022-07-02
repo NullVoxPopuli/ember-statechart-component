@@ -166,7 +166,7 @@ module('Dynamic Machines', function (hooks) {
       });
 
       await render(hbs`
-        <this.parentMachine as |state send|>
+        <this.parentMachine as |state|>
           <div id="parent">{{state.value}}</div>
           <div id="child">{{state.children.timer.state.value}}</div>
 
