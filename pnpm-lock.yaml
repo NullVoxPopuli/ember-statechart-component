@@ -38,6 +38,8 @@ importers:
       '@embroider/addon-dev': 1.8.1
       '@embroider/addon-shim': ^1.0.0
       '@glimmer/compiler': ^0.84.0
+      '@glimmer/component': ^1.0.4
+      '@glint/template': ^0.9.1
       '@nullvoxpopuli/eslint-configs': ^2.1.10
       '@semantic-release/changelog': ^6.0.0
       '@semantic-release/git': ^10.0.0
@@ -79,6 +81,8 @@ importers:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.18.6
       '@embroider/addon-dev': 1.8.1_rollup@2.75.7
       '@glimmer/compiler': 0.84.2
+      '@glimmer/component': 1.1.2_@babel+core@7.18.6
+      '@glint/template': 0.9.1_@glimmer+component@1.1.2
       '@nullvoxpopuli/eslint-configs': 2.2.31_typescript@4.7.4
       '@semantic-release/changelog': 6.0.1_semantic-release@19.0.3
       '@semantic-release/git': 10.0.1_semantic-release@19.0.3
@@ -2189,6 +2193,14 @@ packages:
     dependencies:
       '@glimmer/interfaces': 0.84.2
       '@glimmer/util': 0.84.2
+    dev: true
+
+  /@glint/template/0.9.1_@glimmer+component@1.1.2:
+    resolution: {integrity: sha512-3Yfx5rgcR8LYRDiCtGI57JwFtyMJvdTH68+ROXopr3NBLTqdXuZEau1NojrveKBmh5NEZfDp6C/RP8UWuhd6nw==}
+    peerDependencies:
+      '@glimmer/component': ^1.1.2
+    dependencies:
+      '@glimmer/component': 1.1.2_@babel+core@7.18.6
     dev: true
 
   /@handlebars/parser/1.1.0:
