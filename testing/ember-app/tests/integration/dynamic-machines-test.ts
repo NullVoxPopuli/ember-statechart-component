@@ -83,19 +83,19 @@ module('Dynamic Machines', function (hooks) {
 
       await render(hbs`
         <TestMachine as |state send|>
-          {{state.value}}
+          {{to-string state.value}}
 
-          <button id='spawn' {{on 'click' (fn this.startNested send)}}>Spawn Nested Machine</button>
+          <button id='spawn' type="button" {{on 'click' (fn this.startNested send)}}>Spawn Nested Machine</button>
 
-          {{#if state.context.someRef}}
+          {{#if (to-any state 'context.someRef')}}
             {{!--
               someRef.state does not have a reactive wrapper, like the root interpreter does
 
               TODO: make this reactive
             --}}
-            {{state.context.someRef.state.value}}
+            {{to-any state 'context.someRef.state.value'}}
 
-            <button id='toggle' {{on 'click' (fn state.context.someRef.send  'TOGGLE')}}>Toggle</button>
+            <button id='toggle' type="button" {{on 'click' (fn (to-any state 'context.someRef.send') 'TOGGLE' undefined)}}>Toggle</button>
           {{/if}}
 
         </TestMachine>

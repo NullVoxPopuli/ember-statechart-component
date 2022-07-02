@@ -187,7 +187,7 @@ importers:
       ember-resolver: ^8.0.2
       ember-source: ~3.28.0
       ember-source-channel-url: ^3.0.0
-      ember-statechart-component: '*'
+      ember-statechart-component: workspace:../../ember-statechart-component
       ember-template-imports: ^3.0.1
       ember-template-lint: ^3.6.0
       ember-try: ^2.0.0

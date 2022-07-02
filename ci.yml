@@ -22,19 +22,15 @@ build:
     glint.d.ts.map
     glint.js
     glint.js.map
-    registration.d.ts
-    registration.js
-    registration.js.map
 
 support:
   ember-try: true
   glint: true
   typescript:
-   - typescript@4.4
    - typescript@4.5
    - typescript@4.6
    - typescript@4.7
-   - typescript@next
+   # - typescript@next
 
 
 release:

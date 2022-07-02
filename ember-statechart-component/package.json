@@ -16,10 +16,8 @@
   },
   "typesVersions": {
     "*": {
-      ".": "dist/index.d.ts",
-      "registration": "dist/registration.d.ts",
-      "glint": "dist/glint.d.ts",
-      "*": "dist/*"
+      "*": ["./dist/*"],
+      "glint": ["./dist/glint.d.ts"]
     }
   },
   "directories": {
@@ -117,7 +115,6 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {
-      "./instance-initializers/ember-statechart-component.js": "./dist/registration.js"
     }
   },
   "release": {

@@ -19,8 +19,8 @@ declare module "@glint/environment-ember-loose/registry" {
     /**
      *  Components
      */
-     'ToggleMachine': MachineComponent
-     'TestMachine': MachineComponent
+     'ToggleMachine': MachineComponent<any>;
+     'TestMachine': MachineComponent<any>;
 
     /**
      * Helpers
@@ -31,6 +31,22 @@ declare module "@glint/environment-ember-loose/registry" {
        },
        Return: any
      }>
+     'to-string': HelperLike<{
+       Args: {
+         Positional: [any]
+       },
+       Return: string;
+     }>;
+     /**
+       * lazy way of not being able to disable
+     * glint type checking in some templates
+       */
+     'to-any': HelperLike<{
+       Args: {
+         Positional: [any, string]
+       },
+       Return: any;
+     }>;
 
     /**
      * Modifiers

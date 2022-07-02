@@ -18,6 +18,9 @@ declare module '@ember/service' {
   }
 }
 
+/**
+ * any casting will be fixed when tests can be gts
+ */
 module('Usage', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -34,9 +37,9 @@ module('Usage', function (hooks) {
 
     await render(hbs`
       <ToggleMachine as |state send|>
-        {{state.value}}
+        {{to-string state.value}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
           Toggle
         </button>
       </ToggleMachine>
@@ -78,9 +81,9 @@ module('Usage', function (hooks) {
 
     await render(hbs`
       <ToggleMachine as |state send|>
-        {{state.value}}
+        {{to-string state.value}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
           Toggle
         </button>
       </ToggleMachine>
@@ -110,15 +113,17 @@ module('Usage', function (hooks) {
 
     await render(hbs`
       <ToggleMachine as |state send|>
-        {{#if (state.matches 'inactive')}}
-          The inactive state
-        {{else if (state.matches 'active')}}
-          The active state
-        {{else}}
-          Unknown state
-        {{/if}}
+        {{#let (to-any state 'matches') as |typelessMatches|}}
+          {{#if (typelessMatches 'inactive')}}
+            The inactive state
+          {{else if (typelessMatches 'active')}}
+            The active state
+          {{else}}
+            Unknown state
+          {{/if}}
+        {{/let}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
           Toggle
         </button>
       </ToggleMachine>
@@ -145,18 +150,18 @@ module('Usage', function (hooks) {
     await render(hbs`
       <div id="one">
         <ToggleMachine as |state send|>
-          {{state.value}}
+          {{to-string state.value}}
 
-          <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+          <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
             Toggle
           </button>
         </ToggleMachine>
       </div>
       <div id="two">
         <ToggleMachine as |state send|>
-          {{state.value}}
+          {{to-string state.value}}
 
-          <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+          <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
             Toggle
           </button>
         </ToggleMachine>
@@ -196,7 +201,7 @@ module('Usage', function (hooks) {
 
     await render(hbs`
       <ToggleMachine @config={{this.config}} as |_state send|>
-        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
           Toggle
         </button>
       </ToggleMachine>
@@ -249,7 +254,7 @@ module('Usage', function (hooks) {
       <ToggleMachine @context={{this.context}} as |state send|>
         {{report state.context}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
           Toggle
         </button>
       </ToggleMachine>
@@ -301,10 +306,10 @@ module('Usage', function (hooks) {
 
     await render(hbs`
       <ToggleMachine as |state send|>
-        {{state.value}}
+        {{to-string state.value}}
         {{report state}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
           Toggle
         </button>
       </ToggleMachine>
@@ -327,10 +332,10 @@ module('Usage', function (hooks) {
 
     await render(hbs`
       <ToggleMachine @state={{this.previousState}} as |state send|>
-        {{state.value}}
+        {{to-string state.value}}
         {{report state}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE')}}>
+        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
           Toggle
         </button>
       </ToggleMachine>

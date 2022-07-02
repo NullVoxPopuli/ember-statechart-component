@@ -5,14 +5,14 @@ import { StateNode } from 'xstate';
 
 import ComponentManager from './-private/statechart-manager';
 
-// Managers are managed globally, and not per app instance
-setComponentManager((owner) => ComponentManager.create(owner), StateNode.prototype);
-setComponentTemplate(hbs`{{yield this.state this.send this.onTransition}}`, StateNode.prototype);
+let isSetup = false;
 
-export function initialize(): void {
-  /* intentionally empty */
+export function setupComponentMachines() {
+  if (isSetup) return;
+
+  // Managers are managed globally, and not per app instance
+  setComponentManager((owner) => ComponentManager.create(owner), StateNode.prototype);
+  setComponentTemplate(hbs`{{yield this.state this.send this.onTransition}}`, StateNode.prototype);
+
+  isSetup = true;
 }
-
-export default {
-  initialize,
-};

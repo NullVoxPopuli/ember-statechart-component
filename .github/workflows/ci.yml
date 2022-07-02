@@ -100,9 +100,6 @@ jobs:
             glint.d.ts.map
             glint.js
             glint.js.map
-            registration.d.ts
-            registration.js
-            registration.js.map
           ' >> assert-contents.config.yml
                         npx assert-folder-contents
       - uses: actions/upload-artifact@v3
@@ -171,8 +168,8 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
-          - ember-3.25
-          - ember-3.28
+          - ember-4.0
+          - ember-4.4
           - ember-release
           - ember-beta
           - ember-canary
@@ -213,11 +210,9 @@ jobs:
       fail-fast: true
       matrix:
         typescript-scenario:
-          - typescript@4.4
           - typescript@4.5
           - typescript@4.6
           - typescript@4.7
-          - typescript@next
     steps:
       - uses: actions/checkout@v3
       - uses: volta-cli/action@v1

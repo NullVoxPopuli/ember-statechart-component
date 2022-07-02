@@ -33,6 +33,28 @@ npm install ember-functions-as-helper-polyfill
 yarn add ember-functions-as-helper-polyfill
 ```
 
+In app/app.js / app/app.ts, a one time setup function will need to be called so that the ComponentManager is registered.
+
+```ts
+import Application from '@ember/application';
+
+import config from 'ember-app/config/environment';
+import loadInitializers from 'ember-load-initializers';
+import Resolver from 'ember-resolver';
+
+import { setupComponentMachines } 'ember-statechart-component';
+
+export default class App extends Application {
+  modulePrefix = config.modulePrefix;
+  podModulePrefix = config.podModulePrefix;
+  Resolver = Resolver;
+}
+
+loadInitializers(App, config.modulePrefix);
+
+setupComponentMachines();
+```
+
 Usage
 ------------------------------------------------------------------------------
 
@@ -276,8 +298,8 @@ with all named arguments used to invoke the component.
 Compatibility
 ------------------------------------------------------------------------------
 
-* [ember-source][gh-ember-source] v3.25+
-* [typescript][gh-typescript] v4.4+
+* [ember-source][gh-ember-source] v3.28+
+* [typescript][gh-typescript] v4.5+
 * [ember-auto-import][gh-ember-auto-import] v2+
 * A browser that supports [Proxy](https://caniuse.com/proxy)
 * [Glint][gh-glint] 0.8.3+

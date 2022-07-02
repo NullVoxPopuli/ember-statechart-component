@@ -17,7 +17,7 @@ export type MachineComponent<T extends ReturnType<typeof createMachine> = any> =
   Args: {
     config?: MachineConfig<ContextFrom<T>, StateSchema<T>, EventFrom<T>>;
     context?: State<T>['context'];
-    state?: Send<T>;
+    state?: State<T>;
   };
   Blocks: {
     default: [State<T>, Send<T>, OnTransition<T>];
