@@ -10,9 +10,16 @@
   "author": "NullVoxPopuli",
   "exports": {
     ".": "./dist/index.js",
-    "./*": "./dist/*",
     "./glint": "./dist/glint.js",
+    "./*": "./dist/*",
     "./addon-main.js": "./addon-main.cjs"
+  },
+  "typesVersions": {
+    ">=4.0.0": {
+      "*": "dist/index.d.ts",
+      "registration": "dist/registration.d.ts",
+      "glint": "dist/glint.d.ts"
+    }
   },
   "directories": {
     "doc": "doc",
@@ -29,10 +36,8 @@
     "start": "concurrently \"npm:watch:*\"",
     "build": "concurrently \"npm:build:*\"",
     "build:js": "rollup -c",
-    "build:types": "tsc --build --pretty",
     "build:docs": "cp ../README.md ./README.md",
     "watch:js": "rollup -c --watch --no-watch.clearScreen",
-    "watch:types": "tsc --build --watch --pretty --preserveWatchOutput",
     "lint": "concurrently \"npm:lint:js\"",
     "lint:fix": "concurrently \"npm:lint:js:fix\"",
     "lint:js": "eslint . --cache",
@@ -62,6 +67,7 @@
     "@embroider/addon-dev": "1.8.1",
     "@glimmer/compiler": "^0.84.0",
     "@glimmer/component": "^1.0.4",
+    "@glimmer/env": "^0.1.7",
     "@glint/template": "^0.9.1",
     "@nullvoxpopuli/eslint-configs": "^2.1.10",
     "@semantic-release/changelog": "^6.0.0",
@@ -73,6 +79,7 @@
     "@types/ember__destroyable": "^4.0.0",
     "@types/ember__routing": "^4.0.0",
     "@types/ember__runloop": "^4.0.0",
+    "@types/ember__service": "^4.0.0",
     "babel-eslint": "10.1.0",
     "concurrently": "^7.0.0",
     "ember-cli-htmlbars": "^6.0.0",
@@ -109,14 +116,6 @@
     "main": "addon-main.cjs",
     "app-js": {
       "./instance-initializers/ember-statechart-component.js": "./dist/registration.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "declarations/*",
-        "declarations/*/index"
-      ]
     }
   },
   "release": {

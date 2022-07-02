@@ -20,7 +20,7 @@ yarn add ember-statechart-component
 
 To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/states.html#state-matches-parentstatevalue)
 method in our templates,
-we will first need a [HelperManager](https://github.com/emberjs/rfcs/pull/625) for
+we will first need `ember-source@4.5+` or a [HelperManager](https://github.com/emberjs/rfcs/pull/625) for
 handling vanilla functions.
 [ember-functions-as-helper-polyfill](https://github.com/NullVoxPopuli/ember-functions-as-helper-polyfill)
 provides one:
@@ -135,6 +135,30 @@ Usage:
 </Toggle>
 ```
 
+### Glint
+
+Having type checking with these state machines requires a wrapper function.
+
+```ts
+// app/components/my-component.ts
+import { createMachine } from 'xstate';
+import { asComponent } from 'ember-statechart-component/glint';
+
+export const machine = createMachine(/* ... */);
+
+export default asComponent(machine);
+```
+or, if you want 0 runtime cost there is a more verbose, type-only option:
+```ts
+// app/components/my-component.ts
+import { createMachine } from 'xstate';
+import type { MachineComponent } from 'ember-statechart-component/glint';
+
+export const machine = createMachine(/* ... */);
+
+export default machine as unknown as MachineComponent<typeof machine>;
+```
+
 ### API
 
 #### `@config`
@@ -144,7 +168,7 @@ This argument allows you to pass a MachineConfig for [actions](https://xstate.js
 Usage:
 
 <details><summary>Toggle machine that needs a config</summary>
-  
+
 ```js
 // app/components/toggle.js
 import { createMachine, assign } from 'xstate';
@@ -153,8 +177,8 @@ export default createMachine({
   initial: 'inactive',
   states: {
     inactive: { on: { TOGGLE: 'active' } },
-    active: { 
-      on: { 
+    active: {
+      on: {
         TOGGLE: {
           target: 'inactive',
           actions: ['toggleIsOn']
@@ -168,12 +192,12 @@ export default createMachine({
 </details>
 
 ```hbs
-<Toggle 
-  @config={{hash 
-    actions=(hash 
+<Toggle
+  @config={{hash
+    actions=(hash
       toggleIsOn=@onRoomIlluminated
     )
-  }} 
+  }}
 as |state send|>
   <button {{on 'click' (fn send 'TOGGLE')}}>
     Toggle
@@ -196,16 +220,16 @@ import { createMachine, assign } from 'xstate';
 export default createMachine({
   initial: 'inactive',
   states: {
-    inactive: { 
-      on: { 
+    inactive: {
+      on: {
         TOGGLE: {
           target: 'active',
           actions: ['increaseCounter']
         }
       }
     },
-    active: { 
-      on: { 
+    active: {
+      on: {
         TOGGLE: {
           target: 'inactive',
           actions: ['increaseCounter']
@@ -239,8 +263,8 @@ export default createMachine({
 #### `@state`
 
 The machine will use `@state` as the initial state.
-Any changes to this argument 
-are not automatically propagated to the machine. 
+Any changes to this argument
+are not automatically propagated to the machine.
 An `ARGS_UPDATE` event (see details below) is sent instead.
 
 ### What happens if any of the passed args change?
@@ -252,10 +276,17 @@ with all named arguments used to invoke the component.
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.25 or above
-* Node.js v12 or above
+* [ember-source][gh-ember-source] v3.25+
+* [typescript][gh-typescript] v4.4+
+* [ember-auto-import][gh-ember-auto-import] v2+
 * A browser that supports [Proxy](https://caniuse.com/proxy)
+* [Glint][gh-glint] 0.8.3+
+  * Note that updates to glint support will not be covered by this library's adherance to SemVer. All glint-related updates will be bugfixes until Glint is declared stable.
 
+[gh-glint]: https://github.com/typed-ember/glint/
+[gh-ember-auto-import]: https://github.com/ef4/ember-auto-import
+[gh-ember-source]: https://github.com/emberjs/ember.js/
+[gh-typescript]: https://github.com/Microsoft/TypeScript/releases
 
 Contributing
 ------------------------------------------------------------------------------
