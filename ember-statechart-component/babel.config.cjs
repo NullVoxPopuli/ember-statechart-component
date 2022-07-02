@@ -1,0 +1,18 @@
+'use strict';
+
+const { resolve } = require;
+
+module.exports = {
+  presets: ['@babel/preset-typescript'],
+  plugins: [
+    [
+      resolve('@babel/plugin-transform-typescript'),
+      {
+        allowDeclareFields: true,
+        onlyRemoveTypeImports: true,
+        // Default enums are IIFEs
+        optimizeConstEnums: true,
+      },
+    ],
+  ],
+};
