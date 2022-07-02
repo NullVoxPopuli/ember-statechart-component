@@ -93,17 +93,16 @@ jobs:
             run: pnpm build:js
             cwd: ./ember-statechart-component
           expect: |
-            core/index.js
-            core/class-based/index.js
-            core/function-based/index.js
-            util/map.js
-            util/helper.js
-            util/debounce.js
-            util/function.js
-            util/ember-concurrency.js
             index.js
             index.js.map
             index.d.ts
+            glint.d.ts
+            glint.d.ts.map
+            glint.js
+            glint.js.map
+            registration.d.ts
+            registration.js
+            registration.js.map
           ' >> assert-contents.config.yml
                         npx assert-folder-contents
       - uses: actions/upload-artifact@v3

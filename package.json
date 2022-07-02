@@ -9,7 +9,8 @@
   "author": "NullVoxPopuli",
   "scripts": {
     "build": "pnpm --filter ember-statechart-component build",
-    "prepare": "pnpm build"
+    "prepare": "pnpm build",
+    "lint": "pnpm run --filter '*' lint:js --fix"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
