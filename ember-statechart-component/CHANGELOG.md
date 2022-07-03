@@ -1,3 +1,10 @@
+## [6.1.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.1.0...v6.1.1) (2022-07-03)
+
+
+### Bug Fixes
+
+* **@config:** this arg is actually a `MachineOptions` type ([4fbb0f9](https://github.com/NullVoxPopuli/ember-statechart-component/commit/4fbb0f938b34193880f941c27e743b44795a5130))
+
 # [6.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.0.1...v6.1.0) (2022-07-03)
 
 
