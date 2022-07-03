@@ -55,7 +55,7 @@
   },
   "peerDependencies": {
     "@glint/template": ">= 0.8.3",
-    "xstate": "^4.30.0"
+    "xstate": "^4.32.1"
   },
   "peerDependenciesMeta": {
     "@glint/template": {
