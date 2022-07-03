@@ -13,3 +13,5 @@ export function getService<Key extends keyof Registry>(context: unknown, service
 
   return service;
 }
+
+export { setupComponentMachines } from './registration';

@@ -41,7 +41,7 @@ module('Timing', function (hooks) {
 
       await render(hbs`
         <TestMachine as |state|>
-          {{state.value}}
+          {{to-string state.value}}
         </TestMachine>
       `);
 

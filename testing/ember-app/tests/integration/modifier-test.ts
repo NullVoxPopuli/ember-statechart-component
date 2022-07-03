@@ -33,7 +33,7 @@ module('Modifiers', function (hooks) {
 
     await render(hbs`
       <ToggleMachine as |state send|>
-        {{state.value}}
+        {{to-string state.value}}
 
         <button {{this.customModifier (fn send 'TOGGLE')}} type='button'>
           Toggle

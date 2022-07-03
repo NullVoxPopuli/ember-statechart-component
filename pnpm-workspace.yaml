@@ -1,0 +1,3 @@
+packages:
+  - "ember-statechart-component"
+  - "testing/*"

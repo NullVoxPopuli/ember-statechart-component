@@ -98,9 +98,19 @@
       "enabled": false
     },
     {
+      // ensure maximum compatibility, when possible
+      "matchPaths": ["ember-statechart-component/package.json"],
+      "matchDepTypes": ["dependencies"],
+      "enabled": false
+    },
+    {
       // changing engines forces other people to need to upgrade their minimum node
       // therefor engine changes are breaking changes
       "depTypeList": ["engines"],
+      "enabled": false
+    },
+    {
+      "matchPaths": ["testing/**"],
       "enabled": false
     }
   ]
