@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.0.1...v6.1.0) (2022-07-03)
+
+
+### Features
+
+* automatic glint registration via importing /glint ([cfea170](https://github.com/NullVoxPopuli/ember-statechart-component/commit/cfea170bab7722078352242abb125b31dc823d45))
+
 ## [6.0.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.0.0...v6.0.1) (2022-07-03)
 
 
