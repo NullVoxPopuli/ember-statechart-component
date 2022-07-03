@@ -1,4 +1,4 @@
-import { createMachine } from 'xstate';
+import { createMachine, StateFrom } from 'xstate';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
 
@@ -10,11 +10,13 @@ const Toggle = createMachine({
   },
 });
 
+const stateNamesOf = (state: StateFrom<typeof Toggle>) => state.toStrings().join(', ');
+
 <template>
   <Toggle as |state send|>
-    {{state.value}}
+    {{stateNamesOf state}}
 
-    <button {{on 'click' (fn send 'TOGGLE')}}>
+    <button {{on 'click' (fn send 'TOGGLE' undefined)}}>
       Toggle
     </button>
   </Toggle>

@@ -1,8 +1,9 @@
 import "@glint/environment-ember-loose";
 import "@glint/environment-ember-loose/native-integration";
 import "ember-page-title/glint";
+import 'ember-statechart-component/glint';
 
-import type { HelperLike } from "@glint/template";
+import type { HelperLike, ModifierLike } from "@glint/template";
 
 import type { MachineComponent } from 'ember-statechart-component/glint';
 

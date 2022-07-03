@@ -33,6 +33,8 @@
       "ember-app/*": [
         "app/*"
       ],
+      "@ember/modifier": ["types/ember__modifier.d.ts"],
+      "@ember/helper": ["types/ember__helper.d.ts"],
       "*": [
         "types/*"
       ]
