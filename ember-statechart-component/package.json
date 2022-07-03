@@ -1,6 +1,6 @@
 {
   "name": "ember-statechart-component",
-  "version": "5.0.5",
+  "version": "6.0.0",
   "keywords": [
     "ember-addon"
   ],
@@ -16,8 +16,12 @@
   },
   "typesVersions": {
     "*": {
-      "*": ["./dist/*"],
-      "glint": ["./dist/glint.d.ts"]
+      "*": [
+        "./dist/*"
+      ],
+      "glint": [
+        "./dist/glint.d.ts"
+      ]
     }
   },
   "directories": {
@@ -114,8 +118,7 @@
     "version": 2,
     "type": "addon",
     "main": "addon-main.cjs",
-    "app-js": {
-    }
+    "app-js": {}
   },
   "release": {
     "branches": [

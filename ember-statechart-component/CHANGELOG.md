@@ -1,3 +1,22 @@
+# [6.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v5.0.5...v6.0.0) (2022-07-03)
+
+
+### Features
+
+* bump minimum ember-source ([bd0a06c](https://github.com/NullVoxPopuli/ember-statechart-component/commit/bd0a06c1bd392a0627a5e156ea4e6dd383930f2c))
+* glint support ([3509a18](https://github.com/NullVoxPopuli/ember-statechart-component/commit/3509a18a19a94027deb758b5f61afc7a602ea303))
+* **glint:** provide type utilities for declaring machines as components ([1797ac8](https://github.com/NullVoxPopuli/ember-statechart-component/commit/1797ac8fca9a55a0d58f59a3416d937c461111a0))
+
+
+### BREAKING CHANGES
+
+*  - minimum ember support is v4.0.0
+ - automatic component manager registration is removed
+* minimum ember-source is 4 now
+
+ember-template-imports requires at least ember-source3.27
+and types are only compat with ember 4
+
 ## [5.0.5](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v5.0.4...v5.0.5) (2022-05-13)
 
 
