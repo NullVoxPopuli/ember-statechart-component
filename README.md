@@ -181,7 +181,7 @@ declare module "@glint/environment-ember-loose/registry" {
 
 #### `@config`
 
-This argument allows you to pass a MachineConfig for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#configuring-services), [guards](https://xstate.js.org/docs/guides/guards.html#serializing-guards), etc.
+This argument allows you to pass a [MachineOptions](https://xstate.js.org/docs/packages/xstate-fsm/#api) for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#configuring-services), [guards](https://xstate.js.org/docs/guides/guards.html#serializing-guards), etc.
 
 Usage:
 

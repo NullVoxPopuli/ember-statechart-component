@@ -8,6 +8,7 @@ import type {
   EventObject,
   Interpreter,
   MachineConfig,
+  MachineOptions,
   NoInfer,
   ResolveTypegenMeta,
   ServiceMap,
@@ -49,7 +50,7 @@ declare module 'xstate' {
     TResolvedTypesMeta = ResolveTypegenMeta<TypegenDisabled, NoInfer<TEvent>, TAction, TServiceMap>
   > extends ComponentLike<{
       Args: {
-        config?: MachineConfig<TContext, TStateSchema, TEvent>;
+        config?: MachineOptions<TContext, TEvent, TAction, TServiceMap>;
         context?: TContext;
         state?: Interpreter<TContext, TStateSchema, TEvent, TTypestate>['state'];
       };
