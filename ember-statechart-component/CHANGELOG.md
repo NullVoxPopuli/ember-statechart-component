@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.0.0...v6.0.1) (2022-07-03)
+
+
+### Bug Fixes
+
+* **types:** use correct version of xstate ([33409cf](https://github.com/NullVoxPopuli/ember-statechart-component/commit/33409cf1e44d34d6750d7363ff5ca77d012346f9))
+
 # [6.0.0](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v5.0.5...v6.0.0) (2022-07-03)
 
 
