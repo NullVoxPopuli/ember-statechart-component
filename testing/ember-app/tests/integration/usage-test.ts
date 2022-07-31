@@ -358,7 +358,7 @@ module('Usage', function (hooks) {
       },
     });
 
-    assert.expect(3);
+    assert.expect(2);
 
     this.setProperties({
       toggle,
