@@ -74,15 +74,33 @@ export default class ComponentManager {
       return withReactivity;
     }
 
-    let withReactivity = reactiveInterpreter(interpreter);
+    /**
+     * Start the interpreter before we wire in reactivity,
+     * so reactivity may only be "by-use" (from the app), rather than
+     * managed by XState during its internal updates
+     */
+    interpreter.start();
 
-    withReactivity.start();
+    let withReactivity = reactiveInterpreter(interpreter);
 
     return withReactivity;
   }
 
+  /**
+   * updateComponent is called every time context changes, because context is tracked data
+   * and is read during `createComponent`.
+   *
+   * This is why we neeed to guard this UPDATE_EVENT_NAME around a condition about if there
+   * even are args.
+   *
+   * This isn't a perfect solution, but for the common use case of
+   * "handle everything within the statechart and don't pass args",
+   * it should be good enough.
+   */
   updateComponent(interpreter: Interpreter<any>, args: Args) {
-    interpreter.send(UPDATE_EVENT_NAME, args.named);
+    if (Object.keys(args.named).length > 0 || args.positional.length > 0) {
+      interpreter.send(UPDATE_EVENT_NAME, args.named);
+    }
   }
 
   destroyComponent(interpreter: Interpreter<any>) {
