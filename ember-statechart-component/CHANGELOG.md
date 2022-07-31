@@ -1,3 +1,11 @@
+## [6.1.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.1.1...v6.1.2) (2022-07-31)
+
+
+### Bug Fixes
+
+* **args-update:** send ARGS_UPDATE less often ([dce62ad](https://github.com/NullVoxPopuli/ember-statechart-component/commit/dce62ad86fe3c9cce6b553a17c437379b32c245c))
+* **package:** bump version ([9908645](https://github.com/NullVoxPopuli/ember-statechart-component/commit/9908645397588be51fc7961c06f0ea030547bd56))
+
 ## [6.1.1](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.1.0...v6.1.1) (2022-07-03)
 
 

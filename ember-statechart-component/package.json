@@ -1,6 +1,6 @@
 {
   "name": "ember-statechart-component",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "keywords": [
     "ember-addon"
   ],
@@ -129,9 +129,12 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-     ["@semantic-release/npm", {
-      "npmPublish": false
-     }],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
       "@semantic-release/github",
       "@semantic-release/git"
     ]
