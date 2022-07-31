@@ -135,6 +135,7 @@
     ]
   },
   "volta": {
-    "extends": "../package.json"
+    "extends": "../package.json",
+    "npm": "8.15.1"
   }
 }
