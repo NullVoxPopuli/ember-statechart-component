@@ -42,7 +42,7 @@ import config from 'ember-app/config/environment';
 import loadInitializers from 'ember-load-initializers';
 import Resolver from 'ember-resolver';
 
-import { setupComponentMachines } 'ember-statechart-component';
+import { setupComponentMachines } from 'ember-statechart-component';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
