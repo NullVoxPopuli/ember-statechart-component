@@ -63,11 +63,11 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "7.18.10",
+    "@babel/core": "7.23.6",
     "@babel/plugin-proposal-class-properties": "7.18.6",
-    "@babel/plugin-syntax-decorators": "7.18.6",
+    "@babel/plugin-syntax-decorators": "7.23.3",
     "@babel/plugin-transform-typescript": "^7.18.6",
-    "@babel/preset-typescript": "7.18.6",
+    "@babel/preset-typescript": "7.23.3",
     "@embroider/addon-dev": "1.8.3",
     "@glimmer/compiler": "^0.84.0",
     "@glimmer/component": "^1.0.4",
