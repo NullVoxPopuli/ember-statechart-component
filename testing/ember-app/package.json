@@ -113,7 +113,7 @@
   },
   "dependencies": {
     "ember-statechart-component": "*",
-    "xstate": "^4.26.1"
+    "xstate": "^5.3.1"
   },
   "volta": {
     "extends": "../../package.json"

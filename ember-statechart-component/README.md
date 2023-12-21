@@ -42,7 +42,7 @@ import config from 'ember-app/config/environment';
 import loadInitializers from 'ember-load-initializers';
 import Resolver from 'ember-resolver';
 
-import { setupComponentMachines } 'ember-statechart-component';
+import { setupComponentMachines } from 'ember-statechart-component';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
@@ -159,33 +159,29 @@ Usage:
 
 ### Glint
 
-Having type checking with these state machines requires a wrapper function.
+Having type checking with these state machines can be done automatically
+after importing the `/glint` file in your `types/<app-name>/glint-registry.d.ts`.
 
 ```ts
-// app/components/my-component.ts
-import { createMachine } from 'xstate';
-import { asComponent } from 'ember-statechart-component/glint';
+import "@glint/environment-ember-loose";
+import "@glint/environment-ember-loose/native-integration";
+import "ember-page-title/glint";
 
-export const machine = createMachine(/* ... */);
+// This import extends the type of `StateMachine` to be glint-compatible
+import 'ember-statechart-component/glint';
 
-export default asComponent(machine);
-```
-or, if you want 0 runtime cost there is a more verbose, type-only option:
-```ts
-// app/components/my-component.ts
-import { createMachine } from 'xstate';
-import type { MachineComponent } from 'ember-statechart-component/glint';
-
-export const machine = createMachine(/* ... */);
-
-export default machine as unknown as MachineComponent<typeof machine>;
+declare module "@glint/environment-ember-loose/registry" {
+  export default interface Registry {
+    // How to define globals from external addons
+  }
+}
 ```
 
 ### API
 
 #### `@config`
 
-This argument allows you to pass a MachineConfig for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#configuring-services), [guards](https://xstate.js.org/docs/guides/guards.html#serializing-guards), etc.
+This argument allows you to pass a [MachineOptions](https://xstate.js.org/docs/packages/xstate-fsm/#api) for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#configuring-services), [guards](https://xstate.js.org/docs/guides/guards.html#serializing-guards), etc.
 
 Usage:
 
@@ -299,7 +295,7 @@ Compatibility
 ------------------------------------------------------------------------------
 
 * [ember-source][gh-ember-source] v3.28+
-* [typescript][gh-typescript] v4.4+
+* [typescript][gh-typescript] v4.5+
 * [ember-auto-import][gh-ember-auto-import] v2+
 * A browser that supports [Proxy](https://caniuse.com/proxy)
 * [Glint][gh-glint] 0.8.3+
