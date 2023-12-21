@@ -11,11 +11,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```bash
-ember install ember-statechart-component
-# or
 npm install ember-statechart-component
-# or
-yarn add ember-statechart-component
 ```
 
 To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/states.html#state-matches-parentstatevalue)
@@ -26,11 +22,7 @@ handling vanilla functions.
 provides one:
 
 ```bash
-ember install ember-functions-as-helper-polyfill
-# or
 npm install ember-functions-as-helper-polyfill
-# or
-yarn add ember-functions-as-helper-polyfill
 ```
 
 In app/app.js / app/app.ts, a one time setup function will need to be called so that the ComponentManager is registered.
