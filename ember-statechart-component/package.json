@@ -74,8 +74,6 @@
     "@glimmer/env": "^0.1.7",
     "@glint/template": "^0.9.1",
     "@nullvoxpopuli/eslint-configs": "^2.1.10",
-    "@semantic-release/changelog": "^6.0.0",
-    "@semantic-release/git": "^10.0.0",
     "@types/ember": "^4.0.0",
     "@types/ember__application": "^4.0.0",
     "@types/ember__component": "^4.0.0",
@@ -101,7 +99,6 @@
     "prettier": "^2.3.2",
     "rollup": "2.78.1",
     "rollup-plugin-ts": "^3.0.2",
-    "semantic-release": "^19.0.0",
     "typescript": "^4.4.2",
     "xstate": "^4.30.0"
   },
@@ -119,25 +116,6 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {}
-  },
-  "release": {
-    "branches": [
-      "main",
-      "master"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      "@semantic-release/github",
-      "@semantic-release/git"
-    ]
   },
   "volta": {
     "extends": "../package.json",
