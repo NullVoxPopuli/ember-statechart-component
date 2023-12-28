@@ -349,6 +349,7 @@ module('Usage', function (hooks) {
     assert.dom().containsText('inactive');
   });
 
+  // eslint-disable-next-line qunit/require-expect
   test('can pass onTransition callback', async function (assert) {
     let toggle = createMachine({
       initial: 'inactive',

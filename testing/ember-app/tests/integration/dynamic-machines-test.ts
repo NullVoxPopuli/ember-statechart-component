@@ -173,7 +173,6 @@ module('Dynamic Machines', function (hooks) {
           <button {{on 'click' (fn state.children.timer.send 'DECLARE_DONE')}}>
             Declare invoked machine as Done
           </button>
-          {{log state}}
         </this.parentMachine>
       `);
 

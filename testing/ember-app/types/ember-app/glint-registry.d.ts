@@ -3,7 +3,6 @@ import "@glint/environment-ember-loose/native-integration";
 import "ember-page-title/glint";
 
 import type { HelperLike } from "@glint/template";
-
 import type { MachineComponent } from 'ember-statechart-component/glint';
 
 // declare module '@fortawesome/ember-fontawesome/components/fa-icon' {
