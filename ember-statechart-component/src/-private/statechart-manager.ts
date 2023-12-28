@@ -25,7 +25,7 @@ export default class ComponentManager {
     updateHook: true,
   });
 
-  static create(owner: unknown) {
+  static create(owner: any) {
     let manager = new ComponentManager();
 
     setOwner(manager, owner);
