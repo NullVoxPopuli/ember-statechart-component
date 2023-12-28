@@ -160,8 +160,8 @@ importers:
         specifier: ^4.4.2
         version: 4.9.5
       xstate:
-        specifier: ^4.30.0
-        version: 4.38.3
+        specifier: ^5.4.1
+        version: 5.4.1
 
   testing/ember-app:
     dependencies:
@@ -169,8 +169,8 @@ importers:
         specifier: '*'
         version: link:../../ember-statechart-component
       xstate:
-        specifier: ^4.26.1
-        version: 4.38.3
+        specifier: ^5.4.1
+        version: 5.4.1
     devDependencies:
       '@babel/core':
         specifier: 7.23.6
@@ -13207,8 +13207,8 @@ packages:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
     dev: true
 
-  /xstate@4.38.3:
-    resolution: {integrity: sha512-SH7nAaaPQx57dx6qvfcIgqKRXIh4L0A1iYEqim4s1u7c9VoCgzZc+63FY90AKU4ZzOC2cfJzTnpO4zK7fCUzzw==}
+  /xstate@5.4.1:
+    resolution: {integrity: sha512-1DDT047hsTCSgm3BwLyb4sXQDmTdbLutc4ni0MLACgd2yX6vij35pnNNf1F4U6kQ8njx6NxQ6wpLjlh1lqs0NQ==}
 
   /y18n@5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
