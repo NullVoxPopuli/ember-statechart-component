@@ -25,7 +25,7 @@ export default class ComponentManager {
     updateHook: true,
   });
 
-  static create(owner: unknown) {
+  static create(owner: any) {
     let manager = new ComponentManager();
 
     setOwner(manager, owner);
@@ -46,7 +46,7 @@ export default class ComponentManager {
       Object.assign(context, named.context);
     }
 
-    setOwner(context, getOwner(this));
+    setOwner(context, getOwner(this) as any);
 
     machine = machine.withContext(context);
 
