@@ -316,9 +316,6 @@ importers:
       ember-cli-typescript:
         specifier: ^5.0.0
         version: 5.2.1
-      ember-cli-typescript-blueprints:
-        specifier: ^3.0.0
-        version: 3.0.0
       ember-export-application-global:
         specifier: ^2.0.1
         version: 2.0.1
@@ -334,9 +331,6 @@ importers:
       ember-load-initializers:
         specifier: ^2.1.2
         version: 2.1.2(@babel/core@7.18.6)
-      ember-maybe-import-regenerator:
-        specifier: ^1.0.0
-        version: 1.0.0
       ember-page-title:
         specifier: ^8.1.0
         version: 8.1.0(ember-source@5.5.0)
@@ -3485,7 +3479,7 @@ packages:
     peerDependencies:
       '@glimmer/component': ^1.1.2
     dependencies:
-      '@glimmer/component': 1.1.2(@babel/core@7.18.6)
+      '@glimmer/component': 1.1.2(@babel/core@7.18.10)
     dev: true
 
   /@glint/transform@0.9.7:
@@ -4182,8 +4176,8 @@ packages:
     resolution: {integrity: sha512-UumJ1U2uxUATjgdUSEN9FphkqjuueTgPisEY7Iaj2wW1PGGhZ032wdQ5ZyIpTi/KS6VbERo+IDx0xOfcmt1Yiw==}
     dependencies:
       '@types/ember': 4.0.10(@babel/core@7.18.10)
-      '@types/ember__controller': 4.0.11(@babel/core@7.18.6)
-      '@types/ember__object': 4.0.11(@babel/core@7.18.6)
+      '@types/ember__controller': 4.0.11(@babel/core@7.18.10)
+      '@types/ember__object': 4.0.11(@babel/core@7.18.10)
       '@types/ember__service': 4.0.8
     transitivePeerDependencies:
       - '@babel/core'
@@ -4194,9 +4188,9 @@ packages:
     resolution: {integrity: sha512-UumJ1U2uxUATjgdUSEN9FphkqjuueTgPisEY7Iaj2wW1PGGhZ032wdQ5ZyIpTi/KS6VbERo+IDx0xOfcmt1Yiw==}
     dependencies:
       '@types/ember': 4.0.10(@babel/core@7.18.6)
-      '@types/ember__controller': 4.0.11(@babel/core@7.18.6)
-      '@types/ember__object': 4.0.11(@babel/core@7.18.6)
-      '@types/ember__service': 4.0.8(@babel/core@7.18.6)
+      '@types/ember__controller': 4.0.11(@babel/core@7.18.10)
+      '@types/ember__object': 4.0.11(@babel/core@7.18.10)
+      '@types/ember__service': 4.0.8
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -4223,7 +4217,7 @@ packages:
   /@types/ember__service@4.0.8:
     resolution: {integrity: sha512-LKPDKA8eG0pN0p7QMwW6DW87vO0WA5EjzLOjR2lZkWhxIqKUbHAQF32BdlyZkPL+DxAE4q0DqrbLAWAgT21hQQ==}
     dependencies:
-      '@types/ember__object': 4.0.11(@babel/core@7.18.6)
+      '@types/ember__object': 4.0.11(@babel/core@7.18.10)
     dev: true
 
   /@types/ember__service@4.0.8(@babel/core@7.18.10):
@@ -8095,12 +8089,6 @@ packages:
       - supports-color
     dev: true
 
-  /ember-cli-test-info@1.0.0:
-    resolution: {integrity: sha512-dEVTIpmUfCzweC97NGf6p7L6XKBwV2GmSM4elmzKvkttEp5P7AvGA9uGyN4GqFq+RwhW+2b0I2qlX00w+skm+A==}
-    dependencies:
-      ember-cli-string-utils: 1.1.0
-    dev: true
-
   /ember-cli-test-loader@3.1.0:
     resolution: {integrity: sha512-0aocZV9SIoOHiU3hrH3IuLR6busWhTX6UVXgd490hmJkIymmOXNH2+jJoC7Ebkeo3PiOfAdjqhb765QDlHSJOw==}
     engines: {node: 10.* || >= 12}
@@ -8115,29 +8103,6 @@ packages:
     dependencies:
       chalk: 4.1.2
       remove-types: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /ember-cli-typescript-blueprints@3.0.0:
-    resolution: {integrity: sha512-nJScjIjwDY96q9eiIBse9npLht/1FNmDRMpoTLJUrgSTzmx7/S6JhlH4BrMELkLCvtPkWoduDNBGiGBdCqf9FA==}
-    engines: {node: 8.* || >= 10.*}
-    dependencies:
-      chalk: 2.4.2
-      ember-cli-babel: 7.26.11
-      ember-cli-get-component-path-option: 1.0.0
-      ember-cli-is-package-missing: 1.0.0
-      ember-cli-normalize-entity-name: 1.0.0
-      ember-cli-path-utils: 1.0.0
-      ember-cli-string-utils: 1.1.0
-      ember-cli-test-info: 1.0.0
-      ember-cli-valid-component-name: 1.0.0
-      ember-cli-version-checker: 3.1.3
-      ember-router-generator: 2.0.0
-      exists-sync: 0.1.0
-      fs-extra: 8.1.0
-      inflection: 1.13.4
-      silent-error: 1.1.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8235,14 +8200,6 @@ packages:
       semver: 7.5.4
       stagehand: 1.0.1
       walk-sync: 2.2.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /ember-cli-valid-component-name@1.0.0:
-    resolution: {integrity: sha512-6ZtIG0UMmGwUUju5dwLLS98eZRLQxpMqXfpMUkZ8t+7MBdX6gCjVYHSCdGkDlVAGF06J3mgpAWHVrsyRLRn7/g==}
-    dependencies:
-      silent-error: 1.1.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8524,18 +8481,6 @@ packages:
       ember-cli-typescript: 2.0.2(@babel/core@7.18.6)
     transitivePeerDependencies:
       - '@babel/core'
-      - supports-color
-    dev: true
-
-  /ember-maybe-import-regenerator@1.0.0:
-    resolution: {integrity: sha512-wtjgjEV0Hk4fgiAwFjOfPrGWfmFrbRW3zgNZO4oA3H5FlbMssMvWuR8blQ3QSWYHODVK9r+ThsRAs8lG4kbxqA==}
-    engines: {node: '>= 12.*'}
-    dependencies:
-      broccoli-funnel: 2.0.2
-      broccoli-merge-trees: 3.0.2
-      ember-cli-babel: 7.26.11
-      regenerator-runtime: 0.13.11
-    transitivePeerDependencies:
       - supports-color
     dev: true
 
@@ -9704,11 +9649,6 @@ packages:
       onetime: 5.1.2
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
-    dev: true
-
-  /exists-sync@0.1.0:
-    resolution: {integrity: sha512-qEfFekfBVid4b14FNug/RNY1nv+BADnlzKGHulc+t6ZLqGY4kdHGh1iFha8lnE3sJU/1WzMzKRNxS6EvSakJUg==}
-    deprecated: Please replace with usage of fs.existsSync
     dev: true
 
   /exit@0.1.2:
@@ -11043,11 +10983,6 @@ packages:
 
   /infer-owner@1.0.4:
     resolution: {integrity: sha512-IClj+Xz94+d7irH5qRyfJonOdfTzuDaifE6ZPWfx0N0+/ATZCbuTPq2prFl526urkQd90WyUKIh1DfBQ2hMz9A==}
-    dev: true
-
-  /inflection@1.13.4:
-    resolution: {integrity: sha512-6I/HUDeYFfuNCVS3td055BaXBwKYuzw7K3ExVMStBowKo9oOAMJIXIHvdyR3iboTCp1b+1i5DSkIZTcwIktuDw==}
-    engines: {'0': node >= 0.4.0}
     dev: true
 
   /inflection@2.0.1:
