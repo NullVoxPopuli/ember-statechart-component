@@ -46,7 +46,7 @@ export default class ComponentManager {
       Object.assign(context, named.context);
     }
 
-    setOwner(context, getOwner(this));
+    setOwner(context, getOwner(this) as any);
 
     machine = machine.withContext(context);
 
