@@ -109,13 +109,11 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
-          - ember-4.0
-          - ember-4.4
+          - ember-5.1
+          - ember-5.4
           - ember-release
           - ember-beta
           - ember-canary
-          - embroider-safe
-          - embroider-optimized
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3

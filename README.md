@@ -7,6 +7,14 @@ ember-statechart-component
 
 Use [XState](https://xstate.js.org/) Machines *as* components.
 
+Support
+------------------------------------------------------------------------------
+
+- XState >= 5
+- TypeScript >= 5
+- ember-source >= 5.1
+- Glint >= 1.2.1
+
 Installation
 ------------------------------------------------------------------------------
 
