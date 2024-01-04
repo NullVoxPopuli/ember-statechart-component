@@ -11,26 +11,23 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build --environment=production",
-    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
-    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
+    "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
+    "lint:fix": "pnpm lint:js:fix && pnpm lint:prettier:fix",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
-    "test": "npm-run-all lint test:*",
-    "test:ember": "ember test"
+    "test:ember": "ember test",
+    "lint:prettier:fix": "prettier . --write",
+    "lint:prettier": "prettier . --check"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
+    "@babel/core": "7.23.7",
     "@babel/eslint-parser": "^7.23.3",
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.1.1",
     "@ember/test-helpers": "^3.2.1",
-    "@embroider/compat": "^3.4.3",
-    "@embroider/core": "^3.4.3",
-    "@embroider/webpack": "^3.2.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^1.2.1",
@@ -56,8 +53,8 @@
     "@types/htmlbars-inline-precompile": "^3.0.0",
     "@types/qunit": "^2.11.2",
     "@types/rsvp": "^4.0.4",
-    "@typescript-eslint/eslint-plugin": "^6.16.0",
-    "@typescript-eslint/parser": "^6.16.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^2.2.4",
@@ -75,7 +72,7 @@
     "ember-resolver": "^11.0.1",
     "ember-source": "~5.5.0",
     "ember-source-channel-url": "^3.0.0",
-    "ember-template-imports": "^3.0.1",
+    "ember-template-imports": "^4.0.0",
     "ember-template-lint": "^5.13.0",
     "ember-try": "^3.0.0",
     "eslint": "^8.56.0",
@@ -89,8 +86,13 @@
     "prettier": "^3.1.1",
     "qunit": "^2.16.0",
     "qunit-dom": "^3.0.0",
-    "typescript": "^4.5.3",
-    "webpack": "^5.65.0"
+    "typescript": "^5.3.3",
+    "webpack": "^5.65.0",
+    "prettier-plugin-ember-template-tag": "^2.0.0",
+    "concurrently": "^8.2.2",
+    "@embroider/webpack": "^3.2.1",
+    "@embroider/core": "^3.4.3",
+    "@embroider/compat": "^3.4.3"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"

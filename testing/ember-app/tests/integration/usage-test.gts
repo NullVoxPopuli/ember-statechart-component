@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { fn } from '@ember/helper';
+import { on } from '@ember/modifier';
 import Service from '@ember/service';
 import { clearRender, render } from '@ember/test-helpers';
 import click from '@ember/test-helpers/dom/click';
-import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
+import toAny from 'ember-app/helpers/to-any';
+import toString from 'ember-app/helpers/to-string';
 import { getService } from 'ember-statechart-component';
 import { assign, createMachine } from 'xstate';
 
@@ -33,18 +36,19 @@ module('Usage', function (hooks) {
       },
     });
 
-    this.owner.register('component:toggle-machine', toggle);
+    await render(
+      <template>
+        <toggle as |state send|>
+          {{toString state.value}}
 
-    await render(hbs`
-      <ToggleMachine as |state send|>
-        {{to-string state.value}}
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </toggle>
+      </template>
+    );
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-          Toggle
-        </button>
-      </ToggleMachine>
-    `);
-
+    await this.pauseTest();
     assert.dom().containsText('inactive');
 
     await click('button');
@@ -71,7 +75,6 @@ module('Usage', function (hooks) {
       }
     );
 
-    this.owner.register('component:toggle-machine', toggle);
     this.owner.register(
       'service:test-state',
       class TestState extends Service {
@@ -79,15 +82,17 @@ module('Usage', function (hooks) {
       }
     );
 
-    await render(hbs`
-      <ToggleMachine as |state send|>
-        {{to-string state.value}}
+    await render(
+      <template>
+        <toggle as |state send|>
+          {{toString state.value}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-          Toggle
-        </button>
-      </ToggleMachine>
-    `);
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </toggle>
+      </template>
+    );
 
     let testState = this.owner.lookup('service:test-state') as { foo: number };
 
@@ -109,25 +114,25 @@ module('Usage', function (hooks) {
       },
     });
 
-    this.owner.register('component:toggle-machine', toggle);
+    await render(
+      <template>
+        <toggle as |state send|>
+          {{#let (toAny state "matches") as |typelessMatches|}}
+            {{#if (typelessMatches "inactive")}}
+              The inactive state
+            {{else if (typelessMatches "active")}}
+              The active state
+            {{else}}
+              Unknown state
+            {{/if}}
+          {{/let}}
 
-    await render(hbs`
-      <ToggleMachine as |state send|>
-        {{#let (to-any state 'matches') as |typelessMatches|}}
-          {{#if (typelessMatches 'inactive')}}
-            The inactive state
-          {{else if (typelessMatches 'active')}}
-            The active state
-          {{else}}
-            Unknown state
-          {{/if}}
-        {{/let}}
-
-        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-          Toggle
-        </button>
-      </ToggleMachine>
-    `);
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </toggle>
+      </template>
+    );
 
     assert.dom().containsText('The inactive state');
 
@@ -145,28 +150,28 @@ module('Usage', function (hooks) {
       },
     });
 
-    this.owner.register('component:toggle-machine', toggle);
+    await render(
+      <template>
+        <div id="one">
+          <toggle as |state send|>
+            {{toString state.value}}
 
-    await render(hbs`
-      <div id="one">
-        <ToggleMachine as |state send|>
-          {{to-string state.value}}
+            <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+              Toggle
+            </button>
+          </toggle>
+        </div>
+        <div id="two">
+          <toggle as |state send|>
+            {{toString state.value}}
 
-          <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-            Toggle
-          </button>
-        </ToggleMachine>
-      </div>
-      <div id="two">
-        <ToggleMachine as |state send|>
-          {{to-string state.value}}
-
-          <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-            Toggle
-          </button>
-        </ToggleMachine>
-      </div>
-    `);
+            <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+              Toggle
+            </button>
+          </toggle>
+        </div>
+      </template>
+    );
 
     assert.dom('#one').containsText('inactive');
     assert.dom('#two').containsText('inactive');
@@ -187,25 +192,23 @@ module('Usage', function (hooks) {
       },
     });
 
-    this.owner.register('component:toggle-machine', toggle);
-
     let numCalled = 0;
 
-    this.setProperties({
-      config: {
-        actions: {
-          increment: () => numCalled++,
-        },
+    let config = {
+      actions: {
+        increment: () => numCalled++,
       },
-    });
+    };
 
-    await render(hbs`
-      <ToggleMachine @config={{this.config}} as |_state send|>
-        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-          Toggle
-        </button>
-      </ToggleMachine>
-    `);
+    await render(
+      <template>
+        <toggle @config={{config}} as |_state send|>
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </toggle>
+      </template>
+    );
 
     assert.strictEqual(numCalled, 1);
 
@@ -238,27 +241,23 @@ module('Usage', function (hooks) {
       },
     });
 
-    this.owner.register('component:toggle-machine', toggle);
+    let context = {
+      numCalled: 10,
+    };
 
-    let context: any;
+    const report = (data: any) => (context = data);
 
-    this.setProperties({
-      context: {
-        numCalled: 10,
-      },
-    });
+    await render(
+      <template>
+        <toggle @context={{context}} as |state send|>
+          {{report state.context}}
 
-    this.owner.register('helper:report', (data: any) => (context = data));
-
-    await render(hbs`
-      <ToggleMachine @context={{this.context}} as |state send|>
-        {{report state.context}}
-
-        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-          Toggle
-        </button>
-      </ToggleMachine>
-    `);
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </toggle>
+      </template>
+    );
 
     assert.strictEqual(context.numCalled, 11);
 
@@ -279,13 +278,16 @@ module('Usage', function (hooks) {
       },
     });
 
-    this.setProperties({ toggle, context: { bar: 'bar' } });
+    let context = { bar: 'bar' };
 
-    await render(hbs`
-      <this.toggle @context={{this.context}} as |state|>
-        {{state.context.foo}}, {{state.context.bar}}
-      </this.toggle>
-    `);
+    await render(
+      <template>
+        <toggle @context={{context}} as |state|>
+          {{state.context.foo}},
+          {{state.context.bar}}
+        </toggle>
+      </template>
+    );
 
     assert.dom().containsText('foo, bar');
   });
@@ -301,19 +303,20 @@ module('Usage', function (hooks) {
 
     let previousState: State<unknown> | null = null;
 
-    this.owner.register('component:toggle-machine', toggle);
-    this.owner.register('helper:report', (state: State<unknown>) => (previousState = state));
+    const report = (state: State<unknown>) => (previousState = state);
 
-    await render(hbs`
-      <ToggleMachine as |state send|>
-        {{to-string state.value}}
-        {{report state}}
+    await render(
+      <template>
+        <toggle as |state send|>
+          {{toString state.value}}
+          {{report state}}
 
-        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-          Toggle
-        </button>
-      </ToggleMachine>
-    `);
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </toggle>
+      </template>
+    );
 
     assert.dom().containsText('inactive');
 
@@ -328,18 +331,18 @@ module('Usage', function (hooks) {
 
     assert.dom().hasNoText('component unmounted');
 
-    this.setProperties({ previousState });
+    await render(
+      <template>
+        <toggle @state={{previousState}} as |state send|>
+          {{toString state.value}}
+          {{report state}}
 
-    await render(hbs`
-      <ToggleMachine @state={{this.previousState}} as |state send|>
-        {{to-string state.value}}
-        {{report state}}
-
-        <button type='button' {{on 'click' (fn send 'TOGGLE' undefined)}}>
-          Toggle
-        </button>
-      </ToggleMachine>
-    `);
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </toggle>
+      </template>
+    );
 
     assert.dom().doesNotContainText('inactive');
     assert.dom().containsText('active');
@@ -361,18 +364,17 @@ module('Usage', function (hooks) {
 
     assert.expect(2);
 
-    this.setProperties({
-      toggle,
-      doSomething: (state: { value: string }, event: { type: string }) => {
-        assert.strictEqual(state.value, event.type === 'xstate.init' ? 'inactive' : 'active');
-      },
-    });
+    const doSomething = (state: { value: string }, event: { type: string }) => {
+      assert.strictEqual(state.value, event.type === 'xstate.init' ? 'inactive' : 'active');
+    };
 
-    await render(hbs`
-      <this.toggle as |_state send onTransition|>
-        {{onTransition this.doSomething}}
-        {{send "TOGGLE"}}
-      </this.toggle>
-    `);
+    await render(
+      <template>
+        <toggle as |_state send onTransition|>
+          {{onTransition doSomething}}
+          {{send "TOGGLE"}}
+        </toggle>
+      </template>
+    );
   });
 });
