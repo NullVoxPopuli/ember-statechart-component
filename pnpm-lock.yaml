@@ -117,9 +117,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.17.0
         version: 6.17.0(eslint@8.56.0)(typescript@5.3.3)
-      babel-eslint:
-        specifier: 10.1.0
-        version: 10.1.0(eslint@8.56.0)
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
@@ -184,7 +181,7 @@ importers:
   testing/ember-app:
     dependencies:
       ember-statechart-component:
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../ember-statechart-component
       xstate:
         specifier: ^5.4.1
@@ -247,9 +244,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.17.0
         version: 6.17.0(eslint@8.56.0)(typescript@5.3.3)
-      babel-eslint:
-        specifier: ^10.1.0
-        version: 10.1.0(eslint@8.56.0)
       broccoli-asset-rev:
         specifier: ^3.0.0
         version: 3.0.0
@@ -3978,24 +3972,6 @@ packages:
       chalk: 1.1.3
       esutils: 2.0.3
       js-tokens: 3.0.2
-    dev: true
-
-  /babel-eslint@10.1.0(eslint@8.56.0):
-    resolution: {integrity: sha512-ifWaTHQ0ce+448CYop8AdrQiBsGrnC+bMgfyKFdi6EsPLTAWG+QfyDeM6OH+FmWnKvEq5NnBMLvlBUPKQZoDSg==}
-    engines: {node: '>=6'}
-    deprecated: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
-    peerDependencies:
-      eslint: '>= 4.12.1'
-    dependencies:
-      '@babel/code-frame': 7.23.5
-      '@babel/parser': 7.23.6
-      '@babel/traverse': 7.23.7(supports-color@8.1.1)
-      '@babel/types': 7.23.6
-      eslint: 8.56.0
-      eslint-visitor-keys: 1.3.0
-      resolve: 1.22.8
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /babel-helper-builder-binary-assignment-operator-visitor@6.24.1(supports-color@8.1.1):

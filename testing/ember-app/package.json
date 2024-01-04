@@ -39,7 +39,6 @@
     "@types/rsvp": "^4.0.4",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
-    "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^2.2.4",
     "ember-cli": "~5.5.0",
@@ -81,7 +80,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "ember-statechart-component": "*",
+    "ember-statechart-component": "workspace:*",
     "xstate": "^5.4.1"
   },
   "volta": {
