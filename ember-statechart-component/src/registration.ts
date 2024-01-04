@@ -3,7 +3,7 @@ import { hbs } from 'ember-cli-htmlbars';
 
 import { StateNode } from 'xstate';
 
-import ComponentManager from './-private/statechart-manager';
+import ComponentManager from './-private/statechart-manager.ts';
 
 let isSetup = false;
 

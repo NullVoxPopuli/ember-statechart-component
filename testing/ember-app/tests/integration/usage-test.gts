@@ -28,7 +28,7 @@ module('Usage', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it works', async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       states: {
         inactive: { on: { TOGGLE: 'active' } },
@@ -38,13 +38,13 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle as |state send|>
+        <Toggle as |state send|>
           {{toString state.value}}
 
           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
             Toggle
           </button>
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -58,7 +58,7 @@ module('Usage', function (hooks) {
   });
 
   test('can use services', async function (assert) {
-    let toggle = createMachine(
+    let Toggle = createMachine(
       {
         initial: 'inactive',
         states: {
@@ -84,13 +84,13 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle as |state send|>
+        <Toggle as |state send|>
           {{toString state.value}}
 
           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
             Toggle
           </button>
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -106,7 +106,7 @@ module('Usage', function (hooks) {
   });
 
   test(`it can use XState's builtin matches function`, async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       states: {
         inactive: { on: { TOGGLE: 'active' } },
@@ -116,7 +116,7 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle as |state send|>
+        <Toggle as |state send|>
           {{#let (toAny state "matches") as |typelessMatches|}}
             {{#if (typelessMatches "inactive")}}
               The inactive state
@@ -130,7 +130,7 @@ module('Usage', function (hooks) {
           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
             Toggle
           </button>
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -142,7 +142,7 @@ module('Usage', function (hooks) {
   });
 
   test('multiple invocations have their own state', async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       states: {
         inactive: { on: { TOGGLE: 'active' } },
@@ -153,22 +153,22 @@ module('Usage', function (hooks) {
     await render(
       <template>
         <div id="one">
-          <toggle as |state send|>
+          <Toggle as |state send|>
             {{toString state.value}}
 
             <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
               Toggle
             </button>
-          </toggle>
+          </Toggle>
         </div>
         <div id="two">
-          <toggle as |state send|>
+          <Toggle as |state send|>
             {{toString state.value}}
 
             <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
               Toggle
             </button>
-          </toggle>
+          </Toggle>
         </div>
       </template>
     );
@@ -184,7 +184,7 @@ module('Usage', function (hooks) {
   });
 
   test('can pass config', async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       states: {
         inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
@@ -202,11 +202,11 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle @config={{config}} as |_state send|>
+        <Toggle @config={{config}} as |_state send|>
           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
             Toggle
           </button>
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -220,7 +220,7 @@ module('Usage', function (hooks) {
   });
 
   test('can pass context', async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       context: {
         numCalled: 0,
@@ -249,13 +249,13 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle @context={{context}} as |state send|>
+        <Toggle @context={{context}} as |state send|>
           {{report state.context}}
 
           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
             Toggle
           </button>
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -269,7 +269,7 @@ module('Usage', function (hooks) {
   });
 
   test('merging passed context by default', async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       context: { foo: 'foo' },
       states: {
@@ -282,10 +282,10 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle @context={{context}} as |state|>
+        <Toggle @context={{context}} as |state|>
           {{state.context.foo}},
           {{state.context.bar}}
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -293,7 +293,7 @@ module('Usage', function (hooks) {
   });
 
   test('can pass initial state', async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       states: {
         inactive: { on: { TOGGLE: 'active' } },
@@ -307,14 +307,14 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle as |state send|>
+        <Toggle as |state send|>
           {{toString state.value}}
           {{report state}}
 
           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
             Toggle
           </button>
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -333,14 +333,14 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle @state={{previousState}} as |state send|>
+        <Toggle @state={{previousState}} as |state send|>
           {{toString state.value}}
           {{report state}}
 
           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
             Toggle
           </button>
-        </toggle>
+        </Toggle>
       </template>
     );
 
@@ -354,7 +354,7 @@ module('Usage', function (hooks) {
 
   // eslint-disable-next-line qunit/require-expect
   test('can pass onTransition callback', async function (assert) {
-    let toggle = createMachine({
+    let Toggle = createMachine({
       initial: 'inactive',
       states: {
         inactive: { on: { TOGGLE: 'active' } },
@@ -370,10 +370,10 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <toggle as |_state send onTransition|>
+        <Toggle as |_state send onTransition|>
           {{onTransition doSomething}}
           {{send "TOGGLE"}}
-        </toggle>
+        </Toggle>
       </template>
     );
   });

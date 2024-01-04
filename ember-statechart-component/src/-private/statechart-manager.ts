@@ -10,7 +10,7 @@ import { cancel, later } from '@ember/runloop';
 
 import { interpret, State } from 'xstate';
 
-import { reactiveInterpreter, UPDATE_EVENT_NAME } from './proxy';
+import { reactiveInterpreter, UPDATE_EVENT_NAME } from './proxy.ts';
 
 import type { Interpreter, StateNode } from 'xstate';
 

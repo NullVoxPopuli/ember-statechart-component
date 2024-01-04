@@ -4,7 +4,7 @@ import { isDestroyed, isDestroying } from '@ember/destroyable';
 import { createStorage, getValue, setValue } from 'ember-tracked-storage-polyfill';
 import { Interpreter } from 'xstate';
 
-import { createMapWithInterceptedSet } from './utils';
+import { createMapWithInterceptedSet } from './utils.ts';
 
 import type { TrackedStorage } from 'ember-tracked-storage-polyfill';
 import type { DefaultContext, EventObject, State } from 'xstate';

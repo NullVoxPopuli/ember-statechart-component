@@ -103,7 +103,10 @@
     "rollup": "4.9.2",
     "rollup-plugin-ts": "^3.0.2",
     "typescript": "^5.3.3",
-    "xstate": "^5.4.1"
+    "xstate": "^5.4.1",
+    "ember-source": "~5.5.0",
+    "decorator-transforms": "^1.0.3",
+    "@rollup/plugin-babel": "^6.0.4"
   },
   "engines": {
     "node": ">=12.2.0 < 13 || >= 14"
