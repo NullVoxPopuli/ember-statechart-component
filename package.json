@@ -26,7 +26,23 @@
   "packageManager": "pnpm@8.12.1",
   "pnpm": {
     "overrides": {
-      "@types/eslint": "7.29.0"
+      "ember-eslint-parser": "0.2.5",
+      "eslint-plugin-ember": "github:ember-cli/eslint-plugin-ember#master",
+      "ember-cli-babel": "^8.2.0"
+    },
+    "packageExtensions": {
+    },
+    "peerDependencyRules": {
+      "allowAny": [
+        "typescript",
+        "ember-source",
+        "@glimmer/compiler",
+        "@glimmer/syntax"
+      ],
+      "ignoreMissing": [
+        "webpack",
+        "rsvp"
+      ]
     }
   },
   "volta": {

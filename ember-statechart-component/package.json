@@ -76,14 +76,6 @@
     "@glint/template": "^1.2.1",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "@rollup/plugin-babel": "^6.0.4",
-    "@types/ember": "^4.0.0",
-    "@types/ember__application": "^4.0.0",
-    "@types/ember__component": "^4.0.0",
-    "@types/ember__debug": "^4.0.0",
-    "@types/ember__destroyable": "^4.0.0",
-    "@types/ember__routing": "^4.0.0",
-    "@types/ember__runloop": "^4.0.0",
-    "@types/ember__service": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
     "concurrently": "^8.2.2",
@@ -103,9 +95,11 @@
     "npm-run-all": "4.1.5",
     "prettier": "^3.1.1",
     "rollup": "4.9.2",
-    "rollup-plugin-ts": "^3.0.2",
     "typescript": "^5.3.3",
-    "xstate": "^5.4.1"
+    "xstate": "^5.4.1",
+    "@glint/environment-ember-template-imports": "^1.2.1",
+    "@glint/environment-ember-loose": "^1.2.1",
+    "@glint/core": "^1.2.1"
   },
   "engines": {
     "node": ">=12.2.0 < 13 || >= 14"
