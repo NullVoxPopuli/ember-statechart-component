@@ -12,9 +12,9 @@ module.exports = function (defaults) {
     },
   });
 
-  const { maybeEmbroider } = require('@embroider/test-setup');
+  const { Webpack } = require('@embroider/webpack');
 
-  return maybeEmbroider(app, {
+  return require('@embroider/compat').compatBuild(app, Webpack, {
     packageRules: [
       {
         package: 'ember-app',
