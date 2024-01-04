@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export default function toString(x: any) {
+export function toString(x: any) {
   if (typeof x === 'string') {
     return x;
   }
@@ -13,3 +13,5 @@ export default function toString(x: any) {
 
   return `${x}`;
 }
+
+export default toString;

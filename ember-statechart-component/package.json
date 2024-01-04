@@ -4,7 +4,6 @@
   "keywords": [
     "ember-addon"
   ],
-  "type": "module",
   "description": "Use XState Machines *as* Components",
   "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
   "license": "MIT",
@@ -25,10 +24,6 @@
       ]
     }
   },
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "files": [
     "addon-main.cjs",
     "dist",
@@ -42,26 +37,23 @@
     "build:js": "rollup -c ./rollup.config.mjs",
     "build:docs": "cp ../README.md ./README.md",
     "watch:js": "rollup -c --watch --no-watch.clearScreen",
-    "lint": "concurrently \"npm:lint:js\"",
-    "lint:fix": "concurrently \"npm:lint:js:fix\"",
+    "lint": "concurrently \"npm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:package": "publint",
+    "lint:published-types": "attw --pack",
+    "lint:fix": "concurrently \"npm:lint:*:fix\" --names \"fix:\" && pnpm format:prettier",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "test": "echo 'Addon does not have tests, run tests in test-app'",
+    "format:prettier": "prettier . --write",
+    "lint:prettier": "prettier . --check",
     "prepare": "pnpm build",
     "prepack": "pnpm build"
   },
   "dependencies": {
     "@embroider/addon-shim": "^1.8.9",
-    "ember-tracked-storage-polyfill": "^1.0.0"
+    "@glint/template": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@glint/template": ">= 0.8.3",
     "xstate": "^5.18.0"
-  },
-  "peerDependenciesMeta": {
-    "@glint/template": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@babel/core": "7.25.7",
@@ -76,14 +68,14 @@
     "@glimmer/env": "^0.1.7",
     "@glint/template": "^1.4.0",
     "@nullvoxpopuli/eslint-configs": "^4.2.0",
+    "@tsconfig/ember": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
-    "babel-eslint": "10.1.0",
     "concurrently": "^9.0.1",
-    "ember-cli-htmlbars": "^6.0.0",
+    "decorator-transforms": "^2.2.2",
+    "ember-source": "^5.5.0",
     "ember-template-lint": "6.0.0",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-decorator-position": "^5.0.2",
     "eslint-plugin-ember": "^12.2.1",
     "eslint-plugin-import": "^2.31.0",
@@ -98,9 +90,6 @@
     "typescript": "~5.5.0",
     "xstate": "^5.18.2"
   },
-  "engines": {
-    "node": ">=12.2.0 < 13 || >= 14"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
@@ -114,7 +103,6 @@
     "app-js": {}
   },
   "volta": {
-    "extends": "../package.json",
-    "npm": "8.18.0"
+    "extends": "../package.json"
   }
 }

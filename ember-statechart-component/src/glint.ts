@@ -47,7 +47,7 @@ declare module 'xstate' {
     TAction extends BaseActionObject = BaseActionObject,
     TServiceMap extends ServiceMap = ServiceMap,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    TResolvedTypesMeta = ResolveTypegenMeta<TypegenDisabled, NoInfer<TEvent>, TAction, TServiceMap>
+    TResolvedTypesMeta = ResolveTypegenMeta<TypegenDisabled, NoInfer<TEvent>, TAction, TServiceMap>,
   > extends ComponentLike<{
       Args: {
         config?: MachineOptions<TContext, TEvent, TAction, TServiceMap>;
@@ -58,7 +58,7 @@ declare module 'xstate' {
         default: [
           Interpreter<TContext, TStateSchema, TEvent, TTypestate>['state'],
           Interpreter<TContext, TStateSchema, TEvent, TTypestate>['send'],
-          Interpreter<TContext, TStateSchema, TEvent, TTypestate>['onTransition']
+          Interpreter<TContext, TStateSchema, TEvent, TTypestate>['onTransition'],
         ];
       };
     }> {

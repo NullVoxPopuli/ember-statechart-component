@@ -1,9 +1,6 @@
 {
   "glint": {
-    "environment": [
-       "ember-loose",
-       "ember-template-imports"
-    ]
+    "environment": ["ember-loose", "ember-template-imports"]
   },
   "compilerOptions": {
     "target": "es2020",
@@ -27,20 +24,10 @@
     "module": "es6",
     "experimentalDecorators": true,
     "paths": {
-      "ember-app/tests/*": [
-        "tests/*"
-      ],
-      "ember-app/*": [
-        "app/*"
-      ],
-      "*": [
-        "types/*"
-      ]
+      "ember-app/tests/*": ["tests/*"],
+      "ember-app/*": ["app/*"],
+      "*": ["types/*"]
     }
   },
-  "include": [
-    "app/**/*",
-    "tests/**/*",
-    "types/**/*"
-  ]
+  "include": ["app/**/*", "tests/**/*", "types/**/*"]
 }

@@ -10,18 +10,20 @@
   "scripts": {
     "build": "pnpm --filter ember-statechart-component build",
     "prepare": "pnpm build",
-    "lint": "pnpm run --filter '*' lint:js --fix"
+    "lint": "pnpm run --filter '*' lint",
+    "lint:fix": "pnpm run --filter '*' lint:fix"
   },
   "devDependencies": {
+    "@babel/core": "7.25.7",
+    "@typescript-eslint/parser": "^8.8.0",
     "ember-template-lint": "^6.0.0",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint": "^8.56.0",
     "eslint-plugin-ember": "^12.2.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
-    "release-plan": "^0.9.0"
+    "release-plan": "^0.9.0",
+    "typescript": "^5.5.0"
   },
   "packageManager": "pnpm@9.12.0",
   "volta": {
@@ -30,7 +32,17 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/eslint": "7.29.0"
+      "ember-cli-babel": "^8.2.0"
+    },
+    "peerDependencyRules": {
+      "allowAny": [
+        "typescript",
+        "ember-source"
+      ],
+      "ignoreMissing": [
+        "webpack",
+        "rsvp"
+      ]
     }
   }
 }

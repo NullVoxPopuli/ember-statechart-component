@@ -6,8 +6,8 @@ module.exports = {
     {
       files: ['tests/**'],
       rules: {
-        'require-button-type': 'off'
-      }
-    }
+        'require-button-type': 'off',
+      },
+    },
   ],
 };

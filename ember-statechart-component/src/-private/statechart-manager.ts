@@ -8,11 +8,9 @@ import { assert } from '@ember/debug';
 import { destroy, isDestroying } from '@ember/destroyable';
 import { cancel, later } from '@ember/runloop';
 
-import { interpret, State } from 'xstate';
+import { createActor, State } from 'xstate';
 
-import { reactiveInterpreter, UPDATE_EVENT_NAME } from './proxy';
-
-import type { Interpreter, StateNode } from 'xstate';
+import type { Interpreter, StateMachine,StateNode } from 'xstate';
 
 export interface Args {
   named: Record<string, unknown>;
@@ -33,57 +31,52 @@ export default class ComponentManager {
     return manager;
   }
 
-  createComponent(machine: StateNode, args: Args) {
+  createComponent(machine: StateMachine, args: Args) {
     let { named } = args;
 
     if ('config' in named) {
-      machine = machine.withConfig(named.config as any);
+      machine = machine.provide(named['config'] as any);
     }
 
-    let context = { ...machine.context };
+    let context = { };
 
     if ('context' in named) {
-      Object.assign(context, named.context);
+      Object.assign(context, named['context']);
     }
 
     setOwner(context, getOwner(this) as any);
 
-    machine = machine.withContext(context);
-
-    let interpreter = interpret(machine as any, {
-      devTools: DEBUG,
-      clock: {
-        setTimeout(fn, ms) {
-          return (later as any).call(null, fn, ms);
-        },
-        clearTimeout(timer) {
-          return cancel.call(null, timer);
-        },
-      },
+    let actor = createActor(machine, {
+      input: context,
     });
 
-    if ('state' in named) {
-      assert(`@state must be of type State`, named.state instanceof State);
+    actor.subscribe((snapshot, ...others) => {
+      console.log(snapshot, { others} );
+    });
 
-      let resolvedState = machine.resolveState(named.state);
+    // if ('state' in named) {
+    //   assert(`@state must be of type State`, named.state instanceof State);
 
-      let withReactivity = reactiveInterpreter(interpreter);
+    //   let resolvedState = machine.resolveState(named.state);
 
-      withReactivity.start(resolvedState);
+    //   let withReactivity = reactiveInterpreter(actor);
 
-      return withReactivity;
-    }
+    //   withReactivity.start(resolvedState);
+
+    //   return withReactivity;
+    // }
 
     /**
      * Start the interpreter before we wire in reactivity,
      * so reactivity may only be "by-use" (from the app), rather than
      * managed by XState during its internal updates
      */
-    interpreter.start();
+    actor.start();
 
-    let withReactivity = reactiveInterpreter(interpreter);
+    // let withReactivity = reactiveInterpreter(actor);
 
-    return withReactivity;
+    // return withReactivity;
+    return actor;
   }
 
   /**
