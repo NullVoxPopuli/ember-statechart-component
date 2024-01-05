@@ -1,5 +1,5 @@
 import { setComponentManager, setComponentTemplate } from '@ember/component';
-import { hbs } from 'ember-cli-htmlbars';
+import { precompileTemplate } from '@ember/template-compilation';
 
 import { StateNode } from 'xstate';
 
@@ -23,8 +23,14 @@ export function setupComponentMachines(override?: typeof StateNode) {
     (owner) => ComponentManager.create(owner),
     override?.prototype || StateNode.prototype
   );
+
   setComponentTemplate(
-    hbs`{{yield this.state this.send this.onTransition}}`,
+    precompileTemplate(
+      `{{yield this.state this.send this.onTransition}}`,
+      {
+        strictMode: true,
+      }
+    ),
     override?.prototype || StateNode.prototype
   );
 

@@ -50,8 +50,7 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^1.0.0",
-    "ember-tracked-storage-polyfill": "^1.0.0"
+    "@embroider/addon-shim": "^1.0.0"
   },
   "peerDependencies": {
     "@glint/template": ">= 0.8.3",
@@ -73,6 +72,9 @@
     "@glimmer/compiler": "^0.87.1",
     "@glimmer/component": "^1.0.4",
     "@glimmer/env": "^0.1.7",
+    "@glint/core": "^1.2.1",
+    "@glint/environment-ember-loose": "^1.2.1",
+    "@glint/environment-ember-template-imports": "^1.2.1",
     "@glint/template": "^1.2.1",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "@rollup/plugin-babel": "^6.0.4",
@@ -96,10 +98,7 @@
     "prettier": "^3.1.1",
     "rollup": "4.9.2",
     "typescript": "^5.3.3",
-    "xstate": "^5.4.1",
-    "@glint/environment-ember-template-imports": "^1.2.1",
-    "@glint/environment-ember-loose": "^1.2.1",
-    "@glint/core": "^1.2.1"
+    "xstate": "^5.4.1"
   },
   "engines": {
     "node": ">=12.2.0 < 13 || >= 14"
