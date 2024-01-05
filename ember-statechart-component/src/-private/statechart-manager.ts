@@ -48,23 +48,23 @@ export default class ComponentManager {
 
     setOwner(context, getOwner(this) as any);
 
-    machine = machine.withContext(context);
+    // machine = machine.withContext(context);
 
     let actor = createActor(machine as any);
 
     actor.subscribe((snapshot) => {});
 
-    if ('state' in named) {
-      assert(`@state must be of type State`, named.state instanceof State);
+    // if ('state' in named) {
+    //   assert(`@state must be of type State`, named.state instanceof State);
 
-      let resolvedState = machine.resolveState(named.state);
+    //   let resolvedState = machine.resolveState(named.state);
 
-      let withReactivity = reactiveInterpreter(actor);
+    //   let withReactivity = reactiveInterpreter(actor);
 
-      withReactivity.start(resolvedState);
+    //   withReactivity.start(resolvedState);
 
-      return withReactivity;
-    }
+    //   return withReactivity;
+    // }
 
     /**
      * Start the interpreter before we wire in reactivity,

@@ -7,6 +7,14 @@ ember-statechart-component
 
 Use [XState](https://xstate.js.org/) Machines *as* components.
 
+Support
+------------------------------------------------------------------------------
+
+- XState >= 5
+- TypeScript >= 5
+- ember-source >= 5.1
+- Glint >= 1.2.1
+
 Installation
 ------------------------------------------------------------------------------
 
@@ -16,14 +24,6 @@ npm install ember-statechart-component
 
 To be able to use XState [`state.matches`](https://xstate.js.org/docs/guides/states.html#state-matches-parentstatevalue)
 method in our templates,
-we will first need `ember-source@4.5+` or a [HelperManager](https://github.com/emberjs/rfcs/pull/625) for
-handling vanilla functions.
-[ember-functions-as-helper-polyfill](https://github.com/NullVoxPopuli/ember-functions-as-helper-polyfill)
-provides one:
-
-```bash
-npm install ember-functions-as-helper-polyfill
-```
 
 In app/app.js / app/app.ts, a one time setup function will need to be called so that the ComponentManager is registered.
 

@@ -12,6 +12,7 @@
   },
   "scripts": {
     "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
+    "lint:fix": "concurrently \"npm:lint:*:fix\" --names \"fix:\" && pnpm format:prettier",
     "lint:fix": "pnpm lint:js:fix && pnpm lint:prettier:fix",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
@@ -19,7 +20,7 @@
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
     "test:ember": "ember test",
-    "lint:prettier:fix": "prettier . --write",
+    "format:prettier": "prettier . --write",
     "lint:prettier": "prettier . --check"
   },
   "devDependencies": {

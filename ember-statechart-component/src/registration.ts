@@ -36,3 +36,6 @@ export function setupComponentMachines(override?: typeof StateNode) {
 
   isSetup = true;
 }
+
+// ‼️ SideEffect
+setupComponentMachines();
