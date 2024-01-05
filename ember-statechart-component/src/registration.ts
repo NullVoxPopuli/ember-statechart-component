@@ -25,12 +25,9 @@ export function setupComponentMachines(override?: typeof StateNode) {
   );
 
   setComponentTemplate(
-    precompileTemplate(
-      `{{yield this.state this.send this.onTransition}}`,
-      {
-        strictMode: true,
-      }
-    ),
+    precompileTemplate(`{{yield this.state this.send this.onTransition}}`, {
+      strictMode: true,
+    }),
     override?.prototype || StateNode.prototype
   );
 
