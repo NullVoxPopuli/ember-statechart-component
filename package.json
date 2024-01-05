@@ -10,7 +10,8 @@
   "scripts": {
     "build": "pnpm --filter ember-statechart-component build",
     "prepare": "pnpm build",
-    "lint": "pnpm run --filter '*' lint:js --fix"
+    "lint": "pnpm run --filter '*' lint",
+    "lint:fix": "pnpm run --filter '*' lint:fix"
   },
   "devDependencies": {
     "@babel/core": "7.23.7",
