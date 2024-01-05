@@ -4,6 +4,7 @@
   "keywords": [
     "ember-addon"
   ],
+  "type": "module",
   "description": "Use XState Machines *as* Components",
   "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
   "license": "MIT",
