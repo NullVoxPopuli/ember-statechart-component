@@ -40,7 +40,7 @@
           "ember-template-imports": "^3.0.0"
         },
         "peerDependencies": {
-          "ember-template-imports": "*"
+          "ember-template-imports": null
         }
       }
     },

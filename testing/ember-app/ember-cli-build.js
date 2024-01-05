@@ -18,6 +18,13 @@ module.exports = function (defaults) {
   const { Webpack } = require('@embroider/webpack');
 
   return require('@embroider/compat').compatBuild(app, Webpack, {
+    extraPublicTrees: [],
+    staticAddonTrees: true,
+    staticAddonTestSupportTrees: true,
+    staticHelpers: true,
+    staticModifiers: true,
+    staticComponents: true,
+    staticEmberSource: true,
     packageRules: [
       {
         package: 'ember-app',
@@ -31,7 +38,7 @@ module.exports = function (defaults) {
     ],
     packagerOptions: {
       webpackConfig: {
-        devtool: 'inline-source-map',
+        devtool: 'source-map',
       },
     },
   });

@@ -10,8 +10,6 @@ import { cancel, later } from '@ember/runloop';
 
 import { createActor, State } from 'xstate';
 
-import { reactiveInterpreter, UPDATE_EVENT_NAME } from './proxy.ts';
-
 import type { Interpreter, StateNode } from 'xstate';
 
 export interface Args {
@@ -73,9 +71,10 @@ export default class ComponentManager {
      */
     actor.start();
 
-    let withReactivity = reactiveInterpreter(actor);
+    // let withReactivity = reactiveInterpreter(actor);
 
-    return withReactivity;
+    // return withReactivity;
+    return actor;
   }
 
   /**
