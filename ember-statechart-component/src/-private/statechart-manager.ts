@@ -8,7 +8,7 @@ import { assert } from '@ember/debug';
 import { destroy, isDestroying } from '@ember/destroyable';
 import { cancel, later } from '@ember/runloop';
 
-import { interpret, State } from 'xstate';
+import { createActor, State } from 'xstate';
 
 import { reactiveInterpreter, UPDATE_EVENT_NAME } from './proxy.ts';
 
@@ -50,24 +50,16 @@ export default class ComponentManager {
 
     machine = machine.withContext(context);
 
-    let interpreter = interpret(machine as any, {
-      devTools: DEBUG,
-      clock: {
-        setTimeout(fn, ms) {
-          return (later as any).call(null, fn, ms);
-        },
-        clearTimeout(timer) {
-          return cancel.call(null, timer);
-        },
-      },
-    });
+    let actor = createActor(machine as any);
+
+    actor.subscribe((snapshot) => {});
 
     if ('state' in named) {
       assert(`@state must be of type State`, named.state instanceof State);
 
       let resolvedState = machine.resolveState(named.state);
 
-      let withReactivity = reactiveInterpreter(interpreter);
+      let withReactivity = reactiveInterpreter(actor);
 
       withReactivity.start(resolvedState);
 
@@ -79,9 +71,9 @@ export default class ComponentManager {
      * so reactivity may only be "by-use" (from the app), rather than
      * managed by XState during its internal updates
      */
-    interpreter.start();
+    actor.start();
 
-    let withReactivity = reactiveInterpreter(interpreter);
+    let withReactivity = reactiveInterpreter(actor);
 
     return withReactivity;
   }
