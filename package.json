@@ -30,10 +30,23 @@
   "packageManager": "pnpm@8.12.1",
   "pnpm": {
     "overrides": {
-      "@glimmer/syntax": ">= 0.87.0",
+      "@glimmer/syntax": "0.84.3",
       "ember-eslint-parser": "0.2.5",
       "eslint-plugin-ember": "^12.0.0",
-      "ember-cli-babel": "^8.2.0"
+      "ember-cli-babel": "^8.2.0",
+      "@embroider/addon-dev": "4.1.4-unstable.289f83d",
+      "@embroider/addon-shim": "1.8.8-unstable.289f83d",
+      "@embroider/core": "3.4.4-unstable.289f83d",
+      "@embroider/compat": "3.4.2-unstable.289f83d",
+      "@embroider/macros": "1.13.5-unstable.289f83d",
+      "@embroider/hbs-loader": "3.0.4-unstable.289f83d",
+      "@embroider/reverse-exports": "0.1.1-unstable.289f83d",
+      "@embroider/router": "2.1.7-unstable.289f83d",
+      "@embroider/shared-internals": "2.5.2-unstable.289f83d",
+      "@embroider/test-setup": "3.0.4-unstable.289f83d",
+      "@embroider/util": "1.12.2-unstable.289f83d",
+      "@embroider/vite": "0.2.1-unstable.289f83d",
+      "@embroider/webpack": "3.2.2-unstable.289f83d"
     },
     "peerDependencyRules": {
       "allowAny": [
