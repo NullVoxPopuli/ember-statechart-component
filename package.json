@@ -10,27 +10,57 @@
   "scripts": {
     "build": "pnpm --filter ember-statechart-component build",
     "prepare": "pnpm build",
-    "lint": "pnpm run --filter '*' lint:js --fix"
+    "lint": "pnpm run --filter '*' lint",
+    "lint:fix": "pnpm run --filter '*' lint:fix"
   },
   "devDependencies": {
+    "@babel/core": "7.23.7",
+    "@typescript-eslint/parser": "^6.17.0",
     "ember-template-lint": "^5.13.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-ember": "^11.12.0",
+    "eslint-plugin-ember": "^12.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.1.1",
-    "release-plan": "^0.6.0"
+    "release-plan": "^0.6.0",
+    "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@8.12.1",
   "pnpm": {
     "overrides": {
-      "@types/eslint": "7.29.0"
+      "@glimmer/syntax": "0.84.3",
+      "ember-eslint-parser": "0.2.5",
+      "eslint-plugin-ember": "^12.0.0",
+      "ember-cli-babel": "^8.2.0",
+      "@embroider/addon-dev": "4.1.4-unstable.289f83d",
+      "@embroider/addon-shim": "1.8.8-unstable.289f83d",
+      "@embroider/core": "3.4.4-unstable.289f83d",
+      "@embroider/compat": "3.4.2-unstable.289f83d",
+      "@embroider/macros": "1.13.5-unstable.289f83d",
+      "@embroider/hbs-loader": "3.0.4-unstable.289f83d",
+      "@embroider/reverse-exports": "0.1.1-unstable.289f83d",
+      "@embroider/router": "2.1.7-unstable.289f83d",
+      "@embroider/shared-internals": "2.5.2-unstable.289f83d",
+      "@embroider/test-setup": "3.0.4-unstable.289f83d",
+      "@embroider/util": "1.12.2-unstable.289f83d",
+      "@embroider/vite": "0.2.1-unstable.289f83d",
+      "@embroider/webpack": "3.2.2-unstable.289f83d"
+    },
+    "peerDependencyRules": {
+      "allowAny": [
+        "typescript",
+        "ember-source"
+      ],
+      "ignoreMissing": [
+        "webpack",
+        "rsvp"
+      ]
     }
   },
   "volta": {
     "node": "20.10.0",
-    "pnpm": "8.13.1"
+    "pnpm": "8.14.1"
   }
 }

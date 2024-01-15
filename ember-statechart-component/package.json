@@ -4,7 +4,6 @@
   "keywords": [
     "ember-addon"
   ],
-  "type": "module",
   "description": "Use XState Machines *as* Components",
   "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
   "license": "MIT",
@@ -25,10 +24,6 @@
       ]
     }
   },
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "files": [
     "addon-main.cjs",
     "dist",
@@ -42,58 +37,53 @@
     "build:js": "rollup -c ./rollup.config.mjs",
     "build:docs": "cp ../README.md ./README.md",
     "watch:js": "rollup -c --watch --no-watch.clearScreen",
-    "lint": "concurrently \"npm:lint:js\"",
-    "lint:fix": "concurrently \"npm:lint:js:fix\"",
+    "lint": "concurrently \"npm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:package": "publint",
+    "lint:published-types": "attw --pack",
+    "lint:fix": "concurrently \"npm:lint:*:fix\" --names \"fix:\" && pnpm format:prettier",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "test": "echo 'Addon does not have tests, run tests in test-app'",
+    "format:prettier": "prettier . --write",
+    "lint:prettier": "prettier . --check",
     "prepare": "pnpm build",
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^1.0.0",
-    "ember-tracked-storage-polyfill": "^1.0.0"
+    "@embroider/addon-shim": "1.8.8-unstable.289f83d",
+    "@glint/template": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@glint/template": ">= 0.8.3",
-    "xstate": "^4.32.1"
-  },
-  "peerDependenciesMeta": {
-    "@glint/template": {
-      "optional": true
-    }
+    "xstate": "^5.5.1"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
+    "@babel/core": "7.23.7",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/plugin-proposal-class-properties": "7.18.6",
     "@babel/plugin-syntax-decorators": "7.23.3",
     "@babel/plugin-transform-typescript": "^7.18.6",
     "@babel/preset-typescript": "7.23.3",
-    "@embroider/addon-dev": "1.8.3",
+    "@embroider/addon-dev": "4.1.4-unstable.289f83d",
     "@glimmer/compiler": "^0.87.1",
     "@glimmer/component": "^1.0.4",
     "@glimmer/env": "^0.1.7",
-    "@glint/template": "^1.2.1",
+    "@glint/core": "^1.2.2",
+    "@glint/environment-ember-loose": "^1.2.2",
+    "@glint/environment-ember-template-imports": "^1.2.2",
+    "@glint/template": "^1.2.2",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
-    "@types/ember": "^4.0.0",
-    "@types/ember__application": "^4.0.0",
-    "@types/ember__component": "^4.0.0",
-    "@types/ember__debug": "^4.0.0",
-    "@types/ember__destroyable": "^4.0.0",
-    "@types/ember__routing": "^4.0.0",
-    "@types/ember__runloop": "^4.0.0",
-    "@types/ember__service": "^4.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.16.0",
-    "@typescript-eslint/parser": "^6.16.0",
-    "babel-eslint": "10.1.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@tsconfig/ember": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
     "concurrently": "^8.2.2",
+    "decorator-transforms": "^1.0.3",
     "ember-cli-htmlbars": "^6.0.0",
+    "ember-source": "^5.5.0",
     "ember-template-lint": "5.13.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-decorator-position": "^5.0.2",
-    "eslint-plugin-ember": "^11.12.0",
+    "eslint-plugin-ember": "^12.0.0",
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-node": "^11.1.0",
@@ -101,13 +91,9 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "^3.1.1",
-    "rollup": "2.78.1",
-    "rollup-plugin-ts": "^3.0.2",
-    "typescript": "^4.4.2",
-    "xstate": "^5.4.1"
-  },
-  "engines": {
-    "node": ">=12.2.0 < 13 || >= 14"
+    "rollup": "4.9.5",
+    "typescript": "^5.3.3",
+    "xstate": "^5.5.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -122,7 +108,6 @@
     "app-js": {}
   },
   "volta": {
-    "extends": "../package.json",
-    "npm": "8.18.0"
+    "extends": "../package.json"
   }
 }

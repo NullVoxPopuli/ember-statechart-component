@@ -5,7 +5,7 @@ on:
       - main
       - master
   pull_request:
-    types: 
+    types:
       - labeled
 
 concurrency:
@@ -49,20 +49,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      
+
       - uses: pnpm/action-setup@v2
         with:
           version: 8
       - run: npm config set ignore-scripts=true          
       - run: pnpm install --frozen-lockfile
-      
+
       - name: "Generate Explanation and Prep Changelogs"
         id: explanation
         run: |
           set -x
-          
+
           pnpm release-plan prepare
-          
+
           echo 'text<<EOF' >> $GITHUB_OUTPUT
           jq .description .release-plan.json -r >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
