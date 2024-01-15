@@ -1,3 +1,5 @@
+import "decorator-transforms/globals";
+
 import { setApplication } from '@ember/test-helpers';
 import * as QUnit from 'qunit';
 import { setup } from 'qunit-dom';

@@ -1,3 +1,5 @@
+import 'decorator-transforms/globals';
+
 import Application from '@ember/application';
 
 import config from 'ember-app/config/environment';

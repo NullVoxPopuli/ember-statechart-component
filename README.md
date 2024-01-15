@@ -47,6 +47,10 @@ loadInitializers(App, config.modulePrefix);
 setupComponentMachines();
 ```
 
+## Migrating from XState v4?
+
+See: https://stately.ai/docs/migration
+
 Usage
 ------------------------------------------------------------------------------
 

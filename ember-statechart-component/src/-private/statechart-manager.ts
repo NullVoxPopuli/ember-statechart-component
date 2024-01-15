@@ -10,7 +10,7 @@ import { cancel, later } from '@ember/runloop';
 
 import { createActor, State } from 'xstate';
 
-import type { Interpreter, StateNode } from 'xstate';
+import type { Interpreter, StateMachine,StateNode } from 'xstate';
 
 export interface Args {
   named: Record<string, unknown>;
@@ -31,26 +31,28 @@ export default class ComponentManager {
     return manager;
   }
 
-  createComponent(machine: StateNode, args: Args) {
+  createComponent(machine: StateMachine, args: Args) {
     let { named } = args;
 
     if ('config' in named) {
-      machine = machine.withConfig(named.config as any);
+      machine = machine.provide(named['config'] as any);
     }
 
-    let context = { ...machine.context };
+    let context = { };
 
     if ('context' in named) {
-      Object.assign(context, named.context);
+      Object.assign(context, named['context']);
     }
 
     setOwner(context, getOwner(this) as any);
 
-    // machine = machine.withContext(context);
+    let actor = createActor(machine, {
+      input: context,
+    });
 
-    let actor = createActor(machine as any);
-
-    actor.subscribe((snapshot) => {});
+    actor.subscribe((snapshot, ...others) => {
+      console.log(snapshot, { others} );
+    });
 
     // if ('state' in named) {
     //   assert(`@state must be of type State`, named.state instanceof State);

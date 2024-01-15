@@ -24,10 +24,6 @@
       ]
     }
   },
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "files": [
     "addon-main.cjs",
     "dist",
@@ -53,16 +49,11 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^1.0.0"
+    "@embroider/addon-shim": "^1.0.0",
+    "@glint/template": ">= 1.0.0"
   },
   "peerDependencies": {
-    "@glint/template": ">= 0.8.3",
-    "xstate": "^4.32.1"
-  },
-  "peerDependenciesMeta": {
-    "@glint/template": {
-      "optional": true
-    }
+    "xstate": "^5.5.1"
   },
   "devDependencies": {
     "@babel/core": "7.23.7",
@@ -75,10 +66,10 @@
     "@glimmer/compiler": "^0.87.1",
     "@glimmer/component": "^1.0.4",
     "@glimmer/env": "^0.1.7",
-    "@glint/core": "^1.2.1",
-    "@glint/environment-ember-loose": "^1.2.1",
-    "@glint/environment-ember-template-imports": "^1.2.1",
-    "@glint/template": "^1.2.1",
+    "@glint/core": "^1.2.2",
+    "@glint/environment-ember-loose": "^1.2.2",
+    "@glint/environment-ember-template-imports": "^1.2.2",
+    "@glint/template": "^1.2.2",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "@rollup/plugin-babel": "^6.0.4",
     "@tsconfig/ember": "^3.0.3",
@@ -87,12 +78,12 @@
     "concurrently": "^8.2.2",
     "decorator-transforms": "^1.0.3",
     "ember-cli-htmlbars": "^6.0.0",
-    "ember-source": "~5.5.0",
+    "ember-source": "~5.7.0-alpha.5",
     "ember-template-lint": "5.13.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-decorator-position": "^5.0.2",
-    "eslint-plugin-ember": "github:ember-cli/eslint-plugin-ember#master",
+    "eslint-plugin-ember": "^12.0.0",
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-node": "^11.1.0",
@@ -100,12 +91,9 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "^3.1.1",
-    "rollup": "4.9.3",
+    "rollup": "4.9.5",
     "typescript": "^5.3.3",
-    "xstate": "^5.4.1"
-  },
-  "engines": {
-    "node": ">=12.2.0 < 13 || >= 14"
+    "xstate": "^5.5.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -120,8 +108,6 @@
     "app-js": {}
   },
   "volta": {
-    "extends": "../package.json",
-    "npm": "8.18.0"
-  },
-  "type": "module"
+    "extends": "../package.json"
+  }
 }

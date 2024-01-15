@@ -12,7 +12,6 @@
   },
   "scripts": {
     "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
-    "lint:fix": "concurrently \"npm:lint:*:fix\" --names \"fix:\" && pnpm format:prettier",
     "lint:fix": "pnpm lint:js:fix && pnpm lint:prettier:fix",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
@@ -29,25 +28,29 @@
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.1.1",
     "@ember/test-helpers": "^3.2.1",
+    "@embroider/compat": "^3.4.3",
+    "@embroider/core": "^3.4.3",
+    "@embroider/webpack": "^3.2.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
-    "@glint/core": "^1.2.1",
-    "@glint/environment-ember-loose": "^1.2.1",
-    "@glint/environment-ember-template-imports": "^1.2.1",
-    "@glint/template": "^1.2.1",
+    "@glint/core": "^1.2.2",
+    "@glint/environment-ember-loose": "^1.2.2",
+    "@glint/environment-ember-template-imports": "^1.2.2",
+    "@glint/template": "^1.2.2",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "@types/qunit": "^2.11.2",
     "@types/rsvp": "^4.0.4",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
     "broccoli-asset-rev": "^3.0.0",
+    "concurrently": "^8.2.2",
     "ember-auto-import": "^2.2.4",
     "ember-cli": "~5.5.0",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.0.1",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-load-initializers": "^2.1.2",
-    "ember-page-title": "^8.1.0",
+    "ember-page-title": "^8.2.0",
     "ember-qunit": "^8.0.2",
     "ember-resolver": "^11.0.1",
     "ember-source": "~5.5.0",
@@ -57,32 +60,34 @@
     "ember-try": "^3.0.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-ember": "^11.12.0",
+    "eslint-plugin-ember": "^12.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-qunit": "^8.0.1",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.1.1",
+    "prettier-plugin-ember-template-tag": "^2.0.0",
     "qunit": "^2.16.0",
     "qunit-dom": "^3.0.0",
     "typescript": "^5.3.3",
-    "webpack": "^5.65.0",
-    "prettier-plugin-ember-template-tag": "^2.0.0",
-    "concurrently": "^8.2.2",
-    "@embroider/webpack": "^3.2.1",
-    "@embroider/core": "^3.4.3",
-    "@embroider/compat": "^3.4.3"
+    "webpack": "^5.65.0"
   },
   "engines": {
-    "node": "12.* || 14.* || >= 16"
+    "node": ">= 16"
   },
   "ember": {
     "edition": "octane"
   },
   "dependencies": {
+    "decorator-transforms": "^1.0.3",
     "ember-statechart-component": "workspace:*",
-    "xstate": "^5.4.1"
+    "xstate": "^5.5.1"
+  },
+  "dependenciesMeta": {
+    "ember-statechart-component": {
+      "injected": true
+    }
   },
   "volta": {
     "extends": "../../package.json"
