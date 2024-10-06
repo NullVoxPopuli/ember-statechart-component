@@ -74,7 +74,7 @@
     "@glimmer/compiler": "^0.87.1",
     "@glimmer/component": "^1.0.4",
     "@glimmer/env": "^0.1.7",
-    "@glint/template": "^1.2.1",
+    "@glint/template": "^1.4.0",
     "@nullvoxpopuli/eslint-configs": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
