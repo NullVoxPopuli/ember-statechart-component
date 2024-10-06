@@ -1,12 +1,12 @@
 {
   "private": true,
+  "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
+  "license": "MIT",
+  "author": "NullVoxPopuli",
   "workspaces": [
     "ember-statechart-component",
     "testing/*"
   ],
-  "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
-  "license": "MIT",
-  "author": "NullVoxPopuli",
   "scripts": {
     "build": "pnpm --filter ember-statechart-component build",
     "prepare": "pnpm build",
@@ -21,16 +21,16 @@
     "eslint-plugin-prettier": "^5.2.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
-    "release-plan": "^0.6.0"
+    "release-plan": "^0.9.0"
   },
   "packageManager": "pnpm@9.12.0",
+  "volta": {
+    "node": "22.9.0",
+    "pnpm": "9.12.0"
+  },
   "pnpm": {
     "overrides": {
       "@types/eslint": "7.29.0"
     }
-  },
-  "volta": {
-    "node": "22.9.0",
-    "pnpm": "9.12.0"
   }
 }
