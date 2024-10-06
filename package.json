@@ -30,7 +30,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/eslint": "7.29.0"
+      "@types/eslint": "9.6.1"
     }
   }
 }
