@@ -9,20 +9,11 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "exports": {
-    ".": "./dist/index.js",
-    "./glint": "./dist/glint.js",
-    "./*": "./dist/*",
+    ".": {
+      "types": "./ahhhh.d.ts",
+      "default": "./dist/index.js"
+    },
     "./addon-main.js": "./addon-main.cjs"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*"
-      ],
-      "glint": [
-        "./dist/glint.d.ts"
-      ]
-    }
   },
   "files": [
     "addon-main.cjs",
@@ -56,6 +47,7 @@
     "xstate": "^5.18.0"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.4",
     "@babel/core": "7.25.7",
     "@babel/eslint-parser": "^7.25.7",
     "@babel/plugin-proposal-class-properties": "7.18.6",
@@ -66,8 +58,11 @@
     "@glimmer/compiler": "^0.92.4",
     "@glimmer/component": "^1.0.4",
     "@glimmer/env": "^0.1.7",
+    "@glint/core": "^1.4.0",
+    "@glint/environment-ember-template-imports": "^1.4.0",
     "@glint/template": "^1.4.0",
     "@nullvoxpopuli/eslint-configs": "^4.2.0",
+    "@rollup/plugin-babel": "^6.0.4",
     "@tsconfig/ember": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
@@ -85,6 +80,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "npm-run-all": "4.1.5",
     "prettier": "^3.3.3",
+    "publint": "^0.2.11",
     "rollup": "4.24.0",
     "rollup-plugin-ts": "^3.0.2",
     "typescript": "~5.5.0",

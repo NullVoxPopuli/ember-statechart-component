@@ -1,7 +1,7 @@
-import { defineConfig } from "rollup";
-import { babel } from "@rollup/plugin-babel";
-
 import { Addon } from "@embroider/addon-dev/rollup";
+
+import { babel } from "@rollup/plugin-babel";
+import { defineConfig } from "rollup";
 
 const addon = new Addon({
   srcDir: "src",
