@@ -90,23 +90,23 @@ export default class ComponentManager {
    * "handle everything within the statechart and don't pass args",
    * it should be good enough.
    */
-  updateComponent(interpreter: Interpreter<any>, args: Args) {
+  updateComponent(actor: Interpreter<any>, args: Args) {
     if (Object.keys(args.named).length > 0 || args.positional.length > 0) {
-      interpreter.send(UPDATE_EVENT_NAME, args.named);
+      actor.send(UPDATE_EVENT_NAME, args.named);
     }
   }
 
-  destroyComponent(interpreter: Interpreter<any>) {
-    if (isDestroying(interpreter)) {
+  destroyComponent(actor: Interpreter<any>) {
+    if (isDestroying(actor)) {
       return;
     }
 
-    interpreter.stop();
+    actor.stop();
 
-    destroy(interpreter);
+    destroy(actor);
   }
 
-  getContext(interpreter: Interpreter<any>) {
-    return interpreter;
+  getContext(actor: Interpreter<any>) {
+    return actor;
   }
 }

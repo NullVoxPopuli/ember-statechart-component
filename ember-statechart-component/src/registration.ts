@@ -25,7 +25,7 @@ export function setupComponentMachines(override?: typeof StateMachine) {
   );
 
   setComponentTemplate(
-    precompileTemplate(`{{yield this.state this.send this.onTransition}}`, {
+    precompileTemplate(`{{yield (this.getSnapshot) this.send this.onTransition}}`, {
       strictMode: true,
     }),
     override?.prototype || StateMachine.prototype
