@@ -12,11 +12,16 @@ const Toggle = createMachine({
 });
 
 export const Toggler = <template>
+  {{log Toggle}}
+  hi
   <Toggle as |state send|>
-    {{toString state.value}}
-
-    <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-      Toggle
-    </button>
+    {{log state send}}
   </Toggle>
 </template>;
+  // <Toggle as |state send|>
+  //   {{toString state.value}}
+  //
+  //   <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+  //     Toggle
+  //   </button>
+  // </Toggle>

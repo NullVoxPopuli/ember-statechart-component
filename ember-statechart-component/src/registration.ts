@@ -1,7 +1,7 @@
 import { setComponentManager, setComponentTemplate } from '@ember/component';
 import { precompileTemplate } from '@ember/template-compilation';
 
-import { StateNode } from 'xstate';
+import { StateMachine } from 'xstate';
 
 import ComponentManager from './-private/statechart-manager.ts';
 
@@ -15,20 +15,20 @@ let isSetup = false;
  * in the dependency graph (like with linking dependencies), an `override` may
  * be passed to choose a specific XState (hopefully from the host app).
  */
-export function setupComponentMachines(override?: typeof StateNode) {
+export function setupComponentMachines(override?: typeof StateMachine) {
   if (isSetup) return;
 
   // Managers are managed globally, and not per app instance
   setComponentManager(
     (owner) => ComponentManager.create(owner),
-    override?.prototype || StateNode.prototype
+    override?.prototype || StateMachine.prototype
   );
 
   setComponentTemplate(
     precompileTemplate(`{{yield this.state this.send this.onTransition}}`, {
       strictMode: true,
     }),
-    override?.prototype || StateNode.prototype
+    override?.prototype || StateMachine.prototype
   );
 
   isSetup = true;
