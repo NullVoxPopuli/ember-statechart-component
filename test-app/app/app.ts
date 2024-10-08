@@ -3,6 +3,7 @@ import compatModules from '@embroider/virtual/compat-modules';
 import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
+import { setupComponentMachines } from 'ember-statechart-components';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
@@ -10,4 +11,5 @@ export default class App extends Application {
   Resolver = Resolver.withModules(compatModules);
 }
 
+setupComponentMachines();
 loadInitializers(App, config.modulePrefix, compatModules);

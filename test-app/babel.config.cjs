@@ -16,9 +16,7 @@ module.exports = {
     [
       'babel-plugin-ember-template-compilation',
       {
-        compilerPath: require.resolve(
-          'ember-source/dist/ember-template-compiler.js'
-        ),
+        compilerPath: 'ember-source/dist/ember-template-compiler.js',
         enableLegacyModules: [
           'ember-cli-htmlbars',
           'ember-cli-htmlbars-inline-precompile',

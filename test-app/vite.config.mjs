@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import {
   resolver,
+  hbs,
   scripts,
   templateTag,
   optimizeDeps,
@@ -27,6 +28,7 @@ export default defineConfig(({ mode }) => {
       extensions,
     },
     plugins: [
+      hbs(),
       templateTag(),
       scripts(),
       resolver(),

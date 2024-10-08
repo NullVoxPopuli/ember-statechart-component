@@ -7,6 +7,7 @@ import { start as qunitStart } from 'ember-qunit';
 import { setupComponentMachines } from 'ember-statechart-component';
 
 setupComponentMachines();
+
 export function start() {
   setApplication(Application.create(config.APP));
 

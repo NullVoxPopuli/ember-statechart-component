@@ -1,4 +1,4 @@
-import { getOwner } from '@ember/application';
+import { getOwner } from '@ember/owner';
 import { assert } from '@ember/debug';
 
 import type ApplicationInstance from '@ember/application/instance';

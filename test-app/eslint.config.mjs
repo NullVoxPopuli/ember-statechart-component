@@ -8,7 +8,6 @@ import emberRecommended from 'eslint-plugin-ember/configs/recommended';
 import gjsRecommended from 'eslint-plugin-ember/configs/recommended-gjs';
 import gtsRecommended from 'eslint-plugin-ember/configs/recommended-gts';
 
-import prettier from 'eslint-plugin-prettier/recommended';
 import qunit from 'eslint-plugin-qunit';
 import n from 'eslint-plugin-n';
 
@@ -30,7 +29,6 @@ const parserOptions = {
 
 export default ts.config(
   js.configs.recommended,
-  prettier,
   {
     files: ['**/*.js'],
     languageOptions: {
