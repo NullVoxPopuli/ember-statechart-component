@@ -3,7 +3,7 @@ import { precompileTemplate } from '@ember/template-compilation';
 
 import { StateMachine } from 'xstate';
 
-import ComponentManager from './-private/statechart-manager.ts';
+import ComponentManager from './-private/statechart-manager.js';
 
 let isSetup = false;
 

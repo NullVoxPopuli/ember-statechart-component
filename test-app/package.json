@@ -96,6 +96,7 @@
   },
   "dependencies": {
     "ember-statechart-component": "workspace:*",
+    "qunit-theme-ember": "^1.0.0",
     "xstate": "^5.18.2"
   }
 }

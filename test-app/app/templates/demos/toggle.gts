@@ -1,5 +1,4 @@
 import { createMachine } from 'xstate';
-import { toString } from './to-string';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
 
