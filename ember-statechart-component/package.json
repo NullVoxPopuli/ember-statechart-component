@@ -41,7 +41,8 @@
   },
   "dependencies": {
     "@embroider/addon-shim": "^1.8.9",
-    "@glint/template": ">= 1.0.0"
+    "@glint/template": ">= 1.0.0",
+    "decorator-transforms": "^2.2.2"
   },
   "peerDependencies": {
     "xstate": "^5.18.0"
@@ -68,7 +69,6 @@
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
     "concurrently": "^9.0.1",
-    "decorator-transforms": "^2.2.2",
     "ember-source": "^5.5.0",
     "ember-template-lint": "6.0.0",
     "eslint": "^8.57.0",

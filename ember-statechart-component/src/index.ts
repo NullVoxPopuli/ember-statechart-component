@@ -1,5 +1,5 @@
-import { getOwner } from '@ember/owner';
 import { assert } from '@ember/debug';
+import { getOwner } from '@ember/owner';
 
 import type ApplicationInstance from '@ember/application/instance';
 import type { Registry } from '@ember/service';

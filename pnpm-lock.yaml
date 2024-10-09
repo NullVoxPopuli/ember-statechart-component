@@ -64,6 +64,9 @@ importers:
       '@glint/template':
         specifier: 1.4.1-unstable.b29a807
         version: 1.4.1-unstable.b29a807
+      decorator-transforms:
+        specifier: ^2.2.2
+        version: 2.2.2(@babel/core@7.25.7)
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: ^0.16.4
@@ -125,9 +128,6 @@ importers:
       concurrently:
         specifier: ^9.0.1
         version: 9.0.1
-      decorator-transforms:
-        specifier: ^2.2.2
-        version: 2.2.2(@babel/core@7.25.7)
       ember-source:
         specifier: ^5.5.0
         version: 5.12.0(@glimmer/component@1.1.2(@babel/core@7.25.7))(@glint/template@1.4.1-unstable.b29a807)(rsvp@4.8.5)(webpack@5.95.0)

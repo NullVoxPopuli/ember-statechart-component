@@ -1,20 +1,55 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// TODO: remove all the any types -- xstate requires too many generics
-import { DEBUG } from '@glimmer/env';
+import { tracked } from '@glimmer/tracking';
 import { getOwner, setOwner } from '@ember/application';
 import { capabilities } from '@ember/component';
-import { assert } from '@ember/debug';
 import { destroy, isDestroying } from '@ember/destroyable';
-import { cancel, later } from '@ember/runloop';
 
 import { createActor, State } from 'xstate';
 
-import type { Interpreter, StateMachine,StateNode } from 'xstate';
+import type { Actor, StateMachine, StateNode } from 'xstate';
 
 export interface Args {
   named: Record<string, unknown>;
   positional: unknown[];
+}
+
+const UPDATE_EVENT_NAME = 'UPDATE';
+
+class ReactiveActor {
+  @tracked lastSnapshot = null;
+
+  #actor;
+  #callbacks = [];
+
+  get state() {
+    return this.lastSnapshot || {};
+  }
+
+  constructor(actor) {
+    this.#actor = actor;
+
+    actor.subscribe((snapshot) => {
+      console.log('setting snapshot', snapshot);
+      this.lastSnapshot = snapshot;
+      this.#callbacks.forEach((fn) => fn(snapshot));
+    });
+  }
+
+  start = () => this.#actor.start();
+  stop = () => this.#actor.stop();
+  send = (...args) => this.#actor.send(...args);
+  sendEvent = (type, ...extra) => this.#actor.send({ type, ...extra });
+
+  handleUpdate = (args) => {
+    if (Object.keys(args.named).length > 0 || args.positional.length > 0) {
+      this.send(UPDATE_EVENT_NAME, args.named);
+    }
+  };
+
+  onTransition = (callback) => {
+    this.#callbacks.push(callback);
+  };
 }
 
 export default class ComponentManager {
@@ -38,7 +73,7 @@ export default class ComponentManager {
       machine = machine.provide(named['config'] as any);
     }
 
-    let context = { };
+    let context = {};
 
     if ('context' in named) {
       Object.assign(context, named['context']);
@@ -50,33 +85,10 @@ export default class ComponentManager {
       input: context,
     });
 
-    actor.subscribe((snapshot, ...others) => {
-      console.log(snapshot, { others} );
-    });
+    let state = new ReactiveActor(actor);
+    state.start();
 
-    // if ('state' in named) {
-    //   assert(`@state must be of type State`, named.state instanceof State);
-
-    //   let resolvedState = machine.resolveState(named.state);
-
-    //   let withReactivity = reactiveInterpreter(actor);
-
-    //   withReactivity.start(resolvedState);
-
-    //   return withReactivity;
-    // }
-
-    /**
-     * Start the interpreter before we wire in reactivity,
-     * so reactivity may only be "by-use" (from the app), rather than
-     * managed by XState during its internal updates
-     */
-    actor.start();
-
-    // let withReactivity = reactiveInterpreter(actor);
-
-    // return withReactivity;
-    return actor;
+    return state;
   }
 
   /**
@@ -90,23 +102,21 @@ export default class ComponentManager {
    * "handle everything within the statechart and don't pass args",
    * it should be good enough.
    */
-  updateComponent(actor: Interpreter<any>, args: Args) {
-    if (Object.keys(args.named).length > 0 || args.positional.length > 0) {
-      actor.send(UPDATE_EVENT_NAME, args.named);
-    }
+  updateComponent(state: ReactiveActor, args: Args) {
+    state.handleUpdate(args);
   }
 
-  destroyComponent(actor: Interpreter<any>) {
-    if (isDestroying(actor)) {
+  destroyComponent(state: ReactiveActor) {
+    if (isDestroying(state)) {
       return;
     }
 
-    actor.stop();
+    state.stop();
 
-    destroy(actor);
+    destroy(state);
   }
 
-  getContext(actor: Interpreter<any>) {
-    return actor;
+  getContext(state: ReactiveActor) {
+    return state;
   }
 }
