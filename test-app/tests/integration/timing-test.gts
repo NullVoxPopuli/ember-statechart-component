@@ -1,51 +1,55 @@
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// import { render } from '@ember/test-helpers';
-// import { hbs } from 'ember-cli-htmlbars';
-// import { module, test } from 'qunit';
-// import { setupRenderingTest } from 'ember-qunit';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-// import { createMachine } from 'xstate';
+import { render } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-// declare module '@ember/service' {
-//   interface Registry {
-//     'test-state': any; // determined in tests
-//   }
-// }
+import { setup, fromPromise } from 'xstate';
 
-// module('Timing', function (hooks) {
-//   setupRenderingTest(hooks);
+declare module '@ember/service' {
+  interface Registry {
+    'test-state': any; // determined in tests
+  }
+}
 
-//   module('Infinite (Re|In)validation messaging', function () {
-//     test('Can have an initial state with invoke', async function (assert) {
-//       let machine = createMachine({
-//         initial: 'waiting',
-//         states: {
-//           stateA: {},
-//           waiting: {
-//             invoke: {
-//               src: () => (send) => {
-//                 send('IMPLICTLY_NEXT');
-//               },
-//               onDone: {},
-//               onError: {},
-//             },
-//             on: {
-//               IMPLICTLY_NEXT: 'stateA',
-//             },
-//           },
-//         },
-//       });
+module('Timing', function (hooks) {
+  setupRenderingTest(hooks);
 
-//       this.owner.register('component:test-machine', machine);
+  module('Infinite (Re|In)validation messaging', function () {
+    test('Can have an initial state with invoke', async function (assert) {
+      const machine = setup({
+        actors: {
+          goNext: fromPromise(({ emit}) => {
+            emit('IMPLICTLY_NEXT');
+          })
+        },
+      }).createMachine({
+        initial: 'waiting',
+        states: {
+          stateA: {},
+          waiting: {
+            invoke: {
+              src: 'goNext',
+              onDone: {},
+              onError: {},
+            },
+            on: {
+              IMPLICTLY_NEXT: 'stateA',
+            },
+          },
+        },
+      });
 
-//       await render(hbs`
-//         <TestMachine as |state|>
-//           {{to-string state.value}}
-//         </TestMachine>
-//       `);
+      this.owner.register('component:test-machine', machine);
 
-//       assert.dom().containsText('stateA');
-//     });
-//   });
-// });
+      await render(<template>
+        <machine as |state|>
+          {{state.value}}
+        </machine>
+      </template>);
+
+      assert.dom().containsText('stateA');
+    });
+  });
+});

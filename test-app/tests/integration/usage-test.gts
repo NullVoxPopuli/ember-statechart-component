@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
 import Service from '@ember/service';
-import { getOwner } from '@ember/owner';
 import { clearRender, render } from '@ember/test-helpers';
 import click from '@ember/test-helpers/dom/click';
 import { module, test } from 'qunit';
@@ -243,7 +242,7 @@ module('Usage', function (hooks) {
       },
     });
 
-    let input = {
+    const input = {
       numCalled: 10,
     };
 
@@ -367,7 +366,7 @@ let context = { numCalled: null };
 
     assert.expect(2);
 
-    const doSomething = (snapshot) => {
+    const doSomething = (snapshot: { value: string }) => {
       assert.step(snapshot.value);
     };
 
