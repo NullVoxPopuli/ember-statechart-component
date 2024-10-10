@@ -1,27 +1,35 @@
 import { tracked } from '@glimmer/tracking';
 import { getOwner, setOwner } from '@ember/application';
 import { capabilities } from '@ember/component';
-import { destroy, isDestroying } from '@ember/destroyable';
+import { destroy, isDestroying, associateDestroyableChild } from '@ember/destroyable';
 
-import { createActor } from 'xstate';
+import { waitForPromise } from '@ember/test-waiters';
+import { toPromise, createActor } from 'xstate';
 
 const UPDATE_EVENT_NAME = 'UPDATE';
 
 class ReactiveActor {
-  @tracked lastSnapshot = null;
+  @tracked lastSnapshot;
 
   #actor;
   #callbacks = [];
 
   get state() {
-    return this.lastSnapshot || {};
+    return this.lastSnapshot;
   }
 
-  constructor(actor) {
+  constructor(actor, owner) {
     this.#actor = actor;
+    setOwner(this, owner);
+
+    let initialSnapshot = actor.getSnapshot();
+    let context = initialSnapshot.context;
+
+    setOwner(context, owner);
+
+    this.lastSnapshot = initialSnapshot;
 
     actor.subscribe((snapshot) => {
-      console.log('setting snapshot', snapshot);
       this.lastSnapshot = snapshot;
       this.#callbacks.forEach((fn) => fn(snapshot));
     });
@@ -30,7 +38,7 @@ class ReactiveActor {
   start = () => this.#actor.start();
   stop = () => this.#actor.stop();
   send = (...args) => {
-    if (args.length === 1 && typeof args[0] === 'string') {
+    if (typeof args[0] === 'string') {
       this.#actor.send({ type: args[0] });
       return;
     }
@@ -76,13 +84,16 @@ export default class ComponentManager {
       Object.assign(context, named['context']);
     }
 
-    setOwner(context, getOwner(this));
+    let owner = getOwner(this);
 
     let actor = createActor(machine, {
       input: context,
     });
 
-    let state = new ReactiveActor(actor);
+    let state = new ReactiveActor(actor, owner);
+
+    associateDestroyableChild(actor, this);
+
     state.start();
 
     return state;

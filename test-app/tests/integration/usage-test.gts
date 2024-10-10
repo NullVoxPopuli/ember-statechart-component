@@ -3,6 +3,7 @@
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
 import Service from '@ember/service';
+import { getOwner } from '@ember/owner';
 import { clearRender, render } from '@ember/test-helpers';
 import click from '@ember/test-helpers/dom/click';
 import { module, test } from 'qunit';
@@ -18,6 +19,10 @@ declare module '@ember/service' {
     'test-state': any; // determined in tests
   }
 }
+
+// Pending fix in glimmer-vm
+// state.matches *should* just work
+const call = (obj, fun, ...args) => fun.call(obj, ...args);
 
 /**
  * any casting will be fixed when tests can be gts
@@ -54,87 +59,87 @@ module('Usage', function (hooks) {
     assert.dom().containsText('active');
   });
 
-  // test('can use services', async function (assert) {
-  //   const Toggle = createMachine(
-  //     {
-  //       initial: 'inactive',
-  //       states: {
-  //         inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
-  //         active: { entry: 'increment', on: { TOGGLE: 'inactive' } },
-  //       },
-  //     },
-  //     {
-  //       actions: {
-  //         increment: (ctx) => {
-  //           getService(ctx, 'test-state').foo++;
-  //         },
-  //       },
-  //     }
-  //   );
-  //
-  //   this.owner.register(
-  //     'service:test-state',
-  //     class TestState extends Service {
-  //       foo = 0;
-  //     }
-  //   );
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle as |state send|>
-  //         {{toString state.value}}
-  //
-  //         <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //           Toggle
-  //         </button>
-  //       </Toggle>
-  //     </template>
-  //   );
-  //
-  //   const testState = this.owner.lookup('service:test-state') as { foo: number };
-  //
-  //   assert.strictEqual(testState.foo, 1);
-  //
-  //   await click('button');
-  //   assert.strictEqual(testState.foo, 2);
-  //
-  //   await click('button');
-  //   assert.strictEqual(testState.foo, 3);
-  // });
-  //
-  // test(`it can use XState's builtin matches function`, async function (assert) {
-  //   const Toggle = createMachine({
-  //     initial: 'inactive',
-  //     states: {
-  //       inactive: { on: { TOGGLE: 'active' } },
-  //       active: { on: { TOGGLE: 'inactive' } },
-  //     },
-  //   });
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle as |state send|>
-  //         {{#if (state.matches "inactive")}}
-  //           The inactive state
-  //         {{else if (state.matches "active")}}
-  //           The active state
-  //         {{else}}
-  //           Unknown state
-  //         {{/if}}
-  //
-  //         <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //           Toggle
-  //         </button>
-  //       </Toggle>
-  //     </template>
-  //   );
-  //
-  //   assert.dom().containsText('The inactive state');
-  //
-  //   await click('button');
-  //
-  //   assert.dom().containsText('The active state');
-  // });
+  test('can use services', async function (assert) {
+    const Toggle = createMachine(
+      {
+        initial: 'inactive',
+        states: {
+          inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
+          active: { entry: 'increment', on: { TOGGLE: 'inactive' } },
+        },
+      },
+      {
+        actions: {
+          increment: ({ context }) => {
+            getService(context, 'test-state').foo++;
+          },
+        },
+      }
+    );
+
+    this.owner.register(
+      'service:test-state',
+      class TestState extends Service {
+        foo = 0;
+      }
+    );
+
+    await render(
+      <template>
+        <Toggle as |state send|>
+          {{state.value}}
+
+          <button type="button" {{on "click" (fn send "TOGGLE")}}>
+            Toggle
+          </button>
+        </Toggle>
+      </template>
+    );
+
+    const testState = this.owner.lookup('service:test-state') as { foo: number };
+
+    assert.strictEqual(testState.foo, 1);
+
+    await click('button');
+    assert.strictEqual(testState.foo, 2);
+
+    await click('button');
+    assert.strictEqual(testState.foo, 3);
+  });
+
+  test(`it can use XState's builtin matches function`, async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    await render(
+      <template>
+        <Toggle as |state send|>
+          {{#if (call state state.matches "inactive")}}
+            The inactive state
+          {{else if (call state state.matches "active")}}
+            The active state
+          {{else}}
+            Unknown state
+          {{/if}}
+
+          <button type="button" {{on "click" (fn send "TOGGLE")}}>
+            Toggle
+          </button>
+        </Toggle>
+      </template>
+    );
+
+    assert.dom().containsText('The inactive state');
+
+    await click('button');
+
+    assert.dom().containsText('The active state');
+  });
   //
   // test('multiple invocations have their own state', async function (assert) {
   //   const Toggle = createMachine({
