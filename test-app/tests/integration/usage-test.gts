@@ -140,84 +140,84 @@ module('Usage', function (hooks) {
 
     assert.dom().containsText('The active state');
   });
-  //
-  // test('multiple invocations have their own state', async function (assert) {
-  //   const Toggle = createMachine({
-  //     initial: 'inactive',
-  //     states: {
-  //       inactive: { on: { TOGGLE: 'active' } },
-  //       active: { on: { TOGGLE: 'inactive' } },
-  //     },
-  //   });
-  //
-  //   await render(
-  //     <template>
-  //       <div id="one">
-  //         <Toggle as |state send|>
-  //           {{toString state.value}}
-  //
-  //           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //             Toggle
-  //           </button>
-  //         </Toggle>
-  //       </div>
-  //       <div id="two">
-  //         <Toggle as |state send|>
-  //           {{toString state.value}}
-  //
-  //           <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //             Toggle
-  //           </button>
-  //         </Toggle>
-  //       </div>
-  //     </template>
-  //   );
-  //
-  //   assert.dom('#one').containsText('inactive');
-  //   assert.dom('#two').containsText('inactive');
-  //
-  //   await click('#one button');
-  //
-  //   assert.dom('#one').doesNotContainText('inactive');
-  //   assert.dom('#one').containsText('active');
-  //   assert.dom('#two').containsText('inactive');
-  // });
-  //
-  // test('can pass config', async function (assert) {
-  //   const Toggle = createMachine({
-  //     initial: 'inactive',
-  //     states: {
-  //       inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
-  //       active: { entry: 'increment', on: { TOGGLE: 'inactive' } },
-  //     },
-  //   });
-  //
-  //   let numCalled = 0;
-  //
-  //   const config = {
-  //     actions: {
-  //       increment: () => numCalled++,
-  //     },
-  //   };
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle @config={{config}} as |_state send|>
-  //         <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //           Toggle
-  //         </button>
-  //       </Toggle>
-  //     </template>
-  //   );
-  //
-  //   assert.strictEqual(numCalled, 1);
-  //
-  //   await click('button');
-  //   assert.strictEqual(numCalled, 2);
-  //
-  //   await click('button');
-  //   assert.strictEqual(numCalled, 3);
-  // });
+
+  test('multiple invocations have their own state', async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    await render(
+      <template>
+        <div id="one">
+          <Toggle as |state send|>
+            {{state.value}}
+
+            <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+              Toggle
+            </button>
+          </Toggle>
+        </div>
+        <div id="two">
+          <Toggle as |state send|>
+            {{state.value}}
+
+            <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+              Toggle
+            </button>
+          </Toggle>
+        </div>
+      </template>
+    );
+
+    assert.dom('#one').containsText('inactive');
+    assert.dom('#two').containsText('inactive');
+
+    await click('#one button');
+
+    assert.dom('#one').doesNotContainText('inactive');
+    assert.dom('#one').containsText('active');
+    assert.dom('#two').containsText('inactive');
+  });
+
+  test('can pass config', async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { entry: 'increment', on: { TOGGLE: 'active' } },
+        active: { entry: 'increment', on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    let numCalled = 0;
+
+    const config = {
+      actions: {
+        increment: () => numCalled++,
+      },
+    };
+
+    await render(
+      <template>
+        <Toggle @config={{config}} as |_state send|>
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </Toggle>
+      </template>
+    );
+
+    assert.strictEqual(numCalled, 1);
+
+    await click('button');
+    assert.strictEqual(numCalled, 2);
+
+    await click('button');
+    assert.strictEqual(numCalled, 3);
+  });
   //
   // test('can pass context', async function (assert) {
   //   const Toggle = createMachine({
