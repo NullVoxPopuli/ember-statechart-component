@@ -151,26 +151,6 @@ Usage:
 </Toggle>
 ```
 
-### Glint
-
-Having type checking with these state machines can be done automatically
-after importing the `/glint` file in your `types/<app-name>/glint-registry.d.ts`.
-
-```ts
-import "@glint/environment-ember-loose";
-import "@glint/environment-ember-loose/native-integration";
-import "ember-page-title/glint";
-
-// This import extends the type of `StateMachine` to be glint-compatible
-import 'ember-statechart-component/glint';
-
-declare module "@glint/environment-ember-loose/registry" {
-  export default interface Registry {
-    // How to define globals from external addons
-  }
-}
-```
-
 ### API
 
 #### `@config`
