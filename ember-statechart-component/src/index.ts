@@ -17,4 +17,4 @@ export function getService<Key extends keyof Registry>(
   return service;
 }
 
-export { setupComponentMachines } from './registration.ts';
+export { setupComponentMachines } from './registration.js';

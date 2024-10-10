@@ -218,56 +218,60 @@ module('Usage', function (hooks) {
     await click('button');
     assert.strictEqual(numCalled, 3);
   });
-  //
-  // test('can pass context', async function (assert) {
-  //   const Toggle = createMachine({
-  //     initial: 'inactive',
-  //     context: {
-  //       numCalled: 0,
-  //     },
-  //     states: {
-  //       inactive: {
-  //         entry: assign({
-  //           numCalled: (ctx: any) => ctx.numCalled + 1,
-  //         }),
-  //         on: { TOGGLE: 'active' },
-  //       },
-  //       active: {
-  //         entry: assign({
-  //           numCalled: (ctx: any) => ctx.numCalled + 1,
-  //         }),
-  //         on: { TOGGLE: 'inactive' },
-  //       },
-  //     },
-  //   });
-  //
-  //   let context = {
-  //     numCalled: 10,
-  //   };
-  //
-  //   const report = (data: any) => (context = data);
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle @context={{context}} as |state send|>
-  //         {{report state.context}}
-  //
-  //         <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //           Toggle
-  //         </button>
-  //       </Toggle>
-  //     </template>
-  //   );
-  //
-  //   assert.strictEqual(context.numCalled, 11);
-  //
-  //   await click('button');
-  //   assert.strictEqual(context.numCalled, 12);
-  //
-  //   await click('button');
-  //   assert.strictEqual(context.numCalled, 13);
-  // });
-  //
+
+  test('can pass context', async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      context: ({ input }) => {
+        return {
+          numCalled: input.numCalled ?? 0,
+        }
+      },
+      states: {
+        inactive: {
+          entry: assign({
+            numCalled: ({ context }) => context.numCalled + 1,
+          }),
+          on: { TOGGLE: 'active' },
+        },
+        active: {
+          entry: assign({
+            numCalled: ({ context }) => context.numCalled + 1,
+          }),
+          on: { TOGGLE: 'inactive' },
+        },
+      },
+    });
+
+    let input = {
+      numCalled: 10,
+    };
+
+let context = { numCalled: null };
+
+    const report = (data: any) => (context = data);
+
+    await render(
+      <template>
+        <Toggle @input={{input}} @context={{input}} as |state send|>
+          {{report state.context}}
+
+          <button type="button" {{on "click" (fn send "TOGGLE")}}>
+            Toggle
+          </button>
+        </Toggle>
+      </template>
+    );
+
+    assert.strictEqual(context.numCalled, 11);
+
+    await click('button');
+    assert.strictEqual(context.numCalled, 12);
+
+    await click('button');
+    assert.strictEqual(context.numCalled, 13);
+  });
+
   // test('merging passed context by default', async function (assert) {
   //   const Toggle = createMachine({
   //     initial: 'inactive',

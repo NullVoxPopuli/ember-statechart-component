@@ -78,16 +78,22 @@ export default class ComponentManager {
       machine = machine.provide(named['config']);
     }
 
+    let input = {};
     let context = {};
 
+    if ('input' in named) {
+      Object.assign(input, named['input']);
+    }
     if ('context' in named) {
       Object.assign(context, named['context']);
     }
 
     let owner = getOwner(this);
 
+    console.log({ input, context });
     let actor = createActor(machine, {
-      input: context,
+      input,
+      context,
     });
 
     let state = new ReactiveActor(actor, owner);
