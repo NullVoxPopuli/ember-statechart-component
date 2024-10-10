@@ -253,7 +253,7 @@ let context = { numCalled: null };
 
     await render(
       <template>
-        <Toggle @input={{input}} @context={{input}} as |state send|>
+        <Toggle @input={{input}} as |state send|>
           {{report state.context}}
 
           <button type="button" {{on "click" (fn send "TOGGLE")}}>
@@ -272,29 +272,29 @@ let context = { numCalled: null };
     assert.strictEqual(context.numCalled, 13);
   });
 
-  // test('merging passed context by default', async function (assert) {
-  //   const Toggle = createMachine({
-  //     initial: 'inactive',
-  //     context: { foo: 'foo' },
-  //     states: {
-  //       inactive: { on: { TOGGLE: 'active' } },
-  //       active: { on: { TOGGLE: 'inactive' } },
-  //     },
-  //   });
-  //
-  //   const context = { bar: 'bar' };
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle @context={{context}} as |state|>
-  //         {{state.context.foo}},
-  //         {{state.context.bar}}
-  //       </Toggle>
-  //     </template>
-  //   );
-  //
-  //   assert.dom().containsText('foo, bar');
-  // });
+  test('merging passed context by default', async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      context: ({ input }) => Object.assign({ foo: 'foo' }, input),
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    const input = { bar: 'bar' };
+
+    await render(
+      <template>
+        <Toggle @input={{input}} as |state|>
+          {{state.context.foo}},
+          {{state.context.bar}}
+        </Toggle>
+      </template>
+    );
+
+    assert.dom().containsText('foo, bar');
+  });
   //
   // test('can pass initial state', async function (assert) {
   //   const Toggle = createMachine({
