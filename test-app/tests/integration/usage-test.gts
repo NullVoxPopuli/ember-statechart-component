@@ -295,90 +295,91 @@ let context = { numCalled: null };
 
     assert.dom().containsText('foo, bar');
   });
-  //
-  // test('can pass initial state', async function (assert) {
-  //   const Toggle = createMachine({
-  //     initial: 'inactive',
-  //     states: {
-  //       inactive: { on: { TOGGLE: 'active' } },
-  //       active: { on: { TOGGLE: 'inactive' } },
-  //     },
-  //   });
-  //
-  //   let previousState: State<unknown> | null = null;
-  //
-  //   const report = (state: State<unknown>) => (previousState = state);
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle as |state send|>
-  //         {{toString state.value}}
-  //         {{report state}}
-  //
-  //         <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //           Toggle
-  //         </button>
-  //       </Toggle>
-  //     </template>
-  //   );
-  //
-  //   assert.dom().containsText('inactive');
-  //
-  //   await click('button');
-  //
-  //   assert.dom().doesNotContainText('inactive');
-  //   assert.dom().containsText('active');
-  //
-  //   assert.ok(previousState, 'previous state has been captured');
-  //
-  //   await clearRender();
-  //
-  //   assert.dom().hasNoText('component unmounted');
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle @state={{previousState}} as |state send|>
-  //         {{toString state.value}}
-  //         {{report state}}
-  //
-  //         <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
-  //           Toggle
-  //         </button>
-  //       </Toggle>
-  //     </template>
-  //   );
-  //
-  //   assert.dom().doesNotContainText('inactive');
-  //   assert.dom().containsText('active');
-  //
-  //   await click('button');
-  //
-  //   assert.dom().containsText('inactive');
-  // });
-  //
-  // // eslint-disable-next-line qunit/require-expect
-  // test('can pass onTransition callback', async function (assert) {
-  //   const Toggle = createMachine({
-  //     initial: 'inactive',
-  //     states: {
-  //       inactive: { on: { TOGGLE: 'active' } },
-  //       active: { on: { TOGGLE: 'inactive' } },
-  //     },
-  //   });
-  //
-  //   assert.expect(2);
-  //
-  //   const doSomething = (state: { value: string }, event: { type: string }) => {
-  //     assert.strictEqual(state.value, event.type === 'xstate.init' ? 'inactive' : 'active');
-  //   };
-  //
-  //   await render(
-  //     <template>
-  //       <Toggle as |_state send onTransition|>
-  //         {{onTransition doSomething}}
-  //         {{send "TOGGLE"}}
-  //       </Toggle>
-  //     </template>
-  //   );
-  // });
+
+  test('can pass initial state', async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    let previousState: State<unknown> | null = null;
+
+    const report = (state: State<unknown>) => (previousState = state);
+
+    await render(
+      <template>
+        <Toggle as |state send|>
+          {{state.value}}
+          {{report state}}
+
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </Toggle>
+      </template>
+    );
+
+    assert.dom().containsText('inactive');
+
+    await click('button');
+
+    assert.dom().doesNotContainText('inactive');
+    assert.dom().containsText('active');
+
+    assert.ok(previousState, 'previous state has been captured');
+
+    await clearRender();
+
+    assert.dom().hasNoText('component unmounted');
+
+    await render(
+      <template>
+        <Toggle @snapshot={{previousState}} as |state send|>
+          {{state.value}}
+          {{report state}}
+
+          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            Toggle
+          </button>
+        </Toggle>
+      </template>
+    );
+
+    assert.dom().doesNotContainText('inactive');
+    assert.dom().containsText('active');
+
+    await click('button');
+
+    assert.dom().containsText('inactive');
+  });
+
+  test('can pass onTransition callback', async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    assert.expect(2);
+
+    const doSomething = (snapshot) => {
+      assert.step(snapshot.value);
+    };
+
+    await render(
+      <template>
+        <Toggle as |_state send onTransition|>
+          {{onTransition doSomething}}
+          {{send "TOGGLE"}}
+        </Toggle>
+      </template>
+    );
+
+  assert.verifySteps(['active'])
+  });
 });

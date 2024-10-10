@@ -78,24 +78,23 @@ export default class ComponentManager {
       machine = machine.provide(named['config']);
     }
 
+    let options = {};
     let input = {};
     let context = {};
+    let snapshot = {};
 
     if ('input' in named) {
-      Object.assign(input, named['input']);
+      options.input = named['input'];
     }
     if ('context' in named) {
-      Object.assign(context, named['context']);
+      options.context = named['context'];
+    }
+    if ('snapshot' in named) {
+      options.snapshot = named['snapshot'];
     }
 
     let owner = getOwner(this);
-
-    console.log({ input, context });
-    let actor = createActor(machine, {
-      input,
-      context,
-    });
-
+    let actor = createActor(machine, options);
     let state = new ReactiveActor(actor, owner);
 
     associateDestroyableChild(actor, this);
