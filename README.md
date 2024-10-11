@@ -61,48 +61,44 @@ See: https://stately.ai/docs/migration
 Usage
 ------------------------------------------------------------------------------
 
-Example with Ember Octane
-
-```js
-// app/components/toggle.js
+```gjs
 import { createMachine } from 'xstate';
 
-export default createMachine({
+const Toggler = createMachine({
   initial: 'inactive',
   states: {
     inactive: { on: { TOGGLE: 'active' } },
     active: { on: { TOGGLE: 'inactive' } },
   },
 });
+
+<template>
+  <Toggler as |snapshot send|>
+    {{snapshot.value}}
+
+    <button {{on 'click' (fn send 'TOGGLE')}}>
+      Toggle
+    </button>
+  </Toggler>
+</template>
 ```
-
-Usage:
-
-```hbs
-<Toggle as |state send|>
-  {{state.value}}
-
-  <button {{on 'click' (fn send 'TOGGLE')}}>
-    Toggle
-  </button>
-</Toggle>
-```
-
-The default template for every `createMachine(..)` is
-```hbs
-{{yield this.state this.send}}
-```
-but that can be overriden to suit your needs by defining your own template.
-The `this` is an instance of the [XState Interpreter](https://xstate.js.org/api/classes/interpreter.html)
 
 ### Accessing EmberJS Services
 
-```js
-// app/components/authenticated-toggle.js
+```gjs
 import { getService } from 'ember-statechart-component';
-import { createMachine } from 'xstate';
+import { setup } from 'xstate';
 
-export default createMachine({
+const AuthenticatedToggle = setup({
+  actions: {
+    notify: (ctx) => {
+      getService(ctx, 'toasts').notify('You must be logged in');
+    },
+  },
+  guards: {
+    isAuthenticated: (ctx) => getService(ctx, 'session').isAuthenticated,
+  },
+}).createMachine({
   initial: 'inactive',
   states: {
     inactive: {
@@ -118,29 +114,19 @@ export default createMachine({
     },
     active: { on: { TOGGLE: 'inactive' } },
   },
-}, {
-  actions: {
-    notify: (ctx) => {
-      getService(ctx, 'toasts').notify('You must be logged in');
-    },
-  },
-  guards: {
-    isAuthenticated: (ctx) => getService(ctx, 'session').isAuthenticated,
-  },
 });
+
+<template>
+  <AuthenticatedToggle as |snapshot send|>
+    {{snapshot.value}}
+
+    <button {{on 'click' (fn send 'TOGGLE')}}>
+      Toggle
+    </button>
+  </AuthenticatedToggle>
+</template>
 ```
 
-Usage:
-
-```hbs
-<AuthenticatedToggle as |state send|>
-  {{state.value}}
-
-  <button {{on 'click' (fn send 'TOGGLE')}}>
-    Toggle
-  </button>
-</AuthenticatedToggle>
-```
 
 ### Matching States
 
