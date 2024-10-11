@@ -372,8 +372,8 @@ let context = { numCalled: null };
 
     await render(
       <template>
-        <Toggle as |_state send onTransition|>
-          {{onTransition doSomething}}
+        <Toggle as |_state send actor|>
+          {{actor.onTransition doSomething}}
           {{send "TOGGLE"}}
         </Toggle>
       </template>

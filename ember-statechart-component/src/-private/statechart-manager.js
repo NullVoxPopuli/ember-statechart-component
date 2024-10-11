@@ -8,6 +8,12 @@ import { toPromise, createActor } from 'xstate';
 
 const UPDATE_EVENT_NAME = 'UPDATE';
 
+/**
+ * TODO: change secord yield (send)
+ * to just the actor
+ *
+ * rename state to snapshot
+ */
 class ReactiveActor {
   @tracked lastSnapshot;
 
@@ -16,6 +22,10 @@ class ReactiveActor {
 
   get state() {
     return this.lastSnapshot;
+  }
+
+  get actor() {
+    return this.#actor;
   }
 
   constructor(actor, owner) {
@@ -29,9 +39,13 @@ class ReactiveActor {
 
     this.lastSnapshot = initialSnapshot;
 
+    // TODO: don't set if the snapshot is the same
     actor.subscribe((snapshot) => {
       this.lastSnapshot = snapshot;
       this.#callbacks.forEach((fn) => fn(snapshot));
+    });
+    actor.on('*', (emitted) => {
+      console.log('emitted', emitted); // Any emitted event
     });
   }
 

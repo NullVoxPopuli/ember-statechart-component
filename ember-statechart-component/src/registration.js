@@ -25,7 +25,7 @@ export function setupComponentMachines(override) {
   );
 
   setComponentTemplate(
-    precompileTemplate(`{{yield this.state this.send this.onTransition}}`, {
+    precompileTemplate(`{{yield this.state this.send this.actor}}`, {
       strictMode: true,
     }),
     override?.prototype || StateMachine.prototype

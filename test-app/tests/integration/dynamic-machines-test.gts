@@ -275,7 +275,6 @@ return 'new value';
 
       await click('#update-context');
 
-await this.pauseTest();
       assert.dom('out').containsText('new value');
 
       assert.verifySteps([
