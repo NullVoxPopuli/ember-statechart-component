@@ -1,11 +1,25 @@
-ember-statechart-component
-==============================================================================
+
+<p align="center">
+  <br />
+
+  <span style="display: inline-flex;">
+    <span style="font-size:4rem; margin-top: -0.5rem;">&lt;</span>
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/statelyai/public-assets/main/logos/xstate-logo-white-nobg.svg">
+        <img alt="XState logotype" src="https://raw.githubusercontent.com/statelyai/public-assets/main/logos/xstate-logo-black-nobg.svg" width="200">
+      </picture>
+    <span style="font-size:4rem; margin-top: -0.5rem;">&gt;</span>
+  </span>
+  <br />
+    <strong>Actor-based state-management as components.</strong> <a href="https://stately.ai/docs">→ Documentation</a>
+  <br />
+  <br />
+</p>
+
 
 [![CI](https://github.com/NullVoxPopuli/ember-statechart-component/actions/workflows/ci.yml/badge.svg)](https://github.com/NullVoxPopuli/ember-statechart-component/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/ember-statechart-component.svg)](https://www.npmjs.com/package/ember-statechart-component)
 
-
-Use [XState](https://xstate.js.org/) Machines *as* components.
 
 Support
 ------------------------------------------------------------------------------
