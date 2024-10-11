@@ -77,12 +77,12 @@ import { setup } from 'xstate';
 
 const AuthenticatedToggle = setup({
   actions: {
-    notify: (ctx) => {
-      getService(ctx, 'toasts').notify('You must be logged in');
+    notify: ({ context }) => {
+      getService(context, 'toasts').notify('You must be logged in');
     },
   },
   guards: {
-    isAuthenticated: (ctx) => getService(ctx, 'session').isAuthenticated,
+    isAuthenticated: ({ context }) => getService(context, 'session').isAuthenticated,
   },
 }).createMachine({
   initial: 'inactive',
@@ -134,6 +134,7 @@ const AuthenticatedToggle = setup({
 
 ### API
 
+
 #### `@config`
 
 This argument allows you to pass a [MachineOptions](https://xstate.js.org/docs/packages/xstate-fsm/#api) for [actions](https://xstate.js.org/docs/guides/actions.html), [services](https://xstate.js.org/docs/guides/communication.html#configuring-services), [guards](https://xstate.js.org/docs/guides/guards.html#serializing-guards), etc.
@@ -177,6 +178,10 @@ as |state send|>
   </button>
 </Toggle>
 ```
+
+#### `@input`
+
+TODO: write this
 
 #### `@context`
 
@@ -233,9 +238,9 @@ export default createMachine({
 </Toggle>
 ```
 
-#### `@state`
+#### `@snapshot`
 
-The machine will use `@state` as the initial state.
+The machine will use `@snapshot` as the initial state.
 Any changes to this argument
 are not automatically propagated to the machine.
 An `ARGS_UPDATE` event (see details below) is sent instead.
@@ -246,20 +251,6 @@ An event will be sent to the machine for you, `ARGS_UPDATE`, along
 with all named arguments used to invoke the component.
 
 
-Compatibility
-------------------------------------------------------------------------------
-
-* [ember-source][gh-ember-source] v3.28+
-* [typescript][gh-typescript] v4.5+
-* [ember-auto-import][gh-ember-auto-import] v2+
-* A browser that supports [Proxy](https://caniuse.com/proxy)
-* [Glint][gh-glint] 0.8.3+
-  * Note that updates to glint support will not be covered by this library's adherance to SemVer. All glint-related updates will be bugfixes until Glint is declared stable.
-
-[gh-glint]: https://github.com/typed-ember/glint/
-[gh-ember-auto-import]: https://github.com/ef4/ember-auto-import
-[gh-ember-source]: https://github.com/emberjs/ember.js/
-[gh-typescript]: https://github.com/Microsoft/TypeScript/releases
 
 Contributing
 ------------------------------------------------------------------------------
