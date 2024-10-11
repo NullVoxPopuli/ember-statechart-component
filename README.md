@@ -3,7 +3,7 @@
   <br />
 
   <picture>
-    <img alt="XState logotype" src="https://private-user-images.githubusercontent.com/199018/375621939-60d4d2a0-40b5-4f5d-9f52-74f47f6c3528.png">
+    <img alt="XState logotype" src="/logo-dark.png">
   </picture>
   <br />
     <strong>Actor-based state-management as components.</strong> <a href="https://stately.ai/docs">→ Documentation</a>
