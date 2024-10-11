@@ -2,14 +2,9 @@
 <p align="center">
   <br />
 
-  <span style="display: inline-flex;">
-    <span style="font-size:4rem; margin-top: -0.5rem;">&lt;</span>
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/statelyai/public-assets/main/logos/xstate-logo-white-nobg.svg">
-        <img alt="XState logotype" src="https://raw.githubusercontent.com/statelyai/public-assets/main/logos/xstate-logo-black-nobg.svg" width="200">
-      </picture>
-    <span style="font-size:4rem; margin-top: -0.5rem;">&gt;</span>
-  </span>
+  <picture>
+    <img alt="XState logotype" src="https://raw.githubusercontent.com/statelyai/public-assets/main/logos/xstate-logo-black-nobg.svg">
+  </picture>
   <br />
     <strong>Actor-based state-management as components.</strong> <a href="https://stately.ai/docs">→ Documentation</a>
   <br />
