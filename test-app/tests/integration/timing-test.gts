@@ -1,39 +1,32 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { setup, fromPromise } from 'xstate';
-
-declare module '@ember/service' {
-  interface Registry {
-    'test-state': any; // determined in tests
-  }
-}
+import { setup, fromPromise, createMachine, sendTo } from 'xstate';
 
 module('Timing', function (hooks) {
   setupRenderingTest(hooks);
 
   module('Infinite (Re|In)validation messaging', function () {
     test('Can have an initial state with invoke', async function (assert) {
-      const machine = setup({
-        actors: {
-          goNext: fromPromise(({ emit}) => {
-            emit('IMPLICTLY_NEXT');
-          })
-        },
-      }).createMachine({
+      const Machine = createMachine({
         initial: 'waiting',
         states: {
           stateA: {},
           waiting: {
             invoke: {
-              src: 'goNext',
+              id: 'transition-away-immediately',
+              src: fromPromise(({ input }) => {
+                input.parent.send({ type: 'IMPLICTLY_NEXT' });
+              }),
+              input: ({ self }) => ({ parent: self }),
               onDone: {},
               onError: {},
             },
+            entry: sendTo('transition-away-immediately', ({ self }) => ({
+              sender: self,
+            })),
             on: {
               IMPLICTLY_NEXT: 'stateA',
             },
@@ -41,13 +34,13 @@ module('Timing', function (hooks) {
         },
       });
 
-      this.owner.register('component:test-machine', machine);
-
-      await render(<template>
-        <machine as |state|>
-          {{state.value}}
-        </machine>
-      </template>);
+      await render(
+        <template>
+          <Machine as |state|>
+            {{state.value}}
+          </Machine>
+        </template>
+      );
 
       assert.dom().containsText('stateA');
     });
