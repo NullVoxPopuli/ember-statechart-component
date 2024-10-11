@@ -1,47 +1,38 @@
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// import { render } from '@ember/test-helpers';
-// import { hbs } from 'ember-cli-htmlbars';
-// import { module, test } from 'qunit';
-// import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { fn } from '@ember/helper';
+import * as em from 'ember-modifier';
 
-// import { createMachine } from 'xstate';
+import { createMachine } from 'xstate';
 
-// declare module '@ember/service' {
-//   interface Registry {
-//     'test-state': any; // determined in tests
-//   }
-// }
+module('Modifiers', function (hooks) {
+  setupRenderingTest(hooks);
 
-// module('Modifiers', function (hooks) {
-//   setupRenderingTest(hooks);
+  test('a modifier can trigger an update to a machine', async function (assert) {
+    const customModifier = em.modifier((_element: Element, [toggle]: [() => void]) => { toggle(); });
 
-//   test('a modifier can trigger an update to a machine', async function (assert) {
-//     this.setProperties({
-//       customModifier: (_element: Element, toggle: () => void) => toggle(),
-//     });
+    const ToggleMachine = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
 
-//     let toggle = createMachine({
-//       initial: 'inactive',
-//       states: {
-//         inactive: { on: { TOGGLE: 'active' } },
-//         active: { on: { TOGGLE: 'inactive' } },
-//       },
-//     });
+    await render(
+      <template>
+        <ToggleMachine as |state send|>
+          {{state.value}}
 
-//     this.owner.register('component:toggle-machine', toggle);
+          <button {{customModifier (fn send 'TOGGLE')}} type='button'>
+            Toggle
+          </button>
+        </ToggleMachine>
+      </template>
+    );
 
-//     await render(hbs`
-//       <ToggleMachine as |state send|>
-//         {{to-string state.value}}
-
-//         <button {{this.customModifier (fn send 'TOGGLE')}} type='button'>
-//           Toggle
-//         </button>
-//       </ToggleMachine>
-//     `);
-
-//     assert.dom().doesNotContainText('inactive');
-//     assert.dom().containsText('active');
-//   });
-// });
+    assert.dom().doesNotContainText('inactive');
+    assert.dom().containsText('active');
+  });
+});
