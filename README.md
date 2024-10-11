@@ -31,24 +31,10 @@ Installation
 npm install ember-statechart-component
 ```
 
-In app/app.js / app/app.ts, a one time setup function will need to be called so that the ComponentManager is registered.
+Anywhere in your app, add a one time setup function:
 
 ```ts
-import Application from '@ember/application';
-
-import config from 'ember-app/config/environment';
-import loadInitializers from 'ember-load-initializers';
-import Resolver from 'ember-resolver';
-
 import { setupComponentMachines } from 'ember-statechart-component';
-
-export default class App extends Application {
-  modulePrefix = config.modulePrefix;
-  podModulePrefix = config.podModulePrefix;
-  Resolver = Resolver;
-}
-
-loadInitializers(App, config.modulePrefix);
 
 setupComponentMachines();
 ```
