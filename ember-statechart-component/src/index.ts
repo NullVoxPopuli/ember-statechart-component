@@ -1,5 +1,4 @@
-// Install Types
-import './glint.ts';
+import './registration.js';
 
 import { assert } from '@ember/debug';
 import { getOwner } from '@ember/owner';
@@ -18,5 +17,3 @@ export function getService<Key extends keyof Registry>(
 
   return service;
 }
-
-export { setupComponentMachines } from './registration.js';

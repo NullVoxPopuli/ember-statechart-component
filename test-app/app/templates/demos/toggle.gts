@@ -10,12 +10,11 @@ const Toggle = createMachine({
   },
 });
 
-const asEvent = (name) => ({ type: name });
 export const Toggler = <template>
-  <Toggle as |state send|>
-     {{state.value}}
+  <Toggle as |machine|>
+     {{machine.statePath}}
 
-     <button type="button" {{on "click" (fn send (asEvent "TOGGLE"))}}>
+     <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
        Toggle
      </button>
   </Toggle>

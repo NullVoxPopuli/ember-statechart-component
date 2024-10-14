@@ -40,14 +40,12 @@ module('Usage', function (hooks) {
       },
     });
 
-  console.log(Toggle.__has_been_declaration_merged_from_ember_statechart_component__)
-
     await render(
       <template>
-        <Toggle as |snapshot actor|>
-          {{snapshot.value}}
+        <Toggle as |machine|>
+          {{machine.statePath}}
 
-          <button type="button" {{on "click" (fn actor.send "TOGGLE")}}>
+          <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>
@@ -89,10 +87,10 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <Toggle as |state send|>
-          {{state.value}}
+        <Toggle as |machine|>
+          {{machine.statePath}}
 
-          <button type="button" {{on "click" (fn send "TOGGLE")}}>
+          <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>
@@ -121,16 +119,16 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <Toggle as |state send|>
-          {{#if (call state state.matches "inactive")}}
+        <Toggle as |machine|>
+          {{#if (call machine machine.snapshot.matches "inactive")}}
             The inactive state
-          {{else if (call state state.matches "active")}}
+          {{else if (call machine machine.snapshot.matches "active")}}
             The active state
           {{else}}
             Unknown state
           {{/if}}
 
-          <button type="button" {{on "click" (fn send "TOGGLE")}}>
+          <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>
@@ -156,19 +154,19 @@ module('Usage', function (hooks) {
     await render(
       <template>
         <div id="one">
-          <Toggle as |state send|>
-            {{state.value}}
+          <Toggle as |machine|>
+            {{machine.statePath}}
 
-            <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
               Toggle
             </button>
           </Toggle>
         </div>
         <div id="two">
-          <Toggle as |state send|>
-            {{state.value}}
+          <Toggle as |machine|>
+            {{machine.statePath}}
 
-            <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+            <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
               Toggle
             </button>
           </Toggle>
@@ -205,8 +203,8 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <Toggle @config={{config}} as |_state send|>
-          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+        <Toggle @config={{config}} as |machine|>
+          <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>
@@ -256,10 +254,10 @@ let context = { numCalled: null };
 
     await render(
       <template>
-        <Toggle @input={{input}} as |state send|>
-          {{report state.context}}
+        <Toggle @input={{input}} as |machine|>
+          {{report machine.snapshot.context}}
 
-          <button type="button" {{on "click" (fn send "TOGGLE")}}>
+          <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>
@@ -289,9 +287,9 @@ let context = { numCalled: null };
 
     await render(
       <template>
-        <Toggle @input={{input}} as |state|>
-          {{state.context.foo}},
-          {{state.context.bar}}
+        <Toggle @input={{input}} as |machine|>
+          {{machine.snapshot.context.foo}},
+          {{machine.snapshot.context.bar}}
         </Toggle>
       </template>
     );
@@ -308,17 +306,17 @@ let context = { numCalled: null };
       },
     });
 
-    let previousState: State<unknown> | null = null;
+    let previousState: any | null = null;
 
-    const report = (state: State<unknown>) => (previousState = state);
+    const report = (state: any) => (previousState = state);
 
     await render(
       <template>
-        <Toggle as |state send|>
-          {{state.value}}
-          {{report state}}
+        <Toggle as |machine|>
+          {{machine.statePath}}
+          {{report machine.snapshot}}
 
-          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+          <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>
@@ -340,11 +338,11 @@ let context = { numCalled: null };
 
     await render(
       <template>
-        <Toggle @snapshot={{previousState}} as |state send|>
-          {{state.value}}
-          {{report state}}
+        <Toggle @snapshot={{previousState}} as |machine|>
+          {{machine.statePath}}
+          {{report machine.snapshot}}
 
-          <button type="button" {{on "click" (fn send "TOGGLE" undefined)}}>
+          <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>
@@ -376,9 +374,9 @@ let context = { numCalled: null };
 
     await render(
       <template>
-        <Toggle as |_state send actor|>
-          {{actor.onTransition doSomething}}
-          {{send "TOGGLE"}}
+        <Toggle as |machine|>
+          {{machine.onTransition doSomething}}
+          {{machine.send "TOGGLE"}}
         </Toggle>
       </template>
     );

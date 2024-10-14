@@ -2,8 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
-// import { execaCommand } from "execa";
+import { babel } from "@rollup/plugin-babel";
 
 const manifestStr = await readFile(join(import.meta.dirname, "package.json"));
 const manifest = JSON.parse(manifestStr);
@@ -48,33 +47,9 @@ export default defineConfig({
     },
   },
   plugins: [
-    dts({
-      rollupTypes: true,
-      outDir: "declarations",
+    babel({
+      babelHelpers: "bundled",
+      extensions: [".js", ".ts"],
     }),
-    // {
-    // name: "use-weird-non-ESM-ember-convention",
-    // closeBundle: async () => {
-    //   /**
-    //    * Related issues
-    //    * - https://github.com/embroider-build/embroider/issues/1672
-    //    * - https://github.com/embroider-build/embroider/pull/1572
-    //    * - https://github.com/embroider-build/embroider/issues/1675
-    //    *
-    //    * Fixed in embroider@4 and especially @embroider/vite
-    //    */
-    //   await execaCommand("cp dist/index.mjs dist/index.js", { stdio: "inherit" });
-    //   console.log("⚠️ Incorrectly (but neededly) renamed MJS module to JS in a CJS package");
-    //
-    //   /**
-    //    * https://github.com/microsoft/TypeScript/issues/56571#
-    //    * README: https://github.com/NullVoxPopuli/fix-bad-declaration-output
-    //    */
-    //   await execaCommand(`pnpm fix-bad-declaration-output declarations/`, {
-    //     stdio: "inherit",
-    //   });
-    //   console.log("⚠️ Dangerously (but neededly) fixed bad declaration output from typescript");
-    // },
-    // },
   ],
 });

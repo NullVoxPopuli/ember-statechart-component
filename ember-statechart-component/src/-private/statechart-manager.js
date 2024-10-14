@@ -1,3 +1,4 @@
+import { assert } from '@ember/debug';
 import { tracked } from '@glimmer/tracking';
 import { getOwner, setOwner } from '@ember/owner';
 import { capabilities } from '@ember/component';
@@ -7,6 +8,10 @@ import { createActor } from 'xstate';
 
 const UPDATE_EVENT_NAME = 'UPDATE';
 
+const STOP = Symbol.for('__ESM__STOP__');
+const START = Symbol.for('__ESM__START__');
+const HANDLE_UPDATE = Symbol.for('__ESM__HANDLE_UPDATE__');
+
 /**
  * TODO: change secord yield (send)
  * to just the actor
@@ -14,13 +19,37 @@ const UPDATE_EVENT_NAME = 'UPDATE';
  * rename state to snapshot
  */
 class ReactiveActor {
+  /**
+   * @private
+   */
   @tracked lastSnapshot;
 
   #actor;
   #callbacks = [];
 
-  get state() {
+  get snapshot() {
     return this.lastSnapshot;
+  }
+
+  get value() {
+    return this.snapshot?.value;
+  }
+
+  get statePath() {
+    let x = this.value;
+
+    if (typeof x === 'string') {
+      return x;
+    }
+
+    if (typeof x === 'object') {
+      if (!x) return '';
+
+      if ('toStrings' in x) return x.toStrings();
+      if ('toString' in x) return x.toString();
+    }
+
+    return `${x}`;
   }
 
   get actor() {
@@ -31,25 +60,27 @@ class ReactiveActor {
     this.#actor = actor;
     setOwner(this, owner);
 
-    let initialSnapshot = actor.getSnapshot();
-    let context = initialSnapshot.context;
+    // let initialSnapshot = actor.getSnapshot();
+    // let context = initialSnapshot.context;
 
-    setOwner(context, owner);
+    // assert(
+    //   `Machine init failed with error: ${initialSnapshot?.error?.message}`,
+    //   initialSnapshot?.error?.message
+    // );
 
-    this.lastSnapshot = initialSnapshot;
+    // setOwner(context, owner);
+
+    // this.lastSnapshot = initialSnapshot;
 
     // TODO: don't set if the snapshot is the same
     actor.subscribe((snapshot) => {
+      if (this.lastSnapshot === snapshot) return;
+
       this.lastSnapshot = snapshot;
       this.#callbacks.forEach((fn) => fn(snapshot));
     });
-    actor.on('*', (emitted) => {
-      console.log('emitted', emitted); // Any emitted event
-    });
   }
 
-  start = () => this.#actor.start();
-  stop = () => this.#actor.stop();
   send = (...args) => {
     if (typeof args[0] === 'string') {
       this.#actor.send({ type: args[0] });
@@ -59,14 +90,16 @@ class ReactiveActor {
     this.#actor.send(...args);
   };
 
-  handleUpdate = (args) => {
+  onTransition = (callback) => {
+    this.#callbacks.push(callback);
+  };
+
+  [START] = () => this.#actor.start();
+  [STOP] = () => this.#actor.stop();
+  [HANDLE_UPDATE] = (args) => {
     if (Object.keys(args.named).length > 0 || args.positional.length > 0) {
       this.send(UPDATE_EVENT_NAME, args.named);
     }
-  };
-
-  onTransition = (callback) => {
-    this.#callbacks.push(callback);
   };
 }
 
@@ -91,10 +124,9 @@ export default class ComponentManager {
       machine = machine.provide(named['config']);
     }
 
-    let options = {};
-    let input = {};
-    let context = {};
-    let snapshot = {};
+    let options = {
+      context: {},
+    };
 
     if ('input' in named) {
       options.input = named['input'];
@@ -107,12 +139,14 @@ export default class ComponentManager {
     }
 
     let owner = getOwner(this);
+    setOwner(options.context, owner);
+
     let actor = createActor(machine, options);
     let state = new ReactiveActor(actor, owner);
 
     associateDestroyableChild(actor, this);
 
-    state.start();
+    state[START]();
 
     return state;
   }
@@ -129,7 +163,7 @@ export default class ComponentManager {
    * it should be good enough.
    */
   updateComponent(state, args) {
-    state.handleUpdate(args);
+    state[HANDLE_UPDATE](args);
   }
 
   destroyComponent(state) {
@@ -137,7 +171,7 @@ export default class ComponentManager {
       return;
     }
 
-    state.stop();
+    state[STOP]();
 
     destroy(state);
   }

@@ -11,7 +11,7 @@
   "author": "NullVoxPopuli",
   "exports": {
     ".": {
-      "types": "./declarations/index.d.ts",
+      "types": "./src/public-types.d.ts",
       "default": "./dist/index.js"
     },
     "./addon-main.js": "./addon-main.cjs"
@@ -19,6 +19,7 @@
   "files": [
     "addon-main.cjs",
     "dist",
+    "src",
     "declarations",
     "CHANGELOG.md",
     "README.md"
