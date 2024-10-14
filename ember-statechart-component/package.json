@@ -4,7 +4,7 @@
   "keywords": [
     "ember-addon"
   ],
-  "type":"module",
+  "type": "module",
   "description": "Use XState Machines *as* Components",
   "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
   "license": "MIT",
@@ -41,10 +41,11 @@
   "dependencies": {
     "@ember/test-waiters": "^3.1.0 || ^4.0.0",
     "@embroider/addon-shim": "^1.8.9",
-    "@glint/template": ">= 1.0.0",
     "decorator-transforms": "^2.2.2"
   },
   "peerDependencies": {
+    "@glimmer/component": "^1.1.2",
+    "@glint/template": ">= 1.0.0",
     "xstate": "^5.18.0"
   },
   "devDependencies": {
@@ -57,12 +58,12 @@
     "@babel/preset-typescript": "7.25.7",
     "@embroider/addon-dev": "^5.0.0",
     "@glimmer/compiler": "^0.92.4",
-    "@glimmer/component": "^1.0.4",
+    "@glimmer/component": "^1.1.2",
     "@glimmer/env": "^0.1.7",
     "@glint/core": "1.4.1-unstable.b29a807",
     "@glint/environment-ember-loose": "1.4.1-unstable.b29a807",
     "@glint/environment-ember-template-imports": "1.4.1-unstable.b29a807",
-    "@glint/template": "1.4.0",
+    "@glint/template": "1.4.1-unstable.b29a807",
     "@nullvoxpopuli/eslint-configs": "^4.2.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@tsconfig/ember": "^3.0.3",

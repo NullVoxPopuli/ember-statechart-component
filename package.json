@@ -18,7 +18,7 @@
     "@glint/core": "1.4.1-unstable.b29a807",
     "@glint/environment-ember-loose": "1.4.1-unstable.b29a807",
     "@glint/environment-ember-template-imports": "1.4.1-unstable.b29a807",
-    "@glint/template": "1.4.0",
+    "@glint/template": "1.4.1-unstable.b29a807",
     "@typescript-eslint/parser": "^8.8.0",
     "ember-template-lint": "^6.0.0",
     "eslint": "^8.56.0",
@@ -35,10 +35,11 @@
   },
   "pnpm": {
     "overrides": {
+      "@glimmer/component": "1.1.2",
       "@glint/core": "1.4.1-unstable.b29a807",
       "@glint/environment-ember-loose": "1.4.1-unstable.b29a807",
       "@glint/environment-ember-template-imports": "1.4.1-unstable.b29a807",
-      "@glint/template": "1.4.0",
+      "@glint/template": "1.4.1-unstable.b29a807",
       "ember-cli-babel": "^8.2.0",
       "ember-cli-typescript": "5.3.0"
     },

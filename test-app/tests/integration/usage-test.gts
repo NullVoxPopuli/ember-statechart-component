@@ -44,7 +44,7 @@ module('Usage', function (hooks) {
 
     await render(
       <template>
-        <Toggle @foo={{2}} as |snapshot actor|>
+        <Toggle as |snapshot actor|>
           {{snapshot.value}}
 
           <button type="button" {{on "click" (fn actor.send "TOGGLE")}}>
