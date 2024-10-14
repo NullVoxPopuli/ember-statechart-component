@@ -1,9 +1,8 @@
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { setup, fromPromise, createMachine, sendTo } from 'xstate';
+import { fromCallback, createMachine, sendTo } from 'xstate';
 
 module('Timing', function (hooks) {
   setupRenderingTest(hooks);
@@ -17,8 +16,8 @@ module('Timing', function (hooks) {
           waiting: {
             invoke: {
               id: 'transition-away-immediately',
-              src: fromPromise(({ input }) => {
-                input.parent.send({ type: 'IMPLICTLY_NEXT' });
+              src: fromCallback(({ sendBack }) => {
+                sendBack({ type: 'IMPLICTLY_NEXT' });
               }),
               input: ({ self }) => ({ parent: self }),
               onDone: {},

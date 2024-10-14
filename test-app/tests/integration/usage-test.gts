@@ -11,16 +11,18 @@ import { setupRenderingTest } from 'ember-qunit';
 import { getService } from 'ember-statechart-component';
 import { assign, createMachine } from 'xstate';
 
-import type { State } from 'xstate';
-
 declare module '@ember/service' {
   interface Registry {
-    'test-state': any; // determined in tests
+    'test-state': {
+      foo: number;
+      }; // determined in tests
   }
 }
 
 // Pending fix in glimmer-vm
 // state.matches *should* just work
+// @ts-expect-error todo: don't use call at all
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 const call = (obj, fun, ...args) => fun.call(obj, ...args);
 
 /**
@@ -38,12 +40,14 @@ module('Usage', function (hooks) {
       },
     });
 
+  console.log(Toggle.__has_been_declaration_merged_from_ember_statechart_component__)
+
     await render(
       <template>
-        <Toggle as |state send|>
-          {{state.value}}
+        <Toggle @foo={{2}} as |snapshot actor|>
+          {{snapshot.value}}
 
-          <button type="button" {{on "click" (fn send "TOGGLE")}}>
+          <button type="button" {{on "click" (fn actor.send "TOGGLE")}}>
             Toggle
           </button>
         </Toggle>

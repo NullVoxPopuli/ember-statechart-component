@@ -3,8 +3,11 @@
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
+  "include": ["src"],
   "compilerOptions": {
     "allowJs": true,
+    // Don't typecheck addon-shim
+    // "skipLibCheck": true,
     "declarationDir": "declarations",
 
     /**
@@ -34,8 +37,12 @@
       can do the proper transformations on those files.
     */
     "allowImportingTsExtensions": true,
+
+    // Stylelistic
+    "noPropertyAccessFromIndexSignature": false,
+
     "types": [
-      "../test-app/node_modules/ember-source/types"
+      "../test-app/node_modules/ember-source/types/stable"
     ]
   }
 }

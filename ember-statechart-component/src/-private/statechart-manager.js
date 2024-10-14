@@ -1,10 +1,9 @@
 import { tracked } from '@glimmer/tracking';
-import { getOwner, setOwner } from '@ember/application';
+import { getOwner, setOwner } from '@ember/owner';
 import { capabilities } from '@ember/component';
 import { destroy, isDestroying, associateDestroyableChild } from '@ember/destroyable';
 
-import { waitForPromise } from '@ember/test-waiters';
-import { toPromise, createActor } from 'xstate';
+import { createActor } from 'xstate';
 
 const UPDATE_EVENT_NAME = 'UPDATE';
 
