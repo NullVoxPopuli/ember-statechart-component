@@ -65,6 +65,7 @@
     "ember-route-template": "^1.0.3",
     "ember-source": "~5.12.0",
     "ember-template-lint": "^6.0.0",
+    "ember-try": "^3.0.0",
     "eslint": "^9.12.0",
     "eslint-plugin-ember": "^12.2.1",
     "eslint-plugin-n": "^17.10.3",
