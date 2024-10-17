@@ -1,39 +1,46 @@
 {
-  "compilerOptions": {
-    // Path resolution
-    "baseUrl": "./src",
-    "moduleResolution": "node",
-    // We only use tsc for type checking and declaration output
-    "declarationDir": "./declarations",
-    "emitDeclarationOnly": true,
-    "declaration": true,
-    // Build settings
-    "noEmitOnError": false,
-    "module": "ESNext",
-    "target": "ESNext",
-    // Features
-    "experimentalDecorators": true,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    // Strictness / Correctness
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "paths": {
-      // No paths, no absolute imports, only node_modules imports allowed
-      // But fallback for type-overrides and such
-      "*": ["types/*"]
-    }
+  "extends": "@tsconfig/ember/tsconfig.json",
+  "glint": {
+    "environment": ["ember-loose", "ember-template-imports"]
   },
-  "include": [
-    "src/**/*",
-    "types/*"
-  ]
+  "include": ["src"],
+  "compilerOptions": {
+    "allowJs": true,
+    // Don't typecheck addon-shim
+    // "skipLibCheck": true,
+    "declarationDir": "declarations",
+
+    /**
+      https://www.typescriptlang.org/tsconfig#rootDir
+      "Default: The longest common path of all non-declaration input files."
+
+      Because we want our declarations' structure to match our rollup output,
+      we need this "rootDir" to match the "srcDir" in the rollup.config.mjs.
+
+      This way, we can have simpler `package.json#exports` that matches
+      imports to files on disk
+    */
+    "rootDir": "./src",
+
+    /**
+      https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax
+
+      We don't want to include types dependencies in our compiled output, so tell TypeScript
+      to enforce using `import type` instead of `import` for Types.
+     */
+    "verbatimModuleSyntax": true,
+
+    /**
+      https://www.typescriptlang.org/tsconfig#allowImportingTsExtensions
+
+      We want our tooling to know how to resolve our custom files so the appropriate plugins
+      can do the proper transformations on those files.
+    */
+    "allowImportingTsExtensions": true,
+
+    // Stylelistic
+    "noPropertyAccessFromIndexSignature": false,
+
+    "types": ["../test-app/node_modules/ember-source/types/stable"]
+  }
 }

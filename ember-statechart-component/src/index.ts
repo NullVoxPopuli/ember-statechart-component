@@ -1,11 +1,17 @@
-import { getOwner } from '@ember/application';
-import { assert } from '@ember/debug';
+import './registration.js';
 
-import type ApplicationInstance from '@ember/application/instance';
+import { assert } from '@ember/debug';
+import { getOwner } from '@ember/owner';
+
 import type { Registry } from '@ember/service';
 
-export function getService<Key extends keyof Registry>(context: unknown, serviceName: Key) {
-  let owner = getOwner(context) as ApplicationInstance;
+export { UPDATE_EVENT_NAME } from './-private/statechart-manager.js';
+
+export function getService<Key extends keyof Registry>(
+  context: unknown,
+  serviceName: Key
+): Registry[Key] {
+  let owner = getOwner(context as object);
 
   assert(`Expected passed context to be aware of the container (owner)`, owner);
 
@@ -13,5 +19,3 @@ export function getService<Key extends keyof Registry>(context: unknown, service
 
   return service;
 }
-
-export { setupComponentMachines } from './registration';
