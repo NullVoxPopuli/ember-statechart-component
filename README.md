@@ -310,6 +310,32 @@ const MyMachine = createMachine({
 The value of this constant is just `EXTERNAL_UPDATE`, but the import makes it clear _why_ it exists, as the name does need to exactly match how the ember component manager is implemented for machines.
 
 
+### API
+
+The yielded value from an invoked state machine has some properties on it as well as the actor that allows you to "just defer to XState" for most situations. 
+
+Given this a machine and its invocation, 
+```gjs
+import { createMachine } from 'xstate';
+
+const Authenticator = createMachine({ /* ... */ });
+
+<template>
+  <Authenticator as |auth|>
+
+    what is available on `auth`? 
+  </Authenticator>
+</template>
+```
+
+- `actor` - The underlying actor that XState manages, see: [The Actor Docs](https://stately.ai/docs/category/actors)
+- `snapshot` - The most recent snapshot available from the actor
+- `value` - alias for `snapshot.value`, which represents the name of the state, or an array of states, if the current state is nested.
+- `statePath` - a dot-separated string representing the current `value`
+- `matches` - The [matches function](https://stately.ai/docs/states#statematchesstatevalue)
+- `onTransition` - A way to arbitrarily run code when the machine transitions. 
+
+
 
 Contributing
 ------------------------------------------------------------------------------
