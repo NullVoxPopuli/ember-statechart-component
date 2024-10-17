@@ -22,7 +22,7 @@ declare module '@ember/service' {
 // Pending fix in glimmer-vm
 // state.matches *should* just work
 // @ts-expect-error todo: don't use call at all
-// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+ 
 const call = (obj, fun, ...args) => fun.call(obj, ...args);
 
 /**

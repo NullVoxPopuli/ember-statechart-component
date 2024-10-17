@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 
-import { defineConfig } from "vite";
 import { babel } from "@rollup/plugin-babel";
+import { defineConfig } from "vite";
 
 const manifestStr = await readFile(join(import.meta.dirname, "package.json"));
 const manifest = JSON.parse(manifestStr);

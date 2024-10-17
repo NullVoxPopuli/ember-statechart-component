@@ -1,8 +1,8 @@
-import { assert } from '@ember/debug';
 import { tracked } from '@glimmer/tracking';
-import { getOwner, setOwner } from '@ember/owner';
 import { capabilities } from '@ember/component';
-import { destroy, isDestroying, associateDestroyableChild } from '@ember/destroyable';
+import { assert } from '@ember/debug';
+import { associateDestroyableChild, destroy, isDestroying } from '@ember/destroyable';
+import { getOwner, setOwner } from '@ember/owner';
 
 import { createActor } from 'xstate';
 
@@ -85,6 +85,7 @@ class ReactiveActor {
   send = (...args) => {
     if (typeof args[0] === 'string') {
       this.#actor.send({ type: args[0] });
+
       return;
     }
 
@@ -132,14 +133,17 @@ export default class ComponentManager {
     if ('input' in named) {
       options.input = named['input'];
     }
+
     if ('context' in named) {
       options.context = named['context'];
     }
+
     if ('snapshot' in named) {
       options.snapshot = named['snapshot'];
     }
 
     let owner = getOwner(this);
+
     setOwner(options.context, owner);
 
     let actor = createActor(machine, options);

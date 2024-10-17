@@ -132,6 +132,18 @@ export default ts.config(
       },
     },
   },
+  {
+    files: ['**/*.{ts,gts}'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/restrict-plus-operands': 'off',
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
+      'ember/template-no-let-reference': 'off',
+    },
+  },
   /**
    * Settings
    */

@@ -6,8 +6,6 @@ import { fn } from '@ember/helper';
 
 import { assign, createMachine, setup } from 'xstate';
 
-import type { Interpreter } from 'xstate';
-
 // Pending fix in glimmer-vm
 // state.matches *should* just work
 const call = (obj, fun, ...args) => fun.call(obj, ...args);
@@ -171,7 +169,7 @@ module('Dynamic Machines', function (hooks) {
             <div id="parent">{{state.value}}</div>
             <div id="child">{{value state.children.timer}}</div>
 
-            <button {{on 'click' (fn state.children.timer.send declareDone)}}>
+            <button type="button" {{on 'click' (fn state.children.timer.send declareDone)}}>
               Declare invoked machine as Done
             </button>
           </parentMachine>
@@ -249,12 +247,12 @@ return 'new value';
           <parentMachine as |state send|>
 
             {{#if (call state state.matches 'idle')}}
-              <button id="invoke-child" {{on 'click' (fn send invokeChild)}}>Invoke Child</button>
+              <button id="invoke-child" type="button" {{on 'click' (fn send invokeChild)}}>Invoke Child</button>
             {{else}}
-              <button id='reset' {{on 'click' (fn send reset)}}>Reset</button>
+              <button id='reset' type="button" {{on 'click' (fn send reset)}}>Reset</button>
 
 
-              <button id="update-context" {{on 'click' (fn update state)}}>
+              <button id="update-context" type="button" {{on 'click' (fn update state)}}>
                 Update Context
               </button>
 
