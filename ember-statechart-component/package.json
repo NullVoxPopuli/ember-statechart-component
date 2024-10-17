@@ -6,7 +6,10 @@
   ],
   "type": "module",
   "description": "Use XState Machines *as* Components",
-  "repository": "https://github.com/NullVoxPopuli/ember-statechart-component",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NullVoxPopuli/ember-statechart-component.git"
+  },
   "license": "MIT",
   "author": "NullVoxPopuli",
   "exports": {
@@ -30,7 +33,7 @@
     "watch:js": "rollup -c --watch --no-watch.clearScreen",
     "lint": "concurrently \"npm:lint:*(!fix)\" --names \"lint:\"",
     "lint:package": "publint",
-    "lint:published-types": "attw --pack",
+    "lint:published-types": "attw --pack --ignore-rules cjs-resolves-to-esm --exclude-entrypoints addon-main.js --ignore-rules no-resolution",
     "lint:fix": "concurrently \"npm:lint:*:fix\" --names \"fix:\" && pnpm format:prettier",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
