@@ -4,6 +4,8 @@
 
 ember-statechart-component 7.0.0 (major)
 
+Note that this version temporarily does not have _full_ support for nested actors.
+
 #### :boom: Breaking Change
 * `ember-statechart-component`
   * [#479](https://github.com/NullVoxPopuli/ember-statechart-component/pull/479) Implement support for XState 5 API and require type=module support ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
