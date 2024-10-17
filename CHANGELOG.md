@@ -1,5 +1,51 @@
 # Changelog
 
+## Release (2024-10-17)
+
+ember-statechart-component 7.0.0 (major)
+
+#### :boom: Breaking Change
+* `ember-statechart-component`
+  * [#479](https://github.com/NullVoxPopuli/ember-statechart-component/pull/479) Implement support for XState 5 API and require type=module support ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#498](https://github.com/NullVoxPopuli/ember-statechart-component/pull/498) Drop support for XState < 5 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#493](https://github.com/NullVoxPopuli/ember-statechart-component/pull/493) Drop support for the ember types from DT (@types/*) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#483](https://github.com/NullVoxPopuli/ember-statechart-component/pull/483) set type=module ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#475](https://github.com/NullVoxPopuli/ember-statechart-component/pull/475) Upgrade to XState 5 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* Other
+  * [#481](https://github.com/NullVoxPopuli/ember-statechart-component/pull/481) Drop support for legacy conusmer builds ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#480](https://github.com/NullVoxPopuli/ember-statechart-component/pull/480) Drop support for ember-source < 5.1 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#474](https://github.com/NullVoxPopuli/ember-statechart-component/pull/474) Drop support for TS < 5.2 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `ember-statechart-component`
+  * [#435](https://github.com/NullVoxPopuli/ember-statechart-component/pull/435) Throw args update less often ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :memo: Documentation
+* [#459](https://github.com/NullVoxPopuli/ember-statechart-component/pull/459) docs: fix in readme setup section ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :house: Internal
+* Other
+  * [#497](https://github.com/NullVoxPopuli/ember-statechart-component/pull/497) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#495](https://github.com/NullVoxPopuli/ember-statechart-component/pull/495) Node 22 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#482](https://github.com/NullVoxPopuli/ember-statechart-component/pull/482) Ignore-scripts=true when previewing release ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#468](https://github.com/NullVoxPopuli/ember-statechart-component/pull/468) Remove commitlint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#457](https://github.com/NullVoxPopuli/ember-statechart-component/pull/457) Add CodeQL workflow for GitHub code scanning ([@lgtm-com[bot]](https://github.com/apps/lgtm-com))
+* `ember-statechart-component`
+  * [#496](https://github.com/NullVoxPopuli/ember-statechart-component/pull/496) Upgrade Glint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#494](https://github.com/NullVoxPopuli/ember-statechart-component/pull/494) upgrade ts ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#492](https://github.com/NullVoxPopuli/ember-statechart-component/pull/492) Update pnpm ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#491](https://github.com/NullVoxPopuli/ember-statechart-component/pull/491) Upgrade lint dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#476](https://github.com/NullVoxPopuli/ember-statechart-component/pull/476) Upgrade lint changes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#473](https://github.com/NullVoxPopuli/ember-statechart-component/pull/473) Upgrade tools, re-roll lockfile ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#469](https://github.com/NullVoxPopuli/ember-statechart-component/pull/469) Remove semantic release ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#466](https://github.com/NullVoxPopuli/ember-statechart-component/pull/466) Simplify ci ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#465](https://github.com/NullVoxPopuli/ember-statechart-component/pull/465) Setup release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 3
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@lgtm-com[bot]](https://github.com/apps/lgtm-com)
+
 ## [6.1.2](https://github.com/NullVoxPopuli/ember-statechart-component/compare/v6.1.1...v6.1.2) (2022-07-31)
 
 
