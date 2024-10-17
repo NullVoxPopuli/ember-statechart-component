@@ -74,6 +74,7 @@ class ReactiveActor {
 
     // TODO: don't set if the snapshot is the same
     actor.subscribe((snapshot) => {
+      console.log({ snapshot });
       if (this.lastSnapshot === snapshot) return;
 
       this.lastSnapshot = snapshot;

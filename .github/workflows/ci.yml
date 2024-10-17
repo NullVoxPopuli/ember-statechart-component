@@ -17,8 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
 
-  eslint:
-    name: ESLint
+  lint:
+    name: Lint
     needs:
       - install_dependencies
     timeout-minutes: 5
@@ -28,42 +28,12 @@ jobs:
       matrix:
         path:
           - ./ember-statechart-component
-          - ./testing/ember-app
+          - ./test-app
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
-      - name: ESLint
-        run: cd ${{ matrix.path }} && pnpm run lint:js
+      - run: cd ${{ matrix.path }} && pnpm run lint
 
-  build:
-    name: Build Tests
-    needs:
-      - install_dependencies
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
-      - name: Build and Assert Output
-        run: |-
-          echo 'target: ember-statechart-component/dist
-          setup:
-            run: pnpm build:js
-            cwd: ./ember-statechart-component
-          expect: |
-            index.js
-            index.js.map
-            index.d.ts
-            glint.d.ts
-            glint.d.ts.map
-            glint.js
-            glint.js.map
-          ' >> assert-contents.config.yml
-                        npx assert-folder-contents
-      - uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: ${{ env.dist }}
   tests:
     name: Default Tests
     timeout-minutes: 5
@@ -73,12 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
-      - name: Download built package from cache
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-          path: ${{ env.dist }}
-      - run: pnpm --filter ember-app run test:ember
+      - run: pnpm --filter test-app run test:ember
 
   floating-deps-tests:
     name: Floating Deps Test
@@ -91,12 +56,7 @@ jobs:
       - uses: wyvox/action-setup-pnpm@v3
         with:
           args: '--no-lockfile'
-      - name: Download built package from cache
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-          path: ${{ env.dist }}
-      - run: pnpm --filter ember-app run test:ember
+      - run: pnpm --filter test-app run test:ember
 
   try-scenarios:
     name: ${{ matrix.ember-try-scenario }}
@@ -110,21 +70,17 @@ jobs:
         ember-try-scenario:
           - ember-5.1
           - ember-5.4
+          - ember-5.8
+          - ember-5.12
           - ember-release
           - ember-beta
           - ember-canary
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
-      - name: Download built package from cache
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-          path: ${{ env.dist }}
       - name: test
-        working-directory: ./testing/ember-app
-        run: >-
-          node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }}
+        working-directory: ./test-app
+        run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }}
           --skip-cleanup
 
   typescript-compatibility:
@@ -142,18 +98,17 @@ jobs:
           - typescript@5.1
           - typescript@5.2
           - typescript@5.3
+          - typescript@5.4
+          - typescript@5.5
+          - typescript@5.6
     steps:
       - uses: actions/checkout@v3
       - uses: wyvox/action-setup-pnpm@v3
-      - name: Download built package from cache
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-          path: ${{ env.dist }}
       - name: Update TS Version
         run: pnpm add --save-dev ${{ matrix.typescript-scenario }}
-        working-directory: ./testing/ember-app
+        working-directory: ./test-app
       - name: Type checking
         run: >-
-          pnpm --filter ember-app exec tsc -v; pnpm --filter ember-app exec
-          glint --version; pnpm --filter ember-app exec glint
+          pnpm --filter test-app exec tsc -v;
+          pnpm --filter test-app exec glint --version;
+          pnpm --filter test-app exec glint
