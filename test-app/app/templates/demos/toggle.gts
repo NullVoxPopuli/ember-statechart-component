@@ -12,10 +12,10 @@ const Toggle = createMachine({
 
 export const Toggler = <template>
   <Toggle as |machine|>
-     {{machine.statePath}}
+    {{machine.statePath}}
 
-     <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
-       Toggle
-     </button>
+    <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
+      Toggle
+    </button>
   </Toggle>
 </template>;

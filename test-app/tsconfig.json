@@ -1,13 +1,8 @@
 {
   "extends": "@tsconfig/ember/tsconfig.json",
-  "include": [
-    "app", "tests", "types"
-  ],
+  "include": ["app", "tests", "types"],
   "glint": {
-    "environment": [
-      "ember-loose",
-      "ember-template-imports"
-    ]
+    "environment": ["ember-loose", "ember-template-imports"]
   },
   "compilerOptions": {
     "allowJs": true,
@@ -31,18 +26,10 @@
     // Stylelistic
     "noPropertyAccessFromIndexSignature": false,
     "paths": {
-      "test-app/tests/*": [
-        "./tests/*"
-      ],
-      "test-app/*": [
-        "./app/*"
-      ],
-      "*": [
-        "./types/*"
-      ]
+      "test-app/tests/*": ["./tests/*"],
+      "test-app/*": ["./app/*"],
+      "*": ["./types/*"]
     },
-    "types": [
-      "ember-source/types"
-    ]
-  },
+    "types": ["ember-source/types"]
+  }
 }

@@ -10,7 +10,11 @@ module('Modifiers', function (hooks) {
   setupRenderingTest(hooks);
 
   test('a modifier can trigger an update to a machine', async function (assert) {
-    const customModifier = em.modifier((_element: Element, [toggle]: [() => void]) => { toggle(); });
+    const customModifier = em.modifier(
+      (_element: Element, [toggle]: [() => void]) => {
+        toggle();
+      }
+    );
 
     const ToggleMachine = createMachine({
       initial: 'inactive',
@@ -25,7 +29,7 @@ module('Modifiers', function (hooks) {
         <ToggleMachine as |machine|>
           {{machine.statePath}}
 
-          <button {{customModifier (fn machine.send 'TOGGLE')}} type='button'>
+          <button {{customModifier (fn machine.send "TOGGLE")}} type="button">
             Toggle
           </button>
         </ToggleMachine>

@@ -15,7 +15,7 @@ declare module '@ember/service' {
   interface Registry {
     'test-state': {
       foo: number;
-      }; // determined in tests
+    }; // determined in tests
   }
 }
 
@@ -96,7 +96,9 @@ module('Usage', function (hooks) {
       </template>
     );
 
-    const testState = this.owner.lookup('service:test-state') as { foo: number };
+    const testState = this.owner.lookup('service:test-state') as {
+      foo: number;
+    };
 
     assert.strictEqual(testState.foo, 1);
 
@@ -221,15 +223,14 @@ module('Usage', function (hooks) {
 
   test('can pass context', async function (assert) {
     const Toggle = createMachine({
-types: {
-
-input: {} as { numCalled?: number},
-},
+      types: {
+        input: {} as { numCalled?: number },
+      },
       initial: 'inactive',
       context: ({ input }) => {
         return {
           numCalled: input.numCalled ?? 0,
-        }
+        };
       },
       states: {
         inactive: {
@@ -251,7 +252,7 @@ input: {} as { numCalled?: number},
       numCalled: 10,
     };
 
-let context = { numCalled: null };
+    let context = { numCalled: null };
 
     const report = (data: any) => (context = data);
 
@@ -384,6 +385,6 @@ let context = { numCalled: null };
       </template>
     );
 
-  assert.verifySteps(['active'])
+    assert.verifySteps(['active']);
   });
 });

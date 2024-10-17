@@ -13,12 +13,14 @@
   "scripts": {
     "build": "vite build",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\" --prefixColors auto",
-    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\" --prefixColors auto",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\" --prefixColors auto && pnpm format:prettier",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "lint:types": "glint",
+    "format:prettier": "prettier . --write",
+    "lint:prettier": "prettier . --check",
     "start": "vite",
     "test:ember": "vite build --mode test && ember test --path dist"
   },
