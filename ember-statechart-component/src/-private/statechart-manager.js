@@ -1,6 +1,5 @@
 import { tracked } from '@glimmer/tracking';
 import { capabilities } from '@ember/component';
-import { assert } from '@ember/debug';
 import { associateDestroyableChild, destroy, isDestroying } from '@ember/destroyable';
 import { getOwner, setOwner } from '@ember/owner';
 
@@ -74,7 +73,6 @@ class ReactiveActor {
 
     // TODO: don't set if the snapshot is the same
     actor.subscribe((snapshot) => {
-      console.log({ snapshot });
       if (this.lastSnapshot === snapshot) return;
 
       this.lastSnapshot = snapshot;
