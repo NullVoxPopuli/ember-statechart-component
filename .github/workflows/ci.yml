@@ -11,8 +11,6 @@ name: CI
 jobs:
   lint:
     name: Lint
-    needs:
-      - install_dependencies
     timeout-minutes: 5
     runs-on: ubuntu-latest
     strategy:
