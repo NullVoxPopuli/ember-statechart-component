@@ -5,6 +5,8 @@ import { getOwner } from '@ember/owner';
 
 import type { Registry } from '@ember/service';
 
+export { UPDATE_EVENT_NAME } from './-private/statechart-manager.js';
+
 export function getService<Key extends keyof Registry>(
   context: unknown,
   serviceName: Key

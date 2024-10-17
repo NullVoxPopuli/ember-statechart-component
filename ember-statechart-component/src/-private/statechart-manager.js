@@ -7,18 +7,11 @@ import { cancel, later } from '@ember/runloop';
 
 import { createActor } from 'xstate';
 
-const UPDATE_EVENT_NAME = 'UPDATE';
-
+export const UPDATE_EVENT_NAME = 'EXTERNAL_UPDATE';
 const STOP = Symbol.for('__ESM__STOP__');
 const START = Symbol.for('__ESM__START__');
 const HANDLE_UPDATE = Symbol.for('__ESM__HANDLE_UPDATE__');
 
-/**
- * TODO: change secord yield (send)
- * to just the actor
- *
- * rename state to snapshot
- */
 class ReactiveActor {
   /**
    * @private
@@ -28,14 +21,23 @@ class ReactiveActor {
   #actor;
   #callbacks = [];
 
+  /**
+   * The most recent snapshot available from the actor
+   */
   get snapshot() {
     return this.lastSnapshot;
   }
 
+  /**
+   * Alias fort the value of the snapshot
+   */
   get value() {
     return this.snapshot?.value;
   }
 
+  /**
+   * The dot-separated name of the current state
+   */
   get statePath() {
     let x = this.value;
 
@@ -53,6 +55,9 @@ class ReactiveActor {
     return `${x}`;
   }
 
+  /**
+   * The running actor, directly from XState
+   */
   get actor() {
     return this.#actor;
   }
@@ -84,6 +89,12 @@ class ReactiveActor {
     });
   }
 
+  /**
+   * Forwards to the underlying actor.send,
+   * but re-enables passing vanilla strings as events,
+   * rather than needing to create an object for each event.
+   * (XState docs recommend send({ type: EVENT_NAME }))
+   */
   send = (...args) => {
     if (typeof args[0] === 'string') {
       this.#actor.send({ type: args[0] });
@@ -94,6 +105,9 @@ class ReactiveActor {
     this.#actor.send(...args);
   };
 
+  /**
+   * subscribe to changes in the machine state
+   */
   onTransition = (callback) => {
     this.#callbacks.push(callback);
   };
