@@ -1,7 +1,9 @@
+import { assert } from '@ember/debug';
 import { tracked } from '@glimmer/tracking';
 import { capabilities } from '@ember/component';
 import { associateDestroyableChild, destroy, isDestroying } from '@ember/destroyable';
 import { getOwner, setOwner } from '@ember/owner';
+import { cancel, later } from '@ember/runloop';
 
 import { createActor } from 'xstate';
 
@@ -59,20 +61,22 @@ class ReactiveActor {
     this.#actor = actor;
     setOwner(this, owner);
 
-    // let initialSnapshot = actor.getSnapshot();
-    // let context = initialSnapshot.context;
+    let initialSnapshot = actor.getSnapshot();
+    let context = initialSnapshot.context;
 
-    // assert(
-    //   `Machine init failed with error: ${initialSnapshot?.error?.message}`,
-    //   initialSnapshot?.error?.message
-    // );
+    assert(
+      `Machine init failed with error: ${initialSnapshot?.error?.message}`,
+      !initialSnapshot?.error?.message
+    );
 
-    // setOwner(context, owner);
+    // Required for services to be accessible
+    setOwner(context, owner);
 
-    // this.lastSnapshot = initialSnapshot;
+    this.lastSnapshot = initialSnapshot;
 
-    // TODO: don't set if the snapshot is the same
-    actor.subscribe((snapshot) => {
+    actor.subscribe(async (snapshot) => {
+      await Promise.resolve();
+
       if (this.lastSnapshot === snapshot) return;
 
       this.lastSnapshot = snapshot;
@@ -126,6 +130,14 @@ export default class ComponentManager {
 
     let options = {
       context: {},
+      clock: {
+        setTimeout(fn, ms) {
+          return later.call(null, fn, ms);
+        },
+        clearTimeout(timer) {
+          return cancel.call(null, timer);
+        },
+      },
     };
 
     if ('input' in named) {

@@ -22,10 +22,10 @@ module('Modifiers', function (hooks) {
 
     await render(
       <template>
-        <ToggleMachine as |state send|>
-          {{state.value}}
+        <ToggleMachine as |machine|>
+          {{machine.statePath}}
 
-          <button {{customModifier (fn send 'TOGGLE')}} type='button'>
+          <button {{customModifier (fn machine.send 'TOGGLE')}} type='button'>
             Toggle
           </button>
         </ToggleMachine>

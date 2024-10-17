@@ -39,6 +39,7 @@ export default defineConfig({
         "@ember/helper",
         "@ember/modifier",
         "@ember/owner",
+        "@ember/runloop",
         "@ember/destroyable",
         "@ember/template-compilation",
         "@glimmer/tracking",
