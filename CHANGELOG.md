@@ -6,7 +6,7 @@ ember-statechart-component 7.0.0 (major)
 
 #### :boom: Breaking Change
 * `ember-statechart-component`
-  * [#479](https://github.com/NullVoxPopuli/ember-statechart-component/pull/479) Implement XState 5 API support in templates ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#479](https://github.com/NullVoxPopuli/ember-statechart-component/pull/479) Implement support for XState 5 API and require type=module support ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
   * [#498](https://github.com/NullVoxPopuli/ember-statechart-component/pull/498) Drop support for XState < 5 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
   * [#493](https://github.com/NullVoxPopuli/ember-statechart-component/pull/493) Drop support for the ember types from DT (@types/*) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
   * [#483](https://github.com/NullVoxPopuli/ember-statechart-component/pull/483) set type=module ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
@@ -14,7 +14,7 @@ ember-statechart-component 7.0.0 (major)
 * Other
   * [#481](https://github.com/NullVoxPopuli/ember-statechart-component/pull/481) Drop support for legacy conusmer builds ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
   * [#480](https://github.com/NullVoxPopuli/ember-statechart-component/pull/480) Drop support for ember-source < 5.1 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
-  * [#474](https://github.com/NullVoxPopuli/ember-statechart-component/pull/474) Drop support for TS < 5 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#474](https://github.com/NullVoxPopuli/ember-statechart-component/pull/474) Drop support for TS < 5.2 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
 
 #### :bug: Bug Fix
 * `ember-statechart-component`
