@@ -35,8 +35,8 @@ module('Timing', function (hooks) {
 
       await render(
         <template>
-          <Machine as |state|>
-            {{state.value}}
+          <Machine as |x|>
+            {{x.statePath}}
           </Machine>
         </template>
       );

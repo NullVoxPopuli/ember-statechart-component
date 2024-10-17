@@ -1,13 +1,14 @@
-import { assert } from '@ember/debug';
 import { tracked } from '@glimmer/tracking';
 import { capabilities } from '@ember/component';
-import { associateDestroyableChild, destroy, isDestroying } from '@ember/destroyable';
+import { assert } from '@ember/debug';
+import { associateDestroyableChild, destroy, isDestroyed, isDestroying } from '@ember/destroyable';
 import { getOwner, setOwner } from '@ember/owner';
 import { cancel, later } from '@ember/runloop';
 
 import { createActor } from 'xstate';
 
 export const UPDATE_EVENT_NAME = 'EXTERNAL_UPDATE';
+
 const STOP = Symbol.for('__ESM__STOP__');
 const START = Symbol.for('__ESM__START__');
 const HANDLE_UPDATE = Symbol.for('__ESM__HANDLE_UPDATE__');
@@ -34,6 +35,11 @@ class ReactiveActor {
   get value() {
     return this.snapshot?.value;
   }
+
+  /**
+   * @type {import('xstate').Snapshot['matches']}
+   */
+  matches = (...args) => this.actor.matches(...args);
 
   /**
    * The dot-separated name of the current state
@@ -83,6 +89,10 @@ class ReactiveActor {
       await Promise.resolve();
 
       if (this.lastSnapshot === snapshot) return;
+
+      if (isDestroyed(actor) || isDestroying(actor)) {
+        return;
+      }
 
       this.lastSnapshot = snapshot;
       this.#callbacks.forEach((fn) => fn(snapshot));

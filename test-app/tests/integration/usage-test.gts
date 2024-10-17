@@ -22,7 +22,6 @@ declare module '@ember/service' {
 // Pending fix in glimmer-vm
 // state.matches *should* just work
 // @ts-expect-error todo: don't use call at all
- 
 const call = (obj, fun, ...args) => fun.call(obj, ...args);
 
 /**
@@ -222,6 +221,10 @@ module('Usage', function (hooks) {
 
   test('can pass context', async function (assert) {
     const Toggle = createMachine({
+types: {
+
+input: {} as { numCalled?: number},
+},
       initial: 'inactive',
       context: ({ input }) => {
         return {

@@ -27,6 +27,9 @@
       can do the proper transformations on those files.
     */
     "allowImportingTsExtensions": true,
+
+    // Stylelistic
+    "noPropertyAccessFromIndexSignature": false,
     "paths": {
       "test-app/tests/*": [
         "./tests/*"
