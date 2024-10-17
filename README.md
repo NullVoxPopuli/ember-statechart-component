@@ -31,13 +31,13 @@ Installation
 npm install ember-statechart-component
 ```
 
-Anywhere in your app, add a one time setup function:
+Anywhere in your app:
 
 ```ts
-import { setupComponentMachines } from 'ember-statechart-component';
-
-setupComponentMachines();
+import 'ember-statechart-component';
 ```
+
+This instructs Ember how to render and create actors from state machines.
 
 ## Migrating from XState v4?
 
@@ -59,17 +59,17 @@ const Toggler = createMachine({
 });
 
 <template>
-  <Toggler as |snapshot send|>
-    {{snapshot.value}}
+  <Toggler as |toggler|>
+    {{toggler.valuePath}}
 
-    <button {{on 'click' (fn send 'TOGGLE')}}>
+    <button {{on 'click' (fn toggler.send 'TOGGLE')}}>
       Toggle
     </button>
   </Toggler>
 </template>
 ```
 
-### Accessing EmberJS Services
+### Accessing Ember Services
 
 ```gjs
 import { getService } from 'ember-statechart-component';
@@ -103,10 +103,10 @@ const AuthenticatedToggle = setup({
 });
 
 <template>
-  <AuthenticatedToggle as |snapshot send|>
-    {{snapshot.value}}
+  <AuthenticatedToggle as |toggle|>
+    {{toggle.valuePath}}
 
-    <button {{on 'click' (fn send 'TOGGLE')}}>
+    <button {{on 'click' (fn toggle.send 'TOGGLE')}}>
       Toggle
     </button>
   </AuthenticatedToggle>
@@ -117,16 +117,16 @@ const AuthenticatedToggle = setup({
 ### Matching States
 
 ```hbs
-<Toggle as |state send|>
-  {{#if (state.matches 'inactive')}}
+<Toggle as |toggle|>
+  {{#if (toggle.matches 'inactive')}}
     The inactive state
-  {{else if (state.matches 'active')}}
+  {{else if (toggle.matches 'active')}}
     The active state
   {{else}}
     Unknown state
   {{/if}}
 
-  <button {{on 'click' (fn send 'TOGGLE')}}>
+  <button {{on 'click' (fn toggle.send 'TOGGLE')}}>
     Toggle
   </button>
 </Toggle>
@@ -181,7 +181,49 @@ as |state send|>
 
 #### `@input`
 
-TODO: write this
+Providing inputs from arguments works as you expect, following docs from [XState: Input](https://stately.ai/docs/input)
+
+```glimmer-ts 
+const Toggle = createMachine({
+  types: {
+    input: {} as { numCalled?: number },
+  },
+  initial: 'inactive',
+  context: ({ input }) => {
+    return {
+      numCalled: input.numCalled ?? 0,
+    };
+  },
+  states: {
+    inactive: {
+      entry: assign({
+        numCalled: ({ context }) => context.numCalled + 1,
+      }),
+      on: { TOGGLE: 'active' },
+    },
+    active: {
+      entry: assign({
+        numCalled: ({ context }) => context.numCalled + 1,
+      }),
+      on: { TOGGLE: 'inactive' },
+    },
+  },
+});
+
+const input = {
+  numCalled: 10,
+};
+
+<template>
+  <Toggle @input={{input}} as |toggle|>
+    {{toggle.valuePath}}
+
+    <button type="button" {{on "click" (fn toggle.send "TOGGLE")}}>
+      Toggle
+    </button>
+  </Toggle>
+</template>
+```
 
 #### `@context`
 
@@ -192,7 +234,6 @@ Usage:
 <details><summary>Toggle machine that interacts with context</summary>
 
 ```js
-// app/components/toggle.js
 import { createMachine, assign } from 'xstate';
 
 export default createMachine({
@@ -227,13 +268,13 @@ export default createMachine({
 </details>
 
 ```hbs
-<Toggle @context=(hash counter=0) as |state send|>
-  <button {{on 'click' (fn send 'TOGGLE')}}>
+<Toggle @context=(hash counter=0) as |toggle|>
+  <button {{on 'click' (fn toggle.send 'TOGGLE')}}>
     Toggle
   </button>
 
   <p>
-    Toggled: {{state.context.counter}} times.
+    Toggled: {{toggle.snapshot.context.counter}} times.
   </p>
 </Toggle>
 ```
@@ -243,12 +284,30 @@ export default createMachine({
 The machine will use `@snapshot` as the initial state.
 Any changes to this argument
 are not automatically propagated to the machine.
-An `ARGS_UPDATE` event (see details below) is sent instead.
+An update event (see details below) is sent instead.
 
 ### What happens if any of the passed args change?
 
-An event will be sent to the machine for you, `ARGS_UPDATE`, along
+An event will be sent to the machine for you, along
 with all named arguments used to invoke the component.
+
+To work with this event, use the constant provided by this library:
+
+```js 
+
+import { UPDATE_EVENT_NAME } from 'ember-statechart-component';
+
+
+const MyMachine = createMachine({
+  initial: 'inactive',
+  states: {
+    [UPDATE_EVENT_NAME]: { /* ... */
+    /* ... */
+  },
+});
+```
+
+The value of this constant is just `EXTERNAL_UPDATE`, but the import makes it clear _why_ it exists, as the name does need to exactly match how the ember component manager is implemented for machines.
 
 
 
