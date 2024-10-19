@@ -161,6 +161,12 @@ interface Signature<
         send: typeof send;
 
         /**
+         * Alias for snapshot.matches,
+         * returns true of the passed state path is active.
+         */
+        matches: (statePath: string) => boolean;
+
+        /**
          * The Machine's Snapshot
          */
         snapshot: SnapshotFrom<
