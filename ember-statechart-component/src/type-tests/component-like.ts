@@ -1,3 +1,4 @@
+import 'ember-statechart-component';
 import { expectTypeOf } from 'expect-type';
 import { createMachine, type MachineContext, type StateSchema, type StateValue } from 'xstate';
 
@@ -11,10 +12,29 @@ const Toggle = createMachine({
   },
 });
 
+type SignatureFor<Component> =
+  Component extends ComponentLike<infer Signature>
+    ? Signature & { extracted: 'signture' }
+    : { failed: 'failed to extract signature' };
+
+/********************************
+ *
+ * Sanity checks so that we know
+ * testing will actually work
+ *
+ * *****************************/
 expectTypeOf<typeof Toggle>().toHaveProperty(
   '__has_been_declaration_merged_from_ember_statechart_component__'
 );
+expectTypeOf<SignatureFor<typeof Toggle>>().toHaveProperty('Args');
+expectTypeOf<SignatureFor<typeof Toggle>>().toHaveProperty('Blocks');
+expectTypeOf<SignatureFor<typeof Toggle>>().toHaveProperty('Element');
 
+/********************************
+ *
+ * Did we merge the interface correctly?
+ *
+ * *****************************/
 expectTypeOf<typeof Toggle>().not.toBeAny();
 expectTypeOf<typeof Toggle>().not.toEqualTypeOf<
   ComponentLike<{
@@ -40,22 +60,23 @@ expectTypeOf(Toggle).toMatchTypeOf<
   }>
 >();
 
-expectTypeOf<typeof Toggle>().toMatchTypeOf<
-  ComponentLike<{
-    Args: {
-      config?: StateSchema;
-      context?: MachineContext;
-      input?: any;
-      snapshot?: StateValue;
-    };
-  }>
->();
+/********************************
+ *
+ * Is the Component Signature correct?
+ *
+ * *****************************/
+expectTypeOf<SignatureFor<typeof Toggle>>().toMatchTypeOf<{
+  Args: {
+    config?: StateSchema;
+    context?: MachineContext;
+    input?: any;
+    snapshot?: StateValue;
+  };
+}>();
 
-expectTypeOf<typeof Toggle>().toMatchTypeOf<
-  ComponentLike<{
-    Args: {
-      // @ts-expect-error
-      _does_not_exist: boolean;
-    };
-  }>
->();
+expectTypeOf<SignatureFor<typeof Toggle>>().toMatchTypeOf<{
+  Args: {
+    // @ts-expect-error
+    config: never;
+  };
+}>();

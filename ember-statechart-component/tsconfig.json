@@ -41,6 +41,9 @@
     // Stylelistic
     "noPropertyAccessFromIndexSignature": false,
 
-    "types": ["../test-app/node_modules/ember-source/types/stable"]
+    "types": [
+      "../test-app/node_modules/ember-source/types/stable",
+      "./src/public-types"
+    ]
   }
 }
