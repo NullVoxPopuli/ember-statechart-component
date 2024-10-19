@@ -1,5 +1,3 @@
-import './glint.ts';
-
 import { expectTypeOf } from 'expect-type';
 import { createMachine } from 'xstate';
 

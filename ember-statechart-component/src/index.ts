@@ -1,4 +1,5 @@
 import './registration.js';
+import './public-types.d.ts';
 
 import { assert } from '@ember/debug';
 import { getOwner } from '@ember/owner';
