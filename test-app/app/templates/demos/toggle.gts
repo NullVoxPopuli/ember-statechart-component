@@ -2,6 +2,8 @@ import { createMachine } from 'xstate';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
 
+import { type ReactiveActor } from 'ember-statechart-component';
+
 const Toggle = createMachine({
   initial: 'inactive',
   states: {
@@ -10,11 +12,17 @@ const Toggle = createMachine({
   },
 });
 
-export const Toggler = <template>
-  <Toggle as |machine|>
-    {{machine.statePath}}
+function allCapsState(machine: ReactiveActor) {
+  return machine.statePath;
+}
 
-    <button type="button" {{on "click" (fn machine.send "TOGGLE")}}>
+export const Toggler = <template>
+  <Toggle as |toggle|>
+    {{toggle.statePath}}
+
+    {{allCapsState toggle}}
+
+    <button type="button" {{on "click" (fn toggle.send "TOGGLE")}}>
       Toggle
     </button>
   </Toggle>
