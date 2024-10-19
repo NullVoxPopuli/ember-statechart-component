@@ -2,7 +2,7 @@ import { createMachine } from 'xstate';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
 
-import { type ReactiveActor } from 'ember-statechart-component';
+import type { ReactiveActorFrom } from 'ember-statechart-component';
 
 const Toggle = createMachine({
   initial: 'inactive',
@@ -12,7 +12,7 @@ const Toggle = createMachine({
   },
 });
 
-function allCapsState(machine: ReactiveActor) {
+function allCapsState(machine: ReactiveActorFrom<typeof Toggle>) {
   return machine.statePath;
 }
 

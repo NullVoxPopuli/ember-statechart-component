@@ -14,7 +14,7 @@ export function getService<Key extends keyof Registry>(
 ): Registry[Key];
 
 import type { ComponentLike } from '@glint/template';
-import type { AnyActorLogic, ContextFrom, EventFromLogic } from 'xstate';
+import type { AnyActorLogic, ContextFrom, EventFromLogic, TagsFrom, ToChildren } from 'xstate';
 import type {
   Actor,
   ActorLogic,
@@ -76,6 +76,23 @@ function send<
     >
   >
 ): void;
+
+export type ReactiveActorFrom<Logic extends ActorLogic> = Signature<
+  ContextFrom<Logic>, // Context
+  EventFrom<Logic>, // Event
+  ToChildren<Logic>, // Children,
+  any, // ProvidedActor
+  any, // Action,
+  any, // Guard,
+  any, // Delay,
+  StateValueFrom<Logic>,
+  TagsFrom<Logic>,
+  any, // Input,
+  any, // Output,
+  EventObject, // Emitted,
+  MetaObject, // Meta,
+  StateSchema // Config,
+>['Blocks']['default'][0];
 
 interface Signature<
   TContext extends MachineContext,
@@ -221,13 +238,3 @@ declare module 'xstate' {
     __has_been_declaration_merged_from_ember_statechart_component__: string;
   }
 }
-
-export type ReactiveActorFrom<Logic extends AnyLogic = AnyLogic> = Signature<
-  any,
-  any,
-  any,
-  any,
-  any,
-  any,
-  any
->['Blocks']['default'][0];
