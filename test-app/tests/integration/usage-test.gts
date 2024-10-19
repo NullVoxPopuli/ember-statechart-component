@@ -143,6 +143,40 @@ module('Usage', function (hooks) {
     assert.dom().containsText('The active state');
   });
 
+  test(`it can use the wrapped matches function`, async function (assert) {
+    const Toggle = createMachine({
+      initial: 'inactive',
+      states: {
+        inactive: { on: { TOGGLE: 'active' } },
+        active: { on: { TOGGLE: 'inactive' } },
+      },
+    });
+
+    await render(
+      <template>
+        <Toggle as |toggler|>
+          {{#if (call toggler toggler.matches "inactive")}}
+            The inactive state
+          {{else if (call toggler toggler.matches "active")}}
+            The active state
+          {{else}}
+            Unknown state
+          {{/if}}
+
+          <button type="button" {{on "click" (fn toggler.send "TOGGLE")}}>
+            Toggle
+          </button>
+        </Toggle>
+      </template>
+    );
+
+    assert.dom().containsText('The inactive state');
+
+    await click('button');
+
+    assert.dom().containsText('The active state');
+  });
+
   test('multiple invocations have their own state', async function (assert) {
     const Toggle = createMachine({
       initial: 'inactive',

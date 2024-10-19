@@ -13,6 +13,20 @@ const STOP = Symbol.for('__ESM__STOP__');
 const START = Symbol.for('__ESM__START__');
 const HANDLE_UPDATE = Symbol.for('__ESM__HANDLE_UPDATE__');
 
+/**
+ * https://stately.ai/docs/migration#the-statetostrings-method-has-been-removed
+ */
+function getStateValueStrings(stateValue) {
+  if (typeof stateValue === 'string') {
+    return [stateValue];
+  }
+  const valueKeys = Object.keys(stateValue);
+
+  return valueKeys.concat(
+    ...valueKeys.map((key) => getStateValueStrings(stateValue[key]).map((s) => key + '.' + s))
+  );
+}
+
 class ReactiveActor {
   /**
    * @private
@@ -39,10 +53,11 @@ class ReactiveActor {
   /**
    * @type {import('xstate').Snapshot['matches']}
    */
-  matches = (...args) => this.actor.matches(...args);
+  matches = (...args) => this.snapshot.matches(...args);
 
   /**
-   * The dot-separated name of the current state
+   * The dot-separated name of the current state.
+   * If multiple states are active, those well be comma-separated
    */
   get statePath() {
     let x = this.value;
@@ -54,8 +69,7 @@ class ReactiveActor {
     if (typeof x === 'object') {
       if (!x) return '';
 
-      if ('toStrings' in x) return x.toStrings();
-      if ('toString' in x) return x.toString();
+      return getStateValueStrings(x).join(',');
     }
 
     return `${x}`;
