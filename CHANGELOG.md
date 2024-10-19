@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2024-10-19)
+
+ember-statechart-component 7.1.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-statechart-component`
+  * [#502](https://github.com/NullVoxPopuli/ember-statechart-component/pull/502) Expose wrapper type ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `ember-statechart-component`
+  * [#503](https://github.com/NullVoxPopuli/ember-statechart-component/pull/503) Fix .matches alias method ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2024-10-17)
 
 ember-statechart-component 7.0.0 (major)
