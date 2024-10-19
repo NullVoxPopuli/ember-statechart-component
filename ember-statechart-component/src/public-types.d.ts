@@ -149,3 +149,42 @@ declare module 'xstate' {
     __has_been_declaration_merged_from_ember_statechart_component__: string;
   }
 }
+
+type SignatureFor<Component> =
+  Component extends ComponentLike<infer Signature>
+    ? Signature
+    : { _: 'failed to extract signature' };
+
+export type ReactiveActor<
+  TContext extends MachineContext,
+  TEvent extends EventObject,
+  TChildren extends Record<string, AnyActorRef | undefined>,
+  TActor extends ProvidedActor,
+  TAction extends ParameterizedObject,
+  TGuard extends ParameterizedObject,
+  TDelay extends string,
+  TStateValue extends StateValue,
+  TTag extends string,
+  TInput,
+  TOutput,
+  TEmitted extends EventObject,
+  TMeta extends MetaObject,
+  TConfig extends StateSchema,
+> = SignatureFor<
+  StateMachine<
+    TContext,
+    TEvent,
+    TChildren,
+    TActor,
+    TAction,
+    TGuard,
+    TDelay,
+    TStateValue,
+    TTag,
+    TInput,
+    TOutput,
+    TEmitted,
+    TMeta,
+    TConfig
+  >
+>['Blocks']['default'][0];
