@@ -20,6 +20,7 @@ function getStateValueStrings(stateValue) {
   if (typeof stateValue === 'string') {
     return [stateValue];
   }
+
   const valueKeys = Object.keys(stateValue);
 
   return valueKeys.concat(
