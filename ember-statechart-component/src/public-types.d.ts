@@ -89,6 +89,7 @@ declare module 'xstate' {
                * for { type: "EVENT_NAME" }
                */
               send: typeof send;
+
               /**
                * The Machine's Snapshot
                */
