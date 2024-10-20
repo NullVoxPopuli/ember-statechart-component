@@ -60,7 +60,7 @@ const Toggler = createMachine({
 
 <template>
   <Toggler as |toggler|>
-    {{toggler.valuePath}}
+    {{toggler.statePath}}
 
     <button {{on 'click' (fn toggler.send 'TOGGLE')}}>
       Toggle
@@ -104,7 +104,7 @@ const AuthenticatedToggle = setup({
 
 <template>
   <AuthenticatedToggle as |toggle|>
-    {{toggle.valuePath}}
+    {{toggle.statePath}}
 
     <button {{on 'click' (fn toggle.send 'TOGGLE')}}>
       Toggle
@@ -216,7 +216,7 @@ const input = {
 
 <template>
   <Toggle @input={{input}} as |toggle|>
-    {{toggle.valuePath}}
+    {{toggle.statePath}}
 
     <button type="button" {{on "click" (fn toggle.send "TOGGLE")}}>
       Toggle
