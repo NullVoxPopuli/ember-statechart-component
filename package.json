@@ -28,10 +28,10 @@
     "release-plan": "^0.9.0",
     "typescript": "^5.5.0"
   },
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@9.12.3",
   "volta": {
     "node": "22.9.0",
-    "pnpm": "9.12.0"
+    "pnpm": "9.12.3"
   },
   "pnpm": {
     "overrides": {
