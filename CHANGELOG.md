@@ -1,5 +1,10 @@
 # Changelog
 
+
+
+
+
+
 ## Release (2024-10-19)
 
 ember-statechart-component 7.1.0 (minor)
