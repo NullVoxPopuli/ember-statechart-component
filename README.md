@@ -31,7 +31,7 @@ Installation
 npm install ember-statechart-component
 ```
 
-Anywhere in your app:
+Anywhere in your app, though, if you don't have anywhere specific in mind, the `app/app.js` will be just fine:
 
 ```ts
 import 'ember-statechart-component';
