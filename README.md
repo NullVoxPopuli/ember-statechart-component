@@ -92,7 +92,7 @@ const AuthenticatedToggle = setup({
         TOGGLE: [
           {
             target: 'active',
-            cond: 'isAuthenticated',
+            guard: 'isAuthenticated',
           },
           { actions: ['notify'] },
         ],
