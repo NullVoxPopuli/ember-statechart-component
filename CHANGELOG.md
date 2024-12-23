@@ -1,5 +1,15 @@
 # Changelog
 
+## Release (2024-12-23)
+
+
+
+#### :memo: Documentation
+* [#520](https://github.com/NullVoxPopuli/ember-statechart-component/pull/520) fix: cond -> guard ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### Committers: 1
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+
 ## Release (2024-10-19)
 
 ember-statechart-component 7.1.0 (minor)
