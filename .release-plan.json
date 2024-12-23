@@ -1,21 +1,8 @@
 {
   "solution": {
     "ember-statechart-component": {
-      "impact": "minor",
-      "oldVersion": "7.0.0",
-      "newVersion": "7.1.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./ember-statechart-component/package.json"
+      "oldVersion": "7.1.0"
     }
   },
-  "description": "## Release (2024-10-19)\n\nember-statechart-component 7.1.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-statechart-component`\n  * [#502](https://github.com/NullVoxPopuli/ember-statechart-component/pull/502) Expose wrapper type ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :bug: Bug Fix\n* `ember-statechart-component`\n  * [#503](https://github.com/NullVoxPopuli/ember-statechart-component/pull/503) Fix .matches alias method ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2024-12-23)\n\n\n\n#### :memo: Documentation\n* [#520](https://github.com/NullVoxPopuli/ember-statechart-component/pull/520) fix: cond -> guard ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### Committers: 1\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n"
 }
