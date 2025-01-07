@@ -172,8 +172,8 @@ export default createMachine({
       toggleIsOn=@onRoomIlluminated
     )
   }}
-as |state send|>
-  <button {{on 'click' (fn send 'TOGGLE')}}>
+as |toggle|>
+  <button {{on 'click' (fn toggle.send 'TOGGLE')}}>
     Toggle
   </button>
 </Toggle>
