@@ -35,7 +35,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@glimmer/component": "1.1.2",
+      "@glimmer/component": "2.0.0",
       "@glint/core": "1.5.0",
       "@glint/environment-ember-loose": "1.5.0",
       "@glint/environment-ember-template-imports": "1.4.1-unstable.b29a807",
