@@ -6,7 +6,7 @@ settings:
 
 overrides:
   '@glimmer/component': 1.1.2
-  '@glint/core': 1.5.0
+  '@glint/core': 1.5.2
   '@glint/environment-ember-loose': 1.5.0
   '@glint/environment-ember-template-imports': 1.4.1-unstable.b29a807
   '@glint/template': 1.4.1-unstable.b29a807
@@ -21,8 +21,8 @@ importers:
         specifier: 7.25.7
         version: 7.25.7
       '@glint/core':
-        specifier: 1.5.0
-        version: 1.5.0(typescript@5.5.4)
+        specifier: 1.5.2
+        version: 1.5.2(typescript@5.5.4)
       '@glint/environment-ember-loose':
         specifier: 1.5.0
         version: 1.5.0(@glimmer/component@1.1.2(@babel/core@7.25.7))(@glint/template@1.4.1-unstable.b29a807)(ember-cli-htmlbars@6.3.0)(ember-modifier@4.2.0(@babel/core@7.25.7)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.25.7))(@glint/template@1.4.1-unstable.b29a807)(rsvp@4.8.5)))
@@ -103,8 +103,8 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7
       '@glint/core':
-        specifier: 1.5.0
-        version: 1.5.0(typescript@5.5.4)
+        specifier: 1.5.2
+        version: 1.5.2(typescript@5.5.4)
       '@glint/environment-ember-loose':
         specifier: 1.5.0
         version: 1.5.0(@glimmer/component@1.1.2(@babel/core@7.25.7))(@glint/template@1.4.1-unstable.b29a807)(ember-cli-htmlbars@6.3.0)(ember-modifier@4.2.0(@babel/core@7.25.7)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.25.7))(@glint/template@1.4.1-unstable.b29a807)(rsvp@4.8.5)))
@@ -230,8 +230,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@glint/core':
-        specifier: 1.5.0
-        version: 1.5.0(typescript@5.5.4)
+        specifier: 1.5.2
+        version: 1.5.2(typescript@5.5.4)
       '@glint/environment-ember-loose':
         specifier: 1.5.0
         version: 1.5.0(@glimmer/component@1.1.2(@babel/core@7.25.7))(@glint/template@1.4.1-unstable.b29a807)(ember-cli-htmlbars@6.3.0)(ember-modifier@4.2.0(@babel/core@7.25.7)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.25.7))(@glint/template@1.4.1-unstable.b29a807)(rsvp@4.8.5)))
@@ -1515,8 +1515,8 @@ packages:
   '@glimmer/wire-format@0.92.3':
     resolution: {integrity: sha512-gFz81Q9+V7Xs0X8mSq6y8qacHm0dPaGJo2/Bfcsdow1hLOKNgTCLr4XeDBhRML8f6I6Gk9ugH4QDxyIOXOpC4w==}
 
-  '@glint/core@1.5.0':
-    resolution: {integrity: sha512-oo6ZDwX2S0Qqjai/CJH72LHg1U6rvzH1IyiFlWofaFiu/nSg04CDWZuJNPC3r47jz1+SaSI+mVMUaKJznzxzzQ==}
+  '@glint/core@1.5.2':
+    resolution: {integrity: sha512-kbEt8jBEkH65yDB20tBq/rnZl+iigmAenKQcgu1cqex6/eT6LrQ5E9QxyKtqe9S18qZv0c/LNa0qE7jwbAEKMA==}
     hasBin: true
     peerDependencies:
       typescript: '>=4.8.0'
@@ -5256,6 +5256,7 @@ packages:
 
   lodash.omit@4.5.0:
     resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
+    deprecated: This package is deprecated. Use destructuring assignment syntax instead.
 
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
@@ -9107,7 +9108,7 @@ snapshots:
       '@glimmer/interfaces': 0.92.3
       '@glimmer/util': 0.92.3
 
-  '@glint/core@1.5.0(typescript@5.5.4)':
+  '@glint/core@1.5.2(typescript@5.5.4)':
     dependencies:
       '@glimmer/syntax': 0.84.3
       escape-string-regexp: 4.0.0
