@@ -38,7 +38,7 @@
       "@glimmer/component": "1.1.2",
       "@glint/core": "1.5.2",
       "@glint/environment-ember-loose": "1.5.2",
-      "@glint/environment-ember-template-imports": "1.4.1-unstable.b29a807",
+      "@glint/environment-ember-template-imports": "1.5.2",
       "@glint/template": "1.4.1-unstable.b29a807",
       "ember-cli-babel": "^8.2.0",
       "ember-cli-typescript": "5.3.0"
