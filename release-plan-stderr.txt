@@ -1,0 +1,8 @@
+(node:2119) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+# Unlabeled Changes
+
+* [#525](https://github.com/NullVoxPopuli/ember-statechart-component/pull/525) Second yielded argument on machine is not send ([@MichalBryxi](https://github.com/MichalBryxi))
+
+
+*Cannot plan release until the above changes are labeled*.
