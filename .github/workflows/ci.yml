@@ -20,7 +20,7 @@ jobs:
           - ./ember-statechart-component
           - ./test-app
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: wyvox/action-setup-pnpm@v3
       - run: cd ${{ matrix.path }} && pnpm run lint
 
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: wyvox/action-setup-pnpm@v3
       - run: pnpm --filter test-app run test:ember
 
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: tests
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: wyvox/action-setup-pnpm@v3
         with:
           args: '--no-lockfile'
@@ -86,7 +86,7 @@ jobs:
           - typescript@5.5
           - typescript@5.6
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: wyvox/action-setup-pnpm@v3
       - name: Update TS Version
         run: pnpm add --save-dev ${{ matrix.typescript-scenario }}
