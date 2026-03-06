@@ -16,4 +16,9 @@ expectTypeOf<ReactiveActorFrom<typeof Toggle>>().not.toBeAny();
 expectTypeOf<ReactiveActorFrom<typeof Toggle>>().toHaveProperty('statePath');
 expectTypeOf<ReactiveActorFrom<typeof Toggle>>().toHaveProperty('send');
 
+expectTypeOf<ReactiveActorFrom<typeof Toggle>['send']>().not.toBeAny();
 expectTypeOf<ReactiveActorFrom<typeof Toggle>['send']>().toMatchTypeOf<(type: string) => void>();
+expectTypeOf<ReactiveActorFrom<typeof Toggle>['send']>().toMatchTypeOf<
+  (event: { type: string }) => void
+>();
+expectTypeOf<Parameters<ReactiveActorFrom<typeof Toggle>['send']>>().not.toBeAny();
