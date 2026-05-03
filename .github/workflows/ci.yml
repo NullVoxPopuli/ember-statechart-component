@@ -21,7 +21,7 @@ jobs:
           - ./test-app
     steps:
       - uses: actions/checkout@v6
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: wyvox/action-setup-pnpm@v4
       - run: cd ${{ matrix.path }} && pnpm run lint
 
   tests:
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: wyvox/action-setup-pnpm@v4
       - run: pnpm --filter test-app run test:ember
 
   floating-deps-tests:
@@ -40,7 +40,7 @@ jobs:
     needs: tests
     steps:
       - uses: actions/checkout@v6
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: wyvox/action-setup-pnpm@v4
         with:
           args: '--no-lockfile'
       - run: pnpm --filter test-app run test:ember
@@ -87,7 +87,7 @@ jobs:
           - typescript@5.6
     steps:
       - uses: actions/checkout@v6
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: wyvox/action-setup-pnpm@v4
       - name: Update TS Version
         run: pnpm add --save-dev ${{ matrix.typescript-scenario }}
         working-directory: ./test-app
