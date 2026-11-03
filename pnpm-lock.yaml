@@ -170,10 +170,10 @@ importers:
         version: 5.5.4
       vite:
         specifier: ^6.0.0
-        version: 6.4.4(@types/node@25.2.1)(terser@5.46.0)
+        version: 6.4.5(@types/node@25.2.1)(terser@5.46.0)
       vite-plugin-dts:
         specifier: ^4.2.4
-        version: 4.5.0(@types/node@25.2.1)(rollup@4.67.4)(typescript@5.5.4)(vite@6.4.4(@types/node@25.2.1)(terser@5.46.0))
+        version: 4.5.0(@types/node@25.2.1)(rollup@4.67.4)(typescript@5.5.4)(vite@6.4.5(@types/node@25.2.1)(terser@5.46.0))
       xstate:
         specifier: ^5.18.2
         version: 5.19.2
@@ -222,7 +222,7 @@ importers:
         version: 4.0.1-unstable.89d7d7f(@embroider/compat@3.6.2-unstable.89d7d7f(@embroider/core@3.4.16-unstable.89d7d7f(@glint/template@1.11.0))(@glint/template@1.11.0))(@embroider/core@3.4.16-unstable.89d7d7f(@glint/template@1.11.0))
       '@embroider/vite':
         specifier: 0.2.1-unstable.89d7d7f
-        version: 0.2.1-unstable.89d7d7f(@embroider/core@3.4.16-unstable.89d7d7f(@glint/template@1.11.0))(@glint/template@1.11.0)(rollup@4.67.4)(vite@6.4.4(@types/node@25.2.1)(terser@5.46.0))
+        version: 0.2.1-unstable.89d7d7f(@embroider/core@3.4.16-unstable.89d7d7f(@glint/template@1.11.0))(@glint/template@1.11.0)(rollup@4.67.4)(vite@6.4.5(@types/node@25.2.1)(terser@5.46.0))
       '@glimmer/component':
         specifier: 2.1.1
         version: 2.1.1
@@ -357,7 +357,7 @@ importers:
         version: 8.19.1(eslint@9.18.0)(typescript@5.5.4)
       vite:
         specifier: ^6.0.0
-        version: 6.4.4(@types/node@25.2.1)(terser@5.46.0)
+        version: 6.4.5(@types/node@25.2.1)(terser@5.46.0)
       webpack:
         specifier: ^5.95.0
         version: 5.104.1
@@ -7478,8 +7478,8 @@ packages:
       vite:
         optional: true
 
-  vite@6.4.4:
-    resolution: {integrity: sha512-xGjU/SyjeNyb0E4KxXBvYz/1C+3JXuujvf2hXNOtnlcE+58o5ajd9N2/n2VhkiJvpCP2qQasnUpx5PXNeI+p1Q==}
+  vite@6.4.5:
+    resolution: {integrity: sha512-4enwjFfi4IwtEh0w+jPzpLVOFQiPHmmzPxcHXQOyEur47o6u0jE573DmGpjA+7irXoMLYRZD5ZaFUEneS3abPg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -9014,7 +9014,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@embroider/vite@0.2.1-unstable.89d7d7f(@embroider/core@3.4.16-unstable.89d7d7f(@glint/template@1.11.0))(@glint/template@1.11.0)(rollup@4.67.4)(vite@6.4.4(@types/node@25.2.1)(terser@5.46.0))':
+  '@embroider/vite@0.2.1-unstable.89d7d7f(@embroider/core@3.4.16-unstable.89d7d7f(@glint/template@1.11.0))(@glint/template@1.11.0)(rollup@4.67.4)(vite@6.4.5(@types/node@25.2.1)(terser@5.46.0))':
     dependencies:
       '@babel/core': 7.29.6
       '@embroider/core': 3.4.16-unstable.89d7d7f(@glint/template@1.11.0)
@@ -9031,7 +9031,7 @@ snapshots:
       send: 0.18.0
       source-map-url: 0.4.1
       terser: 5.37.0
-      vite: 6.4.4(@types/node@25.2.1)(terser@5.46.0)
+      vite: 6.4.5(@types/node@25.2.1)(terser@5.46.0)
     transitivePeerDependencies:
       - '@glint/template'
       - bufferutil
@@ -16605,7 +16605,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-plugin-dts@4.5.0(@types/node@25.2.1)(rollup@4.67.4)(typescript@5.5.4)(vite@6.4.4(@types/node@25.2.1)(terser@5.46.0)):
+  vite-plugin-dts@4.5.0(@types/node@25.2.1)(rollup@4.67.4)(typescript@5.5.4)(vite@6.4.5(@types/node@25.2.1)(terser@5.46.0)):
     dependencies:
       '@microsoft/api-extractor': 7.49.1(@types/node@25.2.1)
       '@rollup/pluginutils': 5.1.4(rollup@4.67.4)
@@ -16618,13 +16618,13 @@ snapshots:
       magic-string: 0.30.17
       typescript: 5.5.4
     optionalDependencies:
-      vite: 6.4.4(@types/node@25.2.1)(terser@5.46.0)
+      vite: 6.4.5(@types/node@25.2.1)(terser@5.46.0)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
 
-  vite@6.4.4(@types/node@25.2.1)(terser@5.46.0):
+  vite@6.4.5(@types/node@25.2.1)(terser@5.46.0):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.7)
