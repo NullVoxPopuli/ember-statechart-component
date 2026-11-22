@@ -1,0 +1,6 @@
+# Unlabeled Changes
+
+* [#525](https://github.com/NullVoxPopuli/ember-statechart-component/pull/525) Second yielded argument on machine is not send ([@MichalBryxi](https://github.com/MichalBryxi))
+
+
+*Cannot plan release until the above changes are labeled*.
