@@ -3,7 +3,7 @@
   "glint": {
     "environment": ["ember-loose", "ember-template-imports"]
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "allowJs": true,
     // Don't typecheck addon-shim
@@ -41,6 +41,9 @@
     // Stylelistic
     "noPropertyAccessFromIndexSignature": false,
 
-    "types": ["../test-app/node_modules/ember-source/types/stable"]
+    "types": [
+      "../test-app/node_modules/ember-source/types/stable",
+      "./src/public-types"
+    ]
   }
 }
